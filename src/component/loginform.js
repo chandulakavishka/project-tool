@@ -28,7 +28,7 @@ const loginform = () => {
             />
             <Button type='submit' color='primary' variant="contained" style={btstyle} fullWidth>Sign in</Button>
             <Typography>
-            <Link href="#">Forgot Password</Link>
+            <Link href="#">Forgot Passcode</Link>
             </Typography>
             <Typography> Do you have an account ?
             <Link href="#">Sign up</Link>
