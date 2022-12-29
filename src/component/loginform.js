@@ -7,9 +7,9 @@ import Checkbox from '@mui/material/Checkbox';
 import { margin } from '@mui/system';
 const loginform = () => {
 
-    const paperStyle={padding :20,height:'60vh', width:300, margin:"80px auto"}
-    const avatarStyle={backgroundColor: 'rgb(0 213 249)'}
-    const btstyle={margin:'8px 0', backgroundColor:'#4119d2'}
+    const paperStyle={padding :20,height:'60vh', width:350, margin:"80px auto", backgroundColor:'#F9FFFF'}
+    const avatarStyle={backgroundColor: 'rgb(255 105 98)'}
+    const btstyle={margin:'8px 0', backgroundColor:'rgb(255 105 98)'}
 
     return(
         <Grid>
