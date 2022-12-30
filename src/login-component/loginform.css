@@ -1,0 +1,11 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+.section1 {
+  align-items: flex-end;
+}
+.section2 {
+  align-items: flex-end;
+  padding-right: 20px;
+}
