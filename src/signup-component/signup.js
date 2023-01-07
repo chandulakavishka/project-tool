@@ -1,5 +1,5 @@
 import React from "react";
-import "./loginform.css";
+import "./signup.css";
 import {
   Grid,
   Paper,
@@ -16,8 +16,7 @@ import Checkbox from "@mui/material/Checkbox";
 import { margin } from "@mui/system";
 import image from "../image/loginimg.jpg";
 
-
-const loginform = () => {
+const signup = () => {
   const paperStyle = {
     height: "60vh",
     width: 700,
@@ -27,8 +26,14 @@ const loginform = () => {
   };
   const avatarStyle = { backgroundColor: "rgb(24 13 91)" };
   const btstyle = {
-    margin: "20px 0",
+    margin: "20px 0px 0 0",
     backgroundColor: "rgb(24 13 91)",
+    cursor: "pointer",
+  };
+  const btrstyle = {
+    margin: "20px 20px 0 30px",
+    backgroundColor: "rgb(240, 255, 255)",
+    color:"black",
     cursor: "pointer",
   };
   const paperStyle1 = { borderRadius: "25px" };
@@ -56,11 +61,18 @@ const loginform = () => {
             <Avatar style={avatarStyle}>
               <LockOutlinedIcon />
             </Avatar>
-            <h2>Sign In</h2>
+            <h2>Sign up</h2>
           </Grid>
           <TextField
+            label="Username"
+            placeholder="Enter username"
+            variant="standard"
+            fullWidth
+            required
+          />
+          <TextField
             label="Email"
-            placeholder="Enter Email"
+            placeholder="Enter email"
             variant="standard"
             fullWidth
             required
@@ -73,30 +85,34 @@ const loginform = () => {
             fullWidth
             required
           />
-          <FormControlLabel
-            control={<Checkbox name="checkedB" color="primary" />}
-            label="Remember me"
+          <TextField
+            label="Phone No"
+            placeholder="Enter phone no"
+            variant="standard"
+            fullWidth
+            required
           />
           <Button
+            className="bt1"
+            type="reset"
+            variant="contained"
+            style={btrstyle}
+          >
+            Reset all
+          </Button>
+          <Button
+            className="bt2"
             type="submit"
             color="primary"
             variant="contained"
             style={btstyle}
-            fullWidth
           >
-            Sign in
+            Sign up
           </Button>
-          <Typography>
-            <Link href="#">Forgot Password</Link>
-          </Typography>
-          <Typography>
-            {" "}
-            Don't have an account ?<Link href="Signup">Sign up</Link>
-          </Typography>
         </Grid>
       </Grid>
     </Paper>
   );
 };
 
-export default loginform;
+export default signup;
