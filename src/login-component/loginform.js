@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./loginform.css";
 import {
   Grid,
@@ -13,11 +14,9 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { margin } from "@mui/system";
 import image from "../image/loginimg.jpg";
 
-
-const loginform = () => {
+function Loginform() {
   const paperStyle = {
     height: "60vh",
     width: 700,
@@ -32,6 +31,37 @@ const loginform = () => {
     cursor: "pointer",
   };
   const paperStyle1 = { borderRadius: "25px" };
+
+  const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState("");
+
+  const checkData = (e) => {
+    e.preventDefault();
+    const data = {
+      Email: email,
+      Password: password,
+    };
+
+    const url = "https://localhost:44322/api/Registration/Login";
+    axios
+      .post(url, data)
+      .then((result) => {
+        const dt = result.data;
+        alert(dt.statusMessage);
+        if (dt.statusMessage === "Login Successful") {
+          clear();
+        } else {
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const clear = () => {
+    setEmail("");
+    setPassword("");
+  };
 
   return (
     <Paper elevation={10} style={paperStyle}>
@@ -64,6 +94,8 @@ const loginform = () => {
             variant="standard"
             fullWidth
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             label="Password"
@@ -72,6 +104,8 @@ const loginform = () => {
             variant="standard"
             fullWidth
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox name="checkedB" color="primary" />}
@@ -83,6 +117,7 @@ const loginform = () => {
             variant="contained"
             style={btstyle}
             fullWidth
+            onClick={(e) => checkData(e)}
           >
             Sign in
           </Button>
@@ -91,12 +126,12 @@ const loginform = () => {
           </Typography>
           <Typography>
             {" "}
-            Don't have an account ?<Link href="Signup">Sign up</Link>
+            Don't have an account ?<Link href="/signup">Sign up</Link>
           </Typography>
         </Grid>
       </Grid>
     </Paper>
   );
-};
+}
 
-export default loginform;
+export default Loginform;

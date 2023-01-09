@@ -1,22 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./signup.css";
-import {
-  Grid,
-  Paper,
-  Avatar,
-  TextField,
-  Button,
-  Typography,
-  Link,
-  Box,
-} from "@mui/material";
+import { Grid, Paper, Avatar, TextField, Button, Box } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import { margin } from "@mui/system";
 import image from "../image/loginimg.jpg";
 
-const signup = () => {
+function Signup() {
   const paperStyle = {
     height: "60vh",
     width: 700,
@@ -33,10 +22,46 @@ const signup = () => {
   const btrstyle = {
     margin: "20px 20px 0 30px",
     backgroundColor: "rgb(240, 255, 255)",
-    color:"black",
+    color: "black",
     cursor: "pointer",
   };
   const paperStyle1 = { borderRadius: "25px" };
+
+  const [name, setName] = useState("");
+
+  const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState("");
+
+  const [phoneNo, setPhoneNo] = useState("");
+
+  const passData = (e) => {
+    e.preventDefault();
+
+    const url = "https://localhost:44322/api/Registration/Registration";
+    const data = {
+      Name: name,
+      Email: email,
+      Password: password,
+      PhoneNo: phoneNo,
+    };
+    axios
+      .post(url, data)
+      .then((result) => {
+        clear();
+        const dt = result.data;
+        alert(dt.StatusMessage);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const clear = () => {
+    setName("");
+    setEmail("");
+    setPassword("");
+    setPhoneNo("");
+  };
 
   return (
     <Paper elevation={10} style={paperStyle}>
@@ -69,6 +94,8 @@ const signup = () => {
             variant="standard"
             fullWidth
             required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <TextField
             label="Email"
@@ -76,6 +103,8 @@ const signup = () => {
             variant="standard"
             fullWidth
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             label="Password"
@@ -84,6 +113,8 @@ const signup = () => {
             variant="standard"
             fullWidth
             required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <TextField
             label="Phone No"
@@ -91,12 +122,15 @@ const signup = () => {
             variant="standard"
             fullWidth
             required
+            value={phoneNo}
+            onChange={(e) => setPhoneNo(e.target.value)}
           />
           <Button
             className="bt1"
             type="reset"
             variant="contained"
             style={btrstyle}
+            onClick={(e) => clear(e)}
           >
             Reset all
           </Button>
@@ -106,6 +140,7 @@ const signup = () => {
             color="primary"
             variant="contained"
             style={btstyle}
+            onClick={(e) => passData(e)}
           >
             Sign up
           </Button>
@@ -113,6 +148,6 @@ const signup = () => {
       </Grid>
     </Paper>
   );
-};
+}
 
-export default signup;
+export default Signup;
