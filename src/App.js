@@ -7,6 +7,7 @@ import Page from "./page-component/page";
 
 function App() {
   return (
+<<<<<<< Updated upstream
     <div className="App">
       <Router>
         <Routes>
@@ -16,6 +17,13 @@ function App() {
         </Routes>
       </Router>
     </div>
+=======
+  <div className= "App">
+    
+    <Signup/>
+  </div>
+   
+>>>>>>> Stashed changes
   );
 }
 
