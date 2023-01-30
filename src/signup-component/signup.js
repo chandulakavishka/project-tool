@@ -33,24 +33,27 @@ function Signup() {
 
   const [password, setPassword] = useState("");
 
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const [phoneNo, setPhoneNo] = useState("");
 
   const passData = (e) => {
     e.preventDefault();
 
-    const url = "https://localhost:44322/api/Registration/Registration";
+    const url = "https://localhost:7294/api/User/registration";
     const data = {
       Name: name,
       Email: email,
       Password: password,
-      PhoneNo: phoneNo,
+      ConfirmPassword: confirmPassword,
+      PhoneNo: phoneNo
     };
     axios
       .post(url, data)
       .then((result) => {
-        clear();
-        const dt = result.data;
-        alert(dt.StatusMessage);
+          clear();
+          const dt = result.data;
+          alert(dt.statusMessage);
       })
       .catch((error) => {
         console.log(error);
@@ -60,6 +63,7 @@ function Signup() {
     setName("");
     setEmail("");
     setPassword("");
+    setConfirmPassword("");
     setPhoneNo("");
   };
 
@@ -115,6 +119,16 @@ function Signup() {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          />
+          <TextField
+            label="ConfirmPassword"
+            placeholder="Enter ConfirmPassword"
+            type="password"
+            variant="standard"
+            fullWidth
+            required
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <TextField
             label="Phone No"

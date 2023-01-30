@@ -43,16 +43,14 @@ function Loginform() {
       Password: password,
     };
 
-    const url = "https://localhost:44322/api/Registration/Login";
+    const url = "https://localhost:7294/api/User/login";
     axios
       .post(url, data)
       .then((result) => {
         const dt = result.data;
         alert(dt.statusMessage);
-        if (dt.statusMessage === "Login Successful") {
+        if (dt.statusMessage)
           clear();
-        } else {
-        }
       })
       .catch((error) => {
         console.log(error);
