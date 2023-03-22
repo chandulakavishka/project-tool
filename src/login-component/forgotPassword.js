@@ -11,7 +11,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 function FormDialogToForgotPassword() {
   const [forgotPassword, setForgotPassword] = useState("");
   const [open, setOpen] = useState(true);
-
+  
   // const handleClickOpen = () => {
   //   setOpen(false);
   // }
@@ -29,13 +29,20 @@ function FormDialogToForgotPassword() {
       .post(url, data)
       .then((result) => {
         const dt = result.data;
+        setOpen(false);
         alert(dt.statusMessage);
       })
       .catch((error) => {
+        setOpen(true);
         alert("Email is not found...!");
+        clear();
         console.log(error);
       });
       setOpen(false);
+
+      const clear =() =>{
+        setForgotPassword("");
+      }
 
   }
 
@@ -45,7 +52,7 @@ function FormDialogToForgotPassword() {
         <DialogTitle>Forgot Your Password?</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Please enter your valid email and We 'll send a code your email.
+            Please enter your valid email and We 'll send a link your email.
           </DialogContentText>
           <br></br>
           <TextField
@@ -66,6 +73,9 @@ function FormDialogToForgotPassword() {
           <Button onClick={handleOK}>Ok</Button>
         </DialogActions>
       </Dialog>
+      <div>
+        <button className="forgotPassword-page-button"><a href="https://mail.google.com/">Please check your email for your validation...!</a></button>
+      </div>
     </div>
   );
 }

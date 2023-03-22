@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+//import Page from "../page-component/page"
 import "./loginform.css";
 import "./forgotPassword"
 import {
@@ -17,7 +18,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import image from "../image/loginimg.jpg";
-import { margin } from "@mui/system";
 
 function Loginform() {
   const paperStyle = {
@@ -72,9 +72,9 @@ function Loginform() {
       axios
         .post(url, data)
         .then((result) => {
-          const dt = result.data;
-          alert(dt.statusMessage);
-          if (dt.statusMessage)
+          //const dt = result.data;
+          alert("Login Successful..!");
+          //if (dt.statusMessage)
             clear();
         })
         .catch((error) => {

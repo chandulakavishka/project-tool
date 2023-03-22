@@ -1,0 +1,53 @@
+.task-container {
+  display: flex;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid rgb(21, 16, 58);
+}
+.task-title-container{
+    display: flex;
+  padding: 10px;
+  margin: 10px;
+}
+.task-container:hover {
+  background-color: rgb(239, 239, 243);
+}
+.task-detail-1 {
+  width: 400px;
+}
+.task-detail-2 {
+  width: 300px;
+}
+.task-detail-3 {
+  width: 400px;
+}
+.task-detail-1-title {
+    width: 400px;
+  }
+  .task-detail-2-title {
+    width: 300px;
+  }
+  .task-detail-3-title {
+    width: 400px;
+  }
+.task-comment-icon{
+    margin-right: 40px;
+    cursor: pointer;
+}
+.task-comment-delete{
+    margin-right: 20px;
+    cursor: pointer;
+}
+.addTo-memberToTask{
+    cursor: pointer;
+}
+.box-style{
+    margin-left: 250px;
+    margin-top: 100px;
+    margin-right: 30px;
+    min-width: 1000px;
+    min-height: 570px;
+    background-Color: "white";
+    border-Radius: 20px;
+    box-shadow: 0px 5px 15px 5px rgb(230, 235, 240) inset;
+}
