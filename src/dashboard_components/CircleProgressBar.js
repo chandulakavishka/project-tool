@@ -34,12 +34,12 @@ CircularProgressWithLabel.propTypes = {
 };
 
 export default function CircleProgressBar() {
-    const [progress, setProgress] = useState(70);
+    const [progress, setProgress] = useState(75);
     
 
     useEffect(() => {
         const timer = setInterval(() => {
-            setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 1));
+            setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 0));
         }, 800);
         return () => {
             clearInterval(timer);

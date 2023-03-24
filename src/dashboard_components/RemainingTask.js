@@ -38,9 +38,8 @@ const RemainingTask = () => {
              
             }}>
              <EventNoteOutlinedIcon fontSize='medium' />
-             <Typography variant='h5'  marginLeft='10px'>{item.taskId}</Typography>
-             <Typography variant='h5'  marginLeft='10px'>{item.taskName}</Typography>
-             <Typography variant='h5'  marginLeft='60px'>{item.currentProgress}</Typography>
+             <Typography variant='p'  marginLeft='10px'>{item.taskName}</Typography>
+           
            </Stack>
           ))}
         </Stack>

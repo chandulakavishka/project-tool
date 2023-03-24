@@ -215,7 +215,11 @@ const AppDrawer = () => {
               </Box>
 
               <Typography varient='h3'>
-                Chiran
+                <b>
+                    Chandula Kavishka
+                </b>
+                <br/>
+                chandulakavishka@gmail.com
               </Typography>
 
             </Stack>

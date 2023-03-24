@@ -20,7 +20,7 @@ const Innovatives = () => {
           backgroundColor: '#fff'
         }}>
           <Typography variant='h5' marginLeft='100px'>Innovatives</Typography>
-        <Stack gap={0.5} paddingTop='15px'>
+        <Stack gap={0.5} paddingTop='10px'>
 
           <Typography variant='h6' textAlign='center' >61 |  32</Typography>
           <Typography variant='h6' textAlign='center'>Total |  Closed</Typography>

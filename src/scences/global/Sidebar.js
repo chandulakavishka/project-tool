@@ -73,7 +73,7 @@ export default function Sidebar() {
             >
               <MenuIcon />
             </IconButton>
-            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTmIKGwObJ_A_JurYyKkt-eKYEFYpLxk8sww&usqp=CAU' height={80} width={80} alt='icon' />
+            <img src='../../images/Logo.png' height={80} width={80} alt='icon' />
           </Stack>
           <Stack>
             <List>
