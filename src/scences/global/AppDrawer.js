@@ -20,7 +20,7 @@ import NotificationPanel from '../../dashboard_components/NotificationPanel';
 import CircleProgressBar from '../../dashboard_components/CircleProgressBar';
 import Innovatives from '../../dashboard_components/Innovatives';
 import Badges from '../../dashboard_components/Slideshow';
-import { Cal } from '../../dashboard_components/Cal';
+import { Calender } from '../../dashboard_components/Calender';
 
 
 const drawerWidth = 200;
@@ -298,7 +298,7 @@ const AppDrawer = () => {
                 backgroundColor: '#fff'
 
               }}>
-                <Cal />
+                <Calender />
               </Box>
               <Box>
                 <RemainingTask />

@@ -11,7 +11,8 @@ import Menu from '@mui/material/Menu';
 import Tooltip from '@mui/material/Tooltip';
 
 
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account',
+                  'Dashboard', 'Logout'];
 
 const Topbar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);

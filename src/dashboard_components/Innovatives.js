@@ -23,9 +23,9 @@ const Innovatives = () => {
         <Stack gap={0.4} paddingTop='10px' display='grid'>
 
           <Typography variant='p' margin='auto'>61 |  32</Typography>
-          <Typography variant='h6' margin='auto '>Total |  Closed</Typography>
+          <Typography variant='h6' margin='auto '><b>Total |  Closed</b></Typography>
           <Typography variant='p' margin='auto'>29 |  13</Typography>
-          <Typography variant='h6' margin='auto'>Inprogress |  New</Typography>
+          <Typography variant='h6' margin='auto' display='flex' ><b>Inprogress | New</b></Typography>
         </Stack>
       </Box>
     </>

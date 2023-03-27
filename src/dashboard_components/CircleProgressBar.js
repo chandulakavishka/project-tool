@@ -51,8 +51,8 @@ export default function CircleProgressBar() {
   const arr2 = data.filter(item => item.currentProgress === 2).map((item, index) => (
     <Typography variant='p'  marginLeft='10px'>{item.taskName}</Typography>
  ))
-    let percentage =  (parseInt(arr2.length/arr1.length)*100)
-    console.log((arr2.length/arr1.length)*100)
+    let percentage =  (parseInt(arr2.length*100/arr1.length))
+    console.log(percentage)
 
     useEffect(() => {
         const timer = setInterval(() => {

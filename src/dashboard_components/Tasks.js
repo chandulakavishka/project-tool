@@ -42,9 +42,9 @@ const Task = () => {
         <Stack gap={1} >
 
           <Typography variant='h6' textAlign='center'>{arr1.length} |  {arr2.length}</Typography>
-          <Typography variant='h6' textAlign='center' paddingBottom='1px'>Total |  Closed</Typography>
+          <Typography variant='h6' textAlign='center' paddingBottom='1px'><b>Total |  Closed</b></Typography>
           <Typography variant='h6' textAlign='center'>{arr3.length} |  {15}</Typography>
-          <Typography variant='h6' textAlign='center'>Incomplete |  Overdue</Typography>
+          <Typography variant='h6' textAlign='center'><b>Incomplete |  Overdue</b></Typography>
 
 
         </Stack>
