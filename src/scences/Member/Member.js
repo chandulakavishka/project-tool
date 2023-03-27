@@ -5,7 +5,7 @@ import Topbar from '../global/Topbar'
 const Member = () => {
   return (
     <>
-      <Topbar/>
+      <Topbar subject='Member'/>
       <Typography variant='h2'>
           Members
       </Typography>

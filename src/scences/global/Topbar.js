@@ -11,10 +11,9 @@ import Menu from '@mui/material/Menu';
 import Tooltip from '@mui/material/Tooltip';
 
 
-const settings = ['Profile', 'Account',
-                  'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account','Dashboard', 'Logout'];
 
-const Topbar = () => {
+const Topbar = (props) => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
 
@@ -32,7 +31,7 @@ const Topbar = () => {
         </Stack>
         <Stack sx={{ flexGrow: 1 }}>
           <Typography varient='h3' component='div' >
-            MBOs And Innovative Impact
+            {props.subject}
           </Typography>
         </Stack>
         <Stack direction='row' spacing={2} sx={{ flexGrow: 1.5 }}>
