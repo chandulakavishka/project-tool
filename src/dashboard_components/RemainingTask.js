@@ -14,11 +14,13 @@ const RemainingTask = () => {
       }).catch(err => console.log(err))
   }, [])
 
-  
+  const arr1 = data.filter(item => item.currentProgress < 2).map((item, index) => (
+    <Typography variant='p'  marginLeft='10px'>{item.taskName}</Typography>
+ ))
 
   return (
     <>
-      <Typography variant='h5' align='left' marginLeft='14px' marginBottom='10px'>RemainingTask (5)</Typography>
+      <Typography variant='h5' align='left' marginLeft='14px' marginBottom='10px'>RemainingTask ({arr1.length})</Typography>
       <Box
         sx={{
           boxShadow: 3,

@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import { Button, Typography } from '@mui/material';
 
 import axios from 'axios';
+import { Margin } from '@mui/icons-material';
 
 
 
@@ -18,6 +19,8 @@ const NotificationPanel = () => {
         setData(res.data)
       }).catch(err => console.log(err))
   }, [])
+
+  let month = new Date().getMonth()+1
   return (
     <>
       <Typography variant='h4' align='left' marginLeft='10px'><b>Notifications</b></Typography>
@@ -42,7 +45,7 @@ const NotificationPanel = () => {
                 </Box>
                 <Box display='gird'>
                   <Typography variant='h6' color='white' align='left' marginLeft='40px' marginTop='8px'>You Were Assign New Task</Typography>
-                  <Typography variant='p' color='white' align='left' marginLeft='50px'>18 February 2023 - 11 00 am</Typography>
+                  <Typography variant='p' color='white' align='left' marginLeft='50px'>{new Date().getDate()} {months[month]} {new Date().getFullYear()} - {new Date().getHours()}:{new Date().getMinutes()}</Typography>
                   <Box align='left' marginLeft='45px' marginTop={2}>
                     <Button sx={{
                       width: 130,
@@ -57,42 +60,15 @@ const NotificationPanel = () => {
                     }} >Assign Now</Button>
                   </Box>
                 </Box>
-                <Box style={{ width: '120px', height: '120px', marginLeft: '190px', borderRadius: '50%', marginTop: '40px', border: '2px solid white', zIndex: 2 ,backgroundColor: '#163a78 '}}> 
-                  <img width={80} marginTop='400px' src='../../images/notes.png' alt="" />
+                <Box style={{display:'flex', width: '120px', height: '120px', marginLeft: '190px', borderRadius: '50%', marginTop: '40px', border: '2px solid white', zIndex: 2 ,backgroundColor: '#163a78 '}}> 
+                  <img width={80} marginTop='400px' src='../../images/notes.png' alt="" style={{margin:'auto'}}/>
                 </Box>
-                <Box style={{ width: '150px', height: '140px', borderRadius: '50%', marginLeft: '-60px', marginTop: '25px', border: '2px solid white', zIndex: 1,backgroundColor: '#163a78 ' }}>
-                  <img  width={120} src='../../images/notepad.png' alt="" />
-
+                <Box style={{display:'flex', width: '150px', height: '140px', borderRadius: '50%', marginLeft: '-60px', marginTop: '25px', border: '2px solid white', zIndex: 1,backgroundColor: '#163a78 ' }}>
+                  <img  width={115} src='../../images/notepad.png' alt="" style={{margin:'auto', marginLeft:'40px'}}/>
                 </Box>
               </Box>
             </Box>
-            <Box>
-            </Box>
-          </Box>
-          <Box>
-            <Box style={{ display: 'flex', marginBottom: '15px', marginLeft: '40px' }}>
-
-            </Box>
-
-
-
-          </Box>
-
-
-          <Box
-            sx={{
-              width: '150px',
-              height: '150px',
-              marginLeft: '30px',
-              borderRadius: '20px',
-              display: 'flex'
-
-            }}
-          >
-
-            {/* <img style={{ width: '150px', height: '150px', borderRadius: '50%', marginLeft: '900px', border: '2px solid white', zIndex: 2}} src='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg' alt="" />
-            <img style={{ width: '150px', height: '150px', borderRadius: '50%', marginLeft: '-60px', border: '2px solid white', zIndex: 1 }} src='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg' alt="" /> */}
-          </Box>
+          </Box>       
         </Box>
       </Box>
     </>

@@ -19,7 +19,7 @@ import Tasks from '../../dashboard_components/Tasks';
 import NotificationPanel from '../../dashboard_components/NotificationPanel';
 import CircleProgressBar from '../../dashboard_components/CircleProgressBar';
 import Innovatives from '../../dashboard_components/Innovatives';
-import Badges from '../../dashboard_components/Badges';
+import Badges from '../../dashboard_components/Slideshow';
 import { Cal } from '../../dashboard_components/Cal';
 
 

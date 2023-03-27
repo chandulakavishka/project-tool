@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, Box, Stack } from '@mui/material'
+import { Typography, Box, Stack, Grid } from '@mui/material'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 // import { urlTasks } from '../endpoint'
@@ -19,13 +19,13 @@ const Innovatives = () => {
           borderRadius: '10px',
           backgroundColor: '#fff'
         }}>
-          <Typography variant='h5' marginLeft='100px'>Innovatives</Typography>
-        <Stack gap={0.5} paddingTop='10px'>
+          <Typography variant='h5' marginLeft='110px'>Innovatives</Typography>
+        <Stack gap={0.4} paddingTop='10px' display='grid'>
 
-          <Typography variant='h6' textAlign='center' >61 |  32</Typography>
-          <Typography variant='h6' textAlign='center'>Total |  Closed</Typography>
-          <Typography variant='h6' textAlign='center'>29 |  13</Typography>
-          <Typography variant='h6' textAlign='center'>Incomplete |  Overdue</Typography>
+          <Typography variant='p' margin='auto'>61 |  32</Typography>
+          <Typography variant='h6' margin='auto '>Total |  Closed</Typography>
+          <Typography variant='p' margin='auto'>29 |  13</Typography>
+          <Typography variant='h6' margin='auto'>Inprogress |  New</Typography>
         </Stack>
       </Box>
     </>

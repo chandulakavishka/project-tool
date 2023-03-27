@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import axios from 'axios';
 
 
 function CircularProgressWithLabel(props) {
@@ -34,13 +35,29 @@ CircularProgressWithLabel.propTypes = {
 };
 
 export default function CircleProgressBar() {
+    const [data, setData] = useState([])
     const [progress, setProgress] = useState(75);
-    
+
+  useEffect(() => {
+    axios.get('https://localhost:44338/api/Tasks')
+      .then(res => {
+        setData(res.data)
+      }).catch(err => console.log(err))
+  }, [])
+
+  const arr1 = data.filter(item => item.currentProgress < 3).map((item, index) => (
+    <Typography variant='p'  marginLeft='10px'>{item.taskName}</Typography>
+ ))
+  const arr2 = data.filter(item => item.currentProgress === 2).map((item, index) => (
+    <Typography variant='p'  marginLeft='10px'>{item.taskName}</Typography>
+ ))
+    let percentage =  (parseInt(arr2.length/arr1.length)*100)
+    console.log((arr2.length/arr1.length)*100)
 
     useEffect(() => {
         const timer = setInterval(() => {
             setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 0));
-        }, 800);
+        }, []);
         return () => {
             clearInterval(timer);
         };
@@ -62,6 +79,7 @@ export default function CircleProgressBar() {
                     
                   }}>
                     <CircularProgressWithLabel size="9rem" value={progress} />
+                    
                 </Box>
     </>
 }
