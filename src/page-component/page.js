@@ -45,12 +45,7 @@ const Page = () => {
   const [open, setOpen] = useState(false);
   const [isViewComment, setIsViewComment] = useState(false);
 
-  const btEdit = {
-    padding: "0 0 0 0",
-    backgroundColor: "red",
-    FontColor: "white",
-    cursor: "pointer",
-  };
+  
   const handleClose = () => {
     setOpen(false);
   };
