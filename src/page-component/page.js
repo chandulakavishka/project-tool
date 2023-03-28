@@ -20,11 +20,19 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs, { Dayjs } from "dayjs";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DateTimeField } from '@mui/x-date-pickers/DateTimeField';
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import Autocomplete from "@mui/material/Autocomplete";
+
+import InputAdornment from "@mui/material/InputAdornment";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 
 import "./page.css";
 
@@ -115,6 +123,15 @@ const Page = () => {
       });
   }, []);
 
+  const top100Films = [
+    { label: "Chandula" },
+    { label: "Maleesha" },
+    { label: "Nipuni" },
+    { label: "De Silva" },
+    { label: "Romesh" },
+    { label: "Perera" },
+  ];
+
   return (
     <div className="box-style">
       <div>
@@ -132,6 +149,9 @@ const Page = () => {
         <div className="task-detail-3-title">
           <b>Due Date</b>
         </div>
+        <div className="task-detail-4-title">
+          <b>Progress</b>
+        </div>
       </div>
       <div>{isViewComment && (<CommentSection currentUserId={1} commentOpen={commentOpen} taskId={taskId} />)}
       </div>
@@ -146,6 +166,33 @@ const Page = () => {
               </div>
             </div>
             <div className="task-detail-3">{backendComment.dueDate}</div>
+            <div className="task-detail-4">
+            <Accordion
+                sx={{ height: "0px", width: "250px", alignContent: "center" }}
+              >
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  
+                </AccordionSummary>
+                <AccordionDetails>
+                  <TextField
+                    label="Progress"
+                    id="outlined-start-adornment"
+                    sx={{
+                      m: 1,
+                      width: "15ch",
+                      height: "5ch",
+                      backgroundColor: "white",
+                      
+                    }}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">%</InputAdornment>
+                      ),
+                    }}
+                  />
+                </AccordionDetails>
+              </Accordion>
+            </div>
             <div className="task-comment-icon">
               <CommentRoundedIcon onClick={() => viewComment(backendComment.id)}></CommentRoundedIcon>
             </div>
@@ -153,7 +200,13 @@ const Page = () => {
               <DeleteForeverIcon onClick={() => deleteTask(backendComment.id)}></DeleteForeverIcon>
             </div>
             <div>
-              <Button color="secondary" style={btEdit} onClick={handleCreateTask}>Edit</Button>
+              <Button variant="contained"
+                sx={{
+                  color: "black",
+                  padding: "0 0 0 0",
+                  backgroundColor: "#054da7",
+                  cursor: "pointer",
+                }} onClick={handleCreateTask}>Edit</Button>
             </div>
           </div>
         ))}
@@ -181,17 +234,25 @@ const Page = () => {
               />
               Due Date
               <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DemoContainer components={["DatePicker"]}>
-                <DateTimeField
-          label="Controlled field"
-          value={dueDate}
-          onChange={(newValue) => setDueDate(newValue)}
-        />
+                <DemoContainer components={["DateTimePicker"]}>
+                  <DateTimePicker
+                    label="Controlled field"
+                    value={dueDate}
+                    onChange={(newValue) => setDueDate(newValue)}
+                  />
                 </DemoContainer>
               </LocalizationProvider>
               Add Member
               <div className="addTo-memberToTask">
-                <AddCircleRoundedIcon></AddCircleRoundedIcon>
+              <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={top100Films}
+                  sx={{ width: 300 }}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Select" />
+                  )}
+                />
               </div>
             </Stack>
           </DialogContent>
