@@ -26,7 +26,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import Autocomplete from "@mui/material/Autocomplete";
-
+import LinearProgress from '@mui/material/LinearProgress';
 import InputAdornment from "@mui/material/InputAdornment";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -168,10 +168,12 @@ const Page = () => {
             <div className="task-detail-3">{backendComment.dueDate}</div>
             <div className="task-detail-4">
             <Accordion
-                sx={{ height: "0px", width: "250px", alignContent: "center" }}
+                sx={{ height: "0px", width: "250px" }}
               >
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                  
+                <Box sx={{ width: '100%'}}>
+      <LinearProgress variant="determinate" value={20}  />
+    </Box>
                 </AccordionSummary>
                 <AccordionDetails>
                   <TextField

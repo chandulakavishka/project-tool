@@ -18,11 +18,11 @@ const Comment = ({
   createdAt,
   key
 }) => {
-  //const fiveMinutes = 300000;
-  const timeOk = false; //new Date() - new Date(createdAt) > fiveMinutes;
+  const fiveMinutes = 300000;
+  const timeOk = new Date() - new Date(createdAt) > fiveMinutes;
   const doReply = Boolean(currentUserId);
-  const doEdit = currentUserId === userID.toString() && !timeOk;
-  const doDelete = currentUserId === userID.toString() && !timeOk;
+  const doEdit = currentUserId === userID && !timeOk;
+  const doDelete = currentUserId === userID && !timeOk;
   //const createdAt = new Date(comment.createdAt).toLocaleDateString();
   const isReply =
     activeComment &&
