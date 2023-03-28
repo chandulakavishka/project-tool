@@ -36,13 +36,14 @@ CircularProgressWithLabel.propTypes = {
 
 export default function CircleProgressBar() {
     const [data, setData] = useState([])
-    const [progress, setProgress] = useState(75);
+    const [error, setError] = useState(false);
 
   useEffect(() => {
     axios.get('https://localhost:44338/api/Tasks')
       .then(res => {
         setData(res.data)
-      }).catch(err => console.log(err))
+      }).catch(err => {console.log(err)
+                        setError(true)})
   }, [])
 
   const arr1 = data.filter(item => item.currentProgress < 3).map((item, index) => (
@@ -54,14 +55,14 @@ export default function CircleProgressBar() {
     let percentage =  (parseInt(arr2.length*100/arr1.length))
     console.log(percentage)
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 0));
-        }, []);
-        return () => {
-            clearInterval(timer);
-        };
-    }, []);
+    // useEffect(() => {
+    //     const timer = setInterval(() => {
+    //         setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 0));
+    //     }, []);
+    //     return () => {
+    //         clearInterval(timer);
+    //     };
+    // }, []);
 
     return <>
                 <Typography variant='h5' paddingLeft='30px'>Project Completion Rate</Typography>
@@ -78,7 +79,7 @@ export default function CircleProgressBar() {
                     backgroundColor: '#fff'
                     
                   }}>
-                    <CircularProgressWithLabel size="9rem" value={progress} />
+                    <CircularProgressWithLabel size="9rem" value={(error !== true) ? percentage : 75} />
                     
                 </Box>
     </>
