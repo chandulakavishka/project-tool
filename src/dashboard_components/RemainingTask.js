@@ -26,7 +26,7 @@ const RemainingTask = () => {
 
   return (
     <>
-      <Typography variant='h5' align='left' marginLeft='14px' marginBottom='10px'>RemainingTask ({arr1.length})</Typography>
+      <Typography variant='h5' align='left' marginLeft='14px' marginBottom='10px'><b>RemainingTask ({arr1.length})</b></Typography>
       <Box
         sx={{
           boxShadow: 3,
@@ -50,8 +50,8 @@ const RemainingTask = () => {
               <Typography variant='p' marginLeft='10px'>{item.taskName}</Typography>
 
             </Stack>
-          )) : <Box style={{justifyContent:'center',alignItems:'center',display:'grid',margin:'auto',position:'relative'}}>
-            <img width={180} src='https://media.tenor.com/wfEN4Vd_GYsAAAAM/loading.gif' alt='loading gif' />
+          )) : <Box style={{justifyContent:'center',alignItems:'center',display:'grid',margin:'auto',position:'relative',marginTop:'60px'}}>
+            <img width={60} src='https://media.tenor.com/wfEN4Vd_GYsAAAAM/loading.gif' alt='loading gif' />
           </Box>
           }
         </Stack>

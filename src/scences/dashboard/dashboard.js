@@ -4,6 +4,7 @@ import React from "react"
 import AppDrawer from "../global/AppDrawer"
 // import Topbar from "../global/Topbar"
 // import Sidebar from "../global/Sidebar"
+import { Profile } from "../Profile/Profile";
 
 export default function Dashboard() {  
   return (
@@ -11,6 +12,7 @@ export default function Dashboard() {
         
           <AppDrawer/>
           {/* <NotificationPanel/> */}
+          {/* <Profile/> */}
           
       </>
   )

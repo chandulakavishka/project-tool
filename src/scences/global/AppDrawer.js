@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Box, IconButton, CssBaseline, List, Toolbar, Typography, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, TextField, Avatar, Tooltip, styled, Grid, Paper, Badge } from '@mui/material'
+import { Box,Button, IconButton, CssBaseline, List, Toolbar, Typography, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, TextField, Avatar, Tooltip, styled, Grid, Paper, Badge, Divider } from '@mui/material'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useStyles } from '../../Styles';
 import MuiDrawer from '@mui/material/Drawer';
@@ -21,6 +21,10 @@ import CircleProgressBar from '../../dashboard_components/CircleProgressBar';
 import Innovatives from '../../dashboard_components/Innovatives';
 import Badges from '../../dashboard_components/Slideshow';
 import { Calender } from '../../dashboard_components/Calender';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 
 
 const drawerWidth = 200;
@@ -89,15 +93,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-
-
-
-
-
 const settings = ['Profile', 'Logout'];
 
 const AppDrawer = () => {
-  const [open, setOpen] = useState(true);
+  const [popup, setPopup] = useState(false);
+  const [open,setOpen] = useState(true);
+  const [menu, setMenu] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { classes } = useStyles();
@@ -109,6 +110,18 @@ const AppDrawer = () => {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+  const handleOpenUserMenu = (event) => {
+    setMenu(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => {
+    setMenu(null);
+  };
+  const boxopen =()=>{
+    setPopup(true)
+  };
+  const handleClose = () => {
+    setPopup(false);
   };
 
   const menuItems = [
@@ -139,18 +152,31 @@ const AppDrawer = () => {
     },
 
   ]
+  
 
-  const [menu, setMenu] = useState(null);
-
-  const handleOpenUserMenu = (event) => {
-    setMenu(event.currentTarget);
-  };
-  const handleCloseUserMenu = () => {
-    setMenu(null);
-  };
-
+  
   return (
     <>
+        <Dialog open={popup} onClose={handleClose} >
+          <DialogTitle sx={{display:'flex',alignItems:'center'}}> <NotificationsActiveIcon/> <Box paddingLeft={2}> Notification </Box> </DialogTitle>
+          <Divider/>
+          <Box width={300} margin={3}>
+            <Stack gap={1}>
+              <Typography variant='h6'>Notification 1</Typography>
+            </Stack>
+            <Stack gap={1} >
+              <Typography variant='h6'>Notification 2</Typography>
+            </Stack>
+            <Stack gap={1}>
+              <Typography variant='h6'>Notification 3</Typography>
+            </Stack>
+          </Box>
+          <DialogContent>
+           
+            <Stack spacing={2}>
+            </Stack>
+          </DialogContent>     
+        </Dialog>
       <Box sx={{ display: 'flex' }} >
         <CssBaseline />
         <AppBar position="fixed" open={open} elevation={0} color='inherit' >
@@ -179,7 +205,7 @@ const AppDrawer = () => {
             <Stack direction='row' spacing={2} >
 
               <IconButton>
-                <NotificationsActiveIcon />
+                <NotificationsActiveIcon onClick={boxopen}/>
               </IconButton>
               <IconButton>
                 <SettingsIcon />

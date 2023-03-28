@@ -10,6 +10,7 @@ import Projects from './scences/Projects/projects';
 import Modules from './scences/Modules/Modules';
 import Member from './scences/Member/Member';
 import Reports from './scences/Reports/Reports';
+import { Profile } from "./scences/Profile/Profile";
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
         <Route path='/Reports' element={<Reports/>}/>
       </Routes>
     </Router>
+
+    
   );
 }
 

@@ -20,7 +20,15 @@ const NotificationPanel = () => {
       }).catch(err => console.log(err))
   }, [])
 
-  let month = new Date().getMonth()+1
+  let month = new Date().getMonth()
+  let gethours = new Date().getHours()
+  let hours = new Date().getHours()
+  if(hours === 0){
+    hours+=12
+  }else if(hours>12){
+    hours-=12
+  }
+ 
   return (
     <>
       <Typography variant='h4' align='left' marginLeft='10px'><b>Notifications</b></Typography>
@@ -45,7 +53,7 @@ const NotificationPanel = () => {
                 </Box>
                 <Box display='gird'>
                   <Typography variant='h6' color='white' align='left' marginLeft='40px' marginTop='8px'>You Were Assign New Task</Typography>
-                  <Typography variant='p' color='white' align='left' marginLeft='50px'>{new Date().getDate()} {months[month]} {new Date().getFullYear()} - {new Date().getHours()}:{new Date().getMinutes()}</Typography>
+                  <Typography variant='p' color='white' align='left' marginLeft='50px'>{new Date().getDate()} {months[month]} {new Date().getFullYear()} - {hours}:{new Date().getMinutes()} {(gethours>12) ? 'pm':'am'}</Typography>
                   <Box align='left' marginLeft='45px' marginTop={2}>
                     <Button sx={{
                       width: 130,

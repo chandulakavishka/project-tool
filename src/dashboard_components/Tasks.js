@@ -1,15 +1,18 @@
 import { React, useState, useEffect } from 'react'
-import { Typography, Box, Stack } from '@mui/material'
+import { Typography, Box, Stack, Divider } from '@mui/material'
 import axios from 'axios'
 
 const Task = () => {
 
   const [data, setData] = useState([])
+  const [error, setError] = useState(false)
+
   useEffect(() => {
     axios.get('https://localhost:44338/api/Tasks')
       .then(res => {
         setData(res.data)
-      }).catch(err => console.log(err))
+      }).catch(err => {console.log(err)
+        setError(true) })
   }, [])
 
   const arr1 = data.filter(item => item.currentProgress < 3).map((item, index) => (
@@ -21,7 +24,7 @@ const Task = () => {
   const arr3 = data.filter(item => item.currentProgress < 2).map((item, index) => (
     <Typography variant='p' marginLeft='10px'>{item.taskName}</Typography>
   ))
-  const arr4 = data.filter(item => item.currentProgress < 2).map((item, index) => (
+  const arr4 = data.filter(item => item.currentProgress < 1).map((item, index) => (
     <Typography variant='p' marginLeft='10px'>{item.taskName}</Typography>
   ))
 
@@ -41,12 +44,11 @@ const Task = () => {
         }}>
         <Stack gap={1} >
 
-          <Typography variant='h6' textAlign='center'>{arr1.length} |  {arr2.length}</Typography>
-          <Typography variant='h6' textAlign='center' paddingBottom='1px'><b>Total |  Closed</b></Typography>
-          <Typography variant='h6' textAlign='center'>{arr3.length} |  {15}</Typography>
-          <Typography variant='h6' textAlign='center'><b>Incomplete |  Overdue</b></Typography>
-
-
+          <Typography variant='h6' textAlign='center'>{(error !== true) ? arr1.length : '0'} |  {(error !== true) ?arr2.length : '0'}</Typography>
+          <Typography variant='h6' textAlign='center' paddingLeft='20px'><b>Total |  Closed</b></Typography>
+          <Divider/>
+          <Typography variant='h6' textAlign='center'>{(error !== true) ?arr3.length : '0'} |  {(error !== true) ?arr4.length : '0'}</Typography>
+          <Typography variant='h6' paddingLeft='51px'><b>Incomplete |  Overdue</b></Typography>
         </Stack>
       </Box>
     </>
