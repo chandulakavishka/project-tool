@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Box, IconButton, CssBaseline, List, Toolbar, Typography, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, TextField, Avatar, Tooltip, styled, Grid, Paper, Badge, Divider } from '@mui/material'
+import { Box,Button, IconButton, CssBaseline, List, Toolbar, Typography, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, TextField, Avatar, Tooltip, styled, Grid, Paper, Badge, Divider } from '@mui/material'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useStyles } from '../../Styles';
 import MuiDrawer from '@mui/material/Drawer';
@@ -27,7 +27,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 
 
-const drawerWidth = 220;
+const drawerWidth = 200;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -95,7 +95,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const settings = ['Profile', 'Logout'];
 
-const AppDrawer = () => {
+const AppDrawerDemo = (props) => {
   const [popup, setPopup] = useState(false);
   const [open,setOpen] = useState(true);
   const [menu, setMenu] = useState(null);
@@ -311,40 +311,8 @@ const AppDrawer = () => {
         <Box component="main" sx={{ flexGrow: 1, p: 3, backgroundColor: '#f9f9f9', borderRadius: '5px' }}>
           <DrawerHeader />
           <Box display='flex' border='none' >
-            <Box style={{ paddingBottom: '140px', paddingRight: '60px' }}>
-              <Box sx={{
-                boxShadow: 2,
-                borderColor: 'gray',
-                width: 355,
-                paddingLeft: 2,
-                paddingBottom: 1,
-                marginBottom: 1,
-                marginLeft: 3,
-                borderRadius: '5px',
-                backgroundColor: '#fff'
-
-              }}>
-                <Calender />
-              </Box>
-              <Box>
-                <RemainingTask />
-              </Box>
-            </Box>
-            <Box display='grid' style={{ paddingBottom: '100px', }}>
-              <Box>
-                <NotificationPanel />
-              </Box>
-              <Box marginLeft='10px'>
-                <Box display='flex' >
-                  <Box ><CircleProgressBar /></Box>
-                  <Box ><Tasks /></Box>
-                </Box>
-                <Box display='flex'>
-                  <Box ><Innovatives /></Box>
-                  <Box><Badges /></Box>
-                </Box>
-              </Box>
-            </Box>
+            {props.childern}
+            
           </Box>
         </Box >
       </Box>
@@ -352,5 +320,4 @@ const AppDrawer = () => {
   );
 }
 
-export default AppDrawer;
-
+export default AppDrawerDemo;

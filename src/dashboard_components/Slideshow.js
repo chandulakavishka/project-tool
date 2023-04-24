@@ -27,7 +27,7 @@ const Slideshow = () => {
       sx={{
         boxShadow:3,
         backgroundColor: '#163a78',
-        borderRadius:3,
+        borderRadius:2,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

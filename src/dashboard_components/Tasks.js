@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react'
-import { Typography, Box, Stack, Divider } from '@mui/material'
+import { Typography, Box, Stack} from '@mui/material'
 import axios from 'axios'
 
 const Task = () => {
@@ -30,23 +30,23 @@ const Task = () => {
 
   return (
     <>
-      <Typography variant='h5' marginLeft='120px' >Tasks</Typography>
+          <Typography variant='h5' marginLeft='120px' >Tasks</Typography>
       <Box
         sx={{
-          boxShadow: 5,
+          boxShadow: 3,
           borderColor: 'gray',
           width: 350,
-          height: 170,
-          marginBottom: 2,
+          height: 165,
+          marginBottom: 3,
           padding: 1,
-          borderRadius: '15px',
+          borderRadius: '5px',
           backgroundColor: '#fff'
         }}>
         <Stack gap={1} >
 
           <Typography variant='h6' textAlign='center'>{(error !== true) ? arr1.length : '0'} |  {(error !== true) ?arr2.length : '0'}</Typography>
           <Typography variant='h6' textAlign='center' paddingLeft='20px'><b>Total |  Closed</b></Typography>
-          <Divider/>
+          
           <Typography variant='h6' textAlign='center'>{(error !== true) ?arr3.length : '0'} |  {(error !== true) ?arr4.length : '0'}</Typography>
           <Typography variant='h6' paddingLeft='51px'><b>Incomplete |  Overdue</b></Typography>
         </Stack>

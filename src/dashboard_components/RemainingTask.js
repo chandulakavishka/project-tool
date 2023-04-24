@@ -3,8 +3,6 @@ import { Typography, Box, Grid, Stack } from '@mui/material'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
-import { LocalDining } from '@mui/icons-material';
-// import { urlTasks } from '../endpoint'
 
 const RemainingTask = () => {
   const [data, setData] = useState([])
@@ -33,7 +31,7 @@ const RemainingTask = () => {
           marginLeft: 2,
           borderColor: 'gray',
           width: 370,
-          height: 270,
+          height: 235,
           padding: 4,
           borderRadius: '5px',
           backgroundColor: '#fff',

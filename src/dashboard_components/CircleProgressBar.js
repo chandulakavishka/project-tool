@@ -55,14 +55,6 @@ export default function CircleProgressBar() {
     let percentage =  (parseInt(arr2.length*100/(arr1.length || 1)))
     console.log(percentage)
 
-    // useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         setProgress((prevProgress) => (prevProgress >= 100 ? 0 : prevProgress + 0));
-    //     }, []);
-    //     return () => {
-    //         clearInterval(timer);
-    //     };
-    // }, []);
 
     return <>
                 <Typography variant='h5' paddingLeft='30px'>Project Completion Rate</Typography>
@@ -75,7 +67,7 @@ export default function CircleProgressBar() {
                     padding: 2,
                     paddingLeft:12,
                     marginRight:10,
-                    borderRadius: '10px',
+                    borderRadius: '5px',
                     backgroundColor: '#fff'
                     
                   }}>

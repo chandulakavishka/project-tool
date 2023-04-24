@@ -62,7 +62,7 @@ export default function Sidebar() {
         open={isDrawerOpen}
         onClose={() => setIsDrawerOpen(false)}
       >
-        <Box p={2} width='250px' textAlign='center' role='presentation'>
+        <Box  width='220px' textAlign='center' role='presentation'>
           <Stack sx={{ ml: 1 }} direction='row' spacing={1} >
             <IconButton
               size='large'
@@ -72,8 +72,8 @@ export default function Sidebar() {
               onClick={() => setIsDrawerOpen(false)}
             >
               <MenuIcon />
-            </IconButton>
-            <img src='../../images/Logo.png' height={60} width={120} alt='icon' />
+            </IconButton >
+            <img src='../../images/Logo.png' height={65} width={130} alt='icon' />
           </Stack>
           <Stack>
             <List>

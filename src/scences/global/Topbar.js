@@ -34,7 +34,7 @@ const Topbar = (props) => {
             {props.subject}
           </Typography>
         </Stack>
-        <Stack direction='row' spacing={2} sx={{ flexGrow: 1.5 }}>
+        <Stack direction='row' spacing={2} sx={{ flexGrow: 1.1 }}>
           <TextField size='small' defaultValue="Search" variant="outlined" sx={{ width: '320px' }}></TextField>
         </Stack>
         <Stack direction='row' spacing={2} >
