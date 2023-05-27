@@ -22,9 +22,9 @@ import Innovatives from '../../dashboard_components/Innovatives';
 import Badges from '../../dashboard_components/Slideshow';
 import { Calender } from '../../dashboard_components/Calender';
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
+import Slideshow from '../../dashboard_components/Slideshow';
 
 
 const drawerWidth = 220;
@@ -157,7 +157,7 @@ const AppDrawer = () => {
   
   return (
     <>
-        <Dialog open={popup} onClose={handleClose} >
+        {/* <Dialog open={popup} onClose={handleClose} >
           <DialogTitle sx={{display:'flex',alignItems:'center'}}> <NotificationsActiveIcon/> <Box paddingLeft={2}> Notification </Box> </DialogTitle>
           <Divider/>
           <Box width={300} margin={3}>
@@ -176,7 +176,7 @@ const AppDrawer = () => {
             <Stack spacing={2}>
             </Stack>
           </DialogContent>     
-        </Dialog>
+        </Dialog> */}
       <Box sx={{ display: 'flex' }} >
         <CssBaseline />
         <AppBar position="fixed" open={open} elevation={0} color='inherit' >
@@ -308,10 +308,10 @@ const AppDrawer = () => {
             ))}
           </List>
         </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3, backgroundColor: '#f9f9f9', borderRadius: '5px' }}>
-          <DrawerHeader />
+        <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', borderRadius: '5px',padding:'70px 0 0 20px' }}>
+          
           <Box display='flex' border='none' >
-            <Box style={{ paddingBottom: '140px', paddingRight: '60px' }}>
+            <Box style={{ paddingBottom: '0px', paddingRight: '60px' }}>
               <Box sx={{
                 boxShadow: 2,
                 borderColor: 'gray',
@@ -330,7 +330,7 @@ const AppDrawer = () => {
                 <RemainingTask />
               </Box>
             </Box>
-            <Box display='grid' style={{ paddingBottom: '100px', }}>
+            <Box display='grid'>
               <Box>
                 <NotificationPanel />
               </Box>
@@ -341,7 +341,7 @@ const AppDrawer = () => {
                 </Box>
                 <Box display='flex'>
                   <Box ><Innovatives /></Box>
-                  <Box><Badges /></Box>
+                  <Box><Slideshow /></Box>
                 </Box>
               </Box>
             </Box>

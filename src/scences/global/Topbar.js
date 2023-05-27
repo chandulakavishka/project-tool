@@ -2,7 +2,6 @@ import React from 'react'
 import { AppBar, IconButton, TextField, Toolbar, Typography, Box } from '@mui/material'
 import Sidebar from './Sidebar'
 import { Stack } from '@mui/system'
-import MessageIcon from '@mui/icons-material/Message';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import SettingsIcon from '@mui/icons-material/Settings';
 import MenuItem from '@mui/material/MenuItem';

@@ -150,6 +150,11 @@ const AppDrawerDemo = (props) => {
       icon: <ReceiptLongOutlinedIcon fontSize='medium' className={classes.drawerIcon} />,
       path: '/Reports'
     },
+    {
+      text: "Profile",
+      icon: <ReceiptLongOutlinedIcon fontSize='medium' className={classes.drawerIcon} />,
+      path: '/Profile'
+    },
 
   ]
   
@@ -253,6 +258,7 @@ const AppDrawerDemo = (props) => {
         </AppBar>
         <Drawer variant="permanent" open={open}>
           <DrawerHeader>
+            
             <IconButton color="inherit"
               aria-label="close drawer"
               onClick={handleDrawerClose}
@@ -309,7 +315,7 @@ const AppDrawerDemo = (props) => {
           </List>
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 3, backgroundColor: '#f9f9f9', borderRadius: '5px' }}>
-          <DrawerHeader />
+          
           <Box display='flex' border='none' >
             {props.childern}
             

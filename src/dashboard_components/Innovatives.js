@@ -39,7 +39,7 @@ const Innovatives = () => {
           <Typography variant='p' margin='auto'>{(error !== true) ? arr1.length : '0'} |  {(error !== true) ? arr1.length : '0'}</Typography>
           <Typography variant='h6' margin='auto ' paddingLeft='20px'><b>Total |  Closed</b></Typography>
           <Typography variant='p' margin='auto'> {(error !== true) ? arr1.length : '0'} |  {(error !== true) ? arr1.length : '0'}</Typography>
-          <Typography variant='h6' paddingLeft='61px' ><b>Inprogress | New</b></Typography>
+          <Typography variant='h6' paddingLeft='125px' ><b>New | Inprogress</b></Typography>
         </Stack>
       </Box>
     </>

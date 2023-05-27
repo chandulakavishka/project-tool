@@ -4,15 +4,18 @@ import React from "react"
 import AppDrawer from "../global/AppDrawer"
 // import Topbar from "../global/Topbar"
 // import Sidebar from "../global/Sidebar"
-import { Profile } from "../Profile/Profile";
+import { Setting } from "../Setting/Setting";
+import AppDrawerDemo from "../global/AppDrawerDemo";
+import { Typography } from "@mui/material";
 
 export default function Dashboard() {  
   return (
       <>
         
           <AppDrawer/>
+          
           {/* <NotificationPanel/> */}
-          {/* <Profile/> */}
+          {/* <Setting/> */}
           
       </>
   )

@@ -31,8 +31,8 @@ const RemainingTask = () => {
           marginLeft: 2,
           borderColor: 'gray',
           width: 370,
-          height: 235,
-          padding: 4,
+          height: 275,
+          padding: 3,
           borderRadius: '5px',
           backgroundColor: '#fff',
           overflow: 'hidden'
@@ -49,7 +49,7 @@ const RemainingTask = () => {
 
             </Stack>
           )) : <Box style={{justifyContent:'center',alignItems:'center',display:'grid',margin:'auto',position:'relative',marginTop:'60px'}}>
-            <img width={60} src='https://media.tenor.com/wfEN4Vd_GYsAAAAM/loading.gif' alt='loading gif' />
+            <img width={65} src='https://media.tenor.com/wfEN4Vd_GYsAAAAM/loading.gif' alt='loading gif' />
           </Box>
           }
         </Stack>
