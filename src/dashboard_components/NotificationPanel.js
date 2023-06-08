@@ -13,7 +13,7 @@ const NotificationPanel = () => {
   const [data, setData] = useState(new Date());
 
   useEffect(() => {
-    axios.get('https://localhost:44338/api/Notification')
+    axios.get('https://localhost:7224/api/Notification')
       .then(res => {
         console.log("Getting Backend Tasks data", res.data)
         setData(res.data)
@@ -39,7 +39,8 @@ const NotificationPanel = () => {
           height: 160,
           backgroundColor: '#163a78',
           borderRadius: '15px',
-
+          display: {sm:'none',xl:'block'},
+          marginBottom:'20px'
 
         }}
       >

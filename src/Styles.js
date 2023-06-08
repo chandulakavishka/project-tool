@@ -92,8 +92,13 @@ export const useStyles = makeStyles()((theme) => {
                 backgroundColor: '#5255c1'
             }
         },
+        drawerIconMain: {
+            color: '#000',
+            
+        },
         drawerIcon: {
-            color: '#000'
+            color: '#000',
+            marginRight: '20px'
         },
         drawerText: {
             color: '#000'

@@ -7,6 +7,7 @@ import Projects from './scences/Projects/projects';
 import Modules from './scences/Modules/Modules';
 import Member from './scences/Member/Member';
 import Reports from './scences/Reports/Reports';
+import { Setting } from "./scences/Setting/Setting";
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
         <Route path='/Modules' element={<Modules/>}/>
         <Route path='/Members' element={<Member/>}/>
         <Route path='/Reports' element={<Reports/>}/>
-        {/* <Route path='/Setting' element={<Setting/>}/> */}
+        <Route path='/Setting' element={<Setting/>}/>
       </Routes>
     </Router>
 

@@ -39,7 +39,7 @@ export default function CircleProgressBar() {
     const [error, setError] = useState(false);
 
   useEffect(() => {
-    axios.get('https://localhost:44338/api/Tasks')
+    axios.get('https://localhost:7224/api/Tasks')
       .then(res => {
         setData(res.data)
       }).catch(err => {console.log(err)
@@ -63,7 +63,7 @@ export default function CircleProgressBar() {
                     boxShadow: 2,
                     borderColor: 'gray',
                     width: 350,
-                    height: 165,
+                    height: 175,
                     padding: 2,
                     paddingLeft:12,
                     marginRight:10,

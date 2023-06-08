@@ -7,6 +7,7 @@ import SupervisedUserCircleOutlinedIcon from '@mui/icons-material/SupervisedUser
 import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import HouseIcon from '@mui/icons-material/House';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useStyles } from '../../Styles';
 
@@ -45,6 +46,11 @@ export default function Sidebar() {
       icon: <ReceiptLongOutlinedIcon fontSize='medium' className={classes.drawerIcon} />,
       path: '/Reports'
     },
+    {
+      text: "Settings",
+      icon: <SettingsIcon fontSize='medium' className={classes.drawerIcon} />,
+      path: '/Setting'
+    },
   ]
   return (
     <>
@@ -66,14 +72,15 @@ export default function Sidebar() {
           <Stack sx={{ ml: 1 }} direction='row' spacing={1} >
             <IconButton
               size='large'
-              edge='start'
               color='inhrit'
               aria-label='logo'
               onClick={() => setIsDrawerOpen(false)}
             >
-              <MenuIcon />
+              <MenuIcon  />
             </IconButton >
-            <img src='../../images/Logo.png' height={65} width={130} alt='icon' />
+            <Box>
+            <img src='../../images/Logo.png' height={65} width={150} alt='icon' />
+            </Box>
           </Stack>
           <Stack>
             <List>

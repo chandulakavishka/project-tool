@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import { Box } from '@mui/material';
 import Topbar from '../global/Topbar';
@@ -13,6 +13,18 @@ export const Setting = () => {
     description:'',
     profilePicture: null,
   });
+  const [data, setData] = useState([])
+  const [error, setError] = useState(false)
+
+  useEffect(() => {
+    axios.get('https://localhost:7224/api/Tasks')
+      .then(res => {
+        setData(res.data)
+      }).catch(err => {
+        console.log(err)
+        setError(true)
+      })
+  }, [])
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -81,7 +93,8 @@ export const Setting = () => {
       marginBottom: '20px',
     },
   };
-  const fname = 'chandula'
+  const fname = data.filter(item => item.UId == 1 ).map((item, index) => (item.UserName
+  ))
   const lname = 'Kavishka'
   const email = 'chandulakavishka0@gmail.com'
   return (

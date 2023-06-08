@@ -154,6 +154,13 @@ const AppDrawerDemo = (props) => {
       text: "Profile",
       icon: <ReceiptLongOutlinedIcon fontSize='medium' className={classes.drawerIcon} />,
       path: '/Profile'
+      
+    },
+    {
+      text: "Settings",
+      icon: <ReceiptLongOutlinedIcon fontSize='medium' className={classes.drawerIcon} />,
+      path: '/Setting'
+      
     },
 
   ]
@@ -245,13 +252,13 @@ const AppDrawerDemo = (props) => {
                 </Menu>
               </Box>
 
-              <Typography varient='h3'>
+              {/* <Typography varient='h3'>
                 <b>
                     Chandula Kavishka
                 </b>
                 <br/>
                 chandulakavishka@gmail.com
-              </Typography>
+              </Typography> */}
 
             </Stack>
           </Toolbar>

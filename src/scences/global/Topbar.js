@@ -10,7 +10,7 @@ import Menu from '@mui/material/Menu';
 import Tooltip from '@mui/material/Tooltip';
 
 
-const settings = ['Profile', 'Account','Dashboard', 'Logout'];
+const settings = ['Profile','Dashboard', 'Logout'];
 
 const Topbar = (props) => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -72,13 +72,13 @@ const Topbar = (props) => {
               ))}
             </Menu>
           </Box>
-          <Typography varient='h3'>
+          {/* <Typography varient='h3'>
                 <b>
                     Chandula Kavishka
                 </b>
                 <br/>
                 chandulakavishka@gmail.com
-              </Typography>
+              </Typography> */}
         </Stack>
 
       </Toolbar>

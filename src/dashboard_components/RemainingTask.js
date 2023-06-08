@@ -9,7 +9,7 @@ const RemainingTask = () => {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    axios.get('https://localhost:44338/api/Tasks')
+    axios.get('https://localhost:7224/api/Tasks')
       .then(res => {
         setData(res.data)
       }).catch(err => {
@@ -49,12 +49,10 @@ const RemainingTask = () => {
 
             </Stack>
           )) : <Box style={{justifyContent:'center',alignItems:'center',display:'grid',margin:'auto',position:'relative',marginTop:'60px'}}>
-            <img width={65} src='https://media.tenor.com/wfEN4Vd_GYsAAAAM/loading.gif' alt='loading gif' />
+            <img width={65} src='../../images/loading.gif' alt='loading gif' />
           </Box>
           }
         </Stack>
-
-
       </Box>
     </>
   )

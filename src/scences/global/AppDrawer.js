@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import { Box, IconButton, CssBaseline, List, Toolbar, Typography, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack, TextField, Avatar, Tooltip, styled, Grid, Paper, Badge, Divider } from '@mui/material'
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation,Link } from 'react-router-dom';
 import { useStyles } from '../../Styles';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar from '@mui/material/AppBar';
@@ -19,11 +19,7 @@ import Tasks from '../../dashboard_components/Tasks';
 import NotificationPanel from '../../dashboard_components/NotificationPanel';
 import CircleProgressBar from '../../dashboard_components/CircleProgressBar';
 import Innovatives from '../../dashboard_components/Innovatives';
-import Badges from '../../dashboard_components/Slideshow';
 import { Calender } from '../../dashboard_components/Calender';
-import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
 import Slideshow from '../../dashboard_components/Slideshow';
 
 
@@ -80,7 +76,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   ({ theme, open }) => ({
     width: drawerWidth,
     flexShrink: 0,
-    whiteSpace: 'nowrap',
+    whiteSpace: 'wrap',
     boxSizing: 'border-box',
     ...(open && {
       ...openedMixin(theme),
@@ -127,28 +123,33 @@ const AppDrawer = () => {
   const menuItems = [
     {
       text: "Dashboard",
-      icon: <HouseIcon fontSize='medium' className={classes.drawerIcon} />,
+      icon: <HouseIcon fontSize='medium' className={classes.drawerIconMain} />,
       path: '/'
     },
     {
       text: "Projects",
-      icon: <AccountTreeOutlinedIcon fontSize='medium' className={classes.drawerIcon} />,
+      icon: <AccountTreeOutlinedIcon fontSize='medium' className={classes.drawerIconMain} />,
       path: '/projects'
     },
     {
       text: "Module",
-      icon: <SupportAgentOutlinedIcon fontSize='medium' className={classes.drawerIcon} />,
+      icon: <SupportAgentOutlinedIcon fontSize='medium' className={classes.drawerIconMain} />,
       path: '/Modules'
     },
     {
       text: "Members",
-      icon: <SupervisedUserCircleOutlinedIcon fontSize='medium' className={classes.drawerIcon} />,
+      icon: <SupervisedUserCircleOutlinedIcon fontSize='medium' className={classes.drawerIconMain} />,
       path: '/Members'
     },
     {
       text: "Reports",
-      icon: <ReceiptLongOutlinedIcon fontSize='medium' className={classes.drawerIcon} />,
+      icon: <ReceiptLongOutlinedIcon fontSize='medium' className={classes.drawerIconMain} />,
       path: '/Reports'
+    },
+    {
+      text: "Settings",
+      icon: <SettingsIcon fontSize='medium' className={classes.drawerIconMain} />,
+      path: '/Setting'
     },
 
   ]
@@ -157,26 +158,6 @@ const AppDrawer = () => {
   
   return (
     <>
-        {/* <Dialog open={popup} onClose={handleClose} >
-          <DialogTitle sx={{display:'flex',alignItems:'center'}}> <NotificationsActiveIcon/> <Box paddingLeft={2}> Notification </Box> </DialogTitle>
-          <Divider/>
-          <Box width={300} margin={3}>
-            <Stack gap={1}>
-              <Typography variant='h6'>Notification 1</Typography>
-            </Stack>
-            <Stack gap={1} >
-              <Typography variant='h6'>Notification 2</Typography>
-            </Stack>
-            <Stack gap={1}>
-              <Typography variant='h6'>Notification 3</Typography>
-            </Stack>
-          </Box>
-          <DialogContent>
-           
-            <Stack spacing={2}>
-            </Stack>
-          </DialogContent>     
-        </Dialog> */}
       <Box sx={{ display: 'flex' }} >
         <CssBaseline />
         <AppBar position="fixed" open={open} elevation={0} color='inherit' >
@@ -207,9 +188,11 @@ const AppDrawer = () => {
               <IconButton>
                 <NotificationsActiveIcon onClick={boxopen}/>
               </IconButton>
+              <Link to='./Setting'>
               <IconButton>
-                <SettingsIcon />
+                <SettingsIcon/>
               </IconButton>
+              </Link>
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }} >
@@ -239,30 +222,18 @@ const AppDrawer = () => {
                   ))}
                 </Menu>
               </Box>
-
-              <Typography varient='h3'>
-                <b>
-                    Chandula Kavishka
-                </b>
-                <br/>
-                chandulakavishka@gmail.com
-              </Typography>
-
             </Stack>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
-          <DrawerHeader>
+          <DrawerHeader sx={{ml:'-10px'}}>
             <IconButton color="inherit"
               aria-label="close drawer"
-              onClick={handleDrawerClose}
               edge="start"
+              onClick={handleDrawerClose}
               sx={{
-                ml: 1,
-                marginRight: 0,
                 ...(!open && { display: 'none' }),
               }}>
-
               <MenuIcon />
             </IconButton>
             <Box>
@@ -272,12 +243,10 @@ const AppDrawer = () => {
               marginRight: 0,
               ...(!open && { display: 'none' }),
             }}>
-
             </Stack>
           </DrawerHeader>
-
+          
           <List>
-
             {menuItems.map(item => (
               <ListItem
                 key={item.text}
@@ -310,8 +279,8 @@ const AppDrawer = () => {
         </Drawer>
         <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', borderRadius: '5px',padding:'70px 0 0 20px' }}>
           
-          <Box display='flex' border='none' >
-            <Box style={{ paddingBottom: '0px', paddingRight: '60px' }}>
+          <Box display='flex' border='none' sx={{ display: { xl:'flex',sm: 'block' } }} >
+            <Box style={{ paddingBottom: '0px', paddingRight: '60px',...(!open && { paddingRight: '120px',paddingLeft:'45px' })}}>
               <Box sx={{
                 boxShadow: 2,
                 borderColor: 'gray',
@@ -331,11 +300,11 @@ const AppDrawer = () => {
               </Box>
             </Box>
             <Box display='grid'>
-              <Box>
-                <NotificationPanel />
+              <Box >
+                <NotificationPanel/>
               </Box>
               <Box marginLeft='10px'>
-                <Box display='flex' >
+                <Box display='flex' marginBottom='10px'>
                   <Box ><CircleProgressBar /></Box>
                   <Box ><Tasks /></Box>
                 </Box>

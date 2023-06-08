@@ -8,7 +8,7 @@ const Task = () => {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    axios.get('https://localhost:44338/api/Tasks')
+    axios.get('https://localhost:7224/api/Tasks')
       .then(res => {
         setData(res.data)
       }).catch(err => {console.log(err)
@@ -36,7 +36,7 @@ const Task = () => {
           boxShadow: 3,
           borderColor: 'gray',
           width: 350,
-          height: 165,
+          height: 175,
           marginBottom: 3,
           padding: 1,
           borderRadius: '5px',
