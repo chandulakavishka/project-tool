@@ -100,8 +100,12 @@ export const Setting = () => {
   const email = 'chandulakavishka0@gmail.com'
   return (
     <>
+    <Box sx={{ display: 'flex' }} >
+
     <CssBaseline/>
     <NavBar/>
+    <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', borderRadius: '5px',padding:'70px 0 0 20px' }}>
+
     <Box sx={{m:'30px 180px'}}>
 
     <form onSubmit={handleSubmit}>
@@ -125,6 +129,8 @@ export const Setting = () => {
 
       <button style={styles.button} type="submit">Save Changes</button>
     </form>
+    </Box>
+    </Box>
     </Box>
     </>
   );

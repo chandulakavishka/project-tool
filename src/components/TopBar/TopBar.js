@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import SettingsIcon from '@mui/icons-material/Settings';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 220;
 
@@ -72,10 +73,12 @@ const TopBar = ({
                     <IconButton>
                         <NotificationsActiveIcon onClick={boxopen} />
                     </IconButton>
+                    <Link to='/Setting'>
 
                     <IconButton>
                         <SettingsIcon />
                     </IconButton>
+                    </Link>
 
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
@@ -107,15 +110,6 @@ const TopBar = ({
                             ))}
                         </Menu>
                     </Box>
-
-                    <Typography varient='h3'>
-                        <b>
-                            Chandula Kavishka
-                        </b>
-                        <br />
-                        chandulakavishka@gmail.com
-                    </Typography>
-
                 </Stack>
             </Toolbar>
         </AppBar>

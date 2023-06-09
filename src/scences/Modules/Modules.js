@@ -1,4 +1,4 @@
-import { CssBaseline, Typography } from '@mui/material'
+import { CssBaseline, Typography,Box } from '@mui/material'
 import React from 'react'
 import Topbar from '../global/Topbar'
 import NavBar from '../../components/NavBar/NavBar'
@@ -6,11 +6,17 @@ import NavBar from '../../components/NavBar/NavBar'
 const Modules = () => {
   return (
     <>
+    <Box sx={{ display: 'flex' }} >
+
       <CssBaseline/>
       <NavBar/>
-      <Typography variant='h2'>
+      <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', borderRadius: '5px',padding:'70px 0 0 20px' }}>
+
+      <Typography variant='h4'>
         Modules
       </Typography>
+      </Box>
+    </Box>
     </>
   )
 }
