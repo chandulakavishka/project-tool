@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import { Button, Typography } from '@mui/material';
-
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Margin } from '@mui/icons-material';
 
@@ -56,7 +56,7 @@ const NotificationPanel = () => {
                   <Typography variant='h6' color='white' align='left' marginLeft='40px' marginTop='8px'>You Were Assign New Task</Typography>
                   <Typography variant='p' color='white' align='left' marginLeft='50px'>{new Date().getDate()} {months[month]} {new Date().getFullYear()} - {hours}:{new Date().getMinutes()} {(gethours>12) ? 'pm':'am'}</Typography>
                   <Box align='left' marginLeft='45px' marginTop={2}>
-                    <Button sx={{
+                    <Link to='./projects'><Button sx={{
                       width: 130,
                       height: 40,
                       backgroundColor: '#b89842',
@@ -66,7 +66,7 @@ const NotificationPanel = () => {
                         backgroundColor: 'success.main',
                         opacity: [0.9, 0.8, 0.7],
                       },
-                    }} >Assign Now</Button>
+                    }} >Assign Now</Button></Link>
                   </Box>
                 </Box>
                 <Box style={{display:'flex', width: '120px', height: '120px', marginLeft: '190px', borderRadius: '50%', marginTop: '40px', border: '2px solid white', zIndex: 2 ,backgroundColor: '#163a78 '}}> 
