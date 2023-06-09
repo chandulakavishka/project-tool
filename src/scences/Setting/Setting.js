@@ -1,7 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
-import { Box } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
 import Topbar from '../global/Topbar';
+import NavBar from '../../components/NavBar/NavBar';
 
 
 export const Setting = () => {
@@ -99,7 +100,8 @@ export const Setting = () => {
   const email = 'chandulakavishka0@gmail.com'
   return (
     <>
-    <Topbar/>
+    <CssBaseline/>
+    <NavBar/>
     <Box sx={{m:'30px 180px'}}>
 
     <form onSubmit={handleSubmit}>

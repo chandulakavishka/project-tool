@@ -1,11 +1,13 @@
-import { Typography } from '@mui/material'
+import { CssBaseline, Typography } from '@mui/material'
 import React from 'react'
 import Topbar from '../global/Topbar'
+import NavBar from '../../components/NavBar/NavBar'
 
 const Member = () => {
   return (
     <>
-      <Topbar subject='Member'/>
+      <CssBaseline/>
+      <NavBar/>
       <Typography variant='h2'>
           Members
       </Typography>
