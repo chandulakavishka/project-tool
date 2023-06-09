@@ -4,7 +4,7 @@ import { CssBaseline,Box } from "@mui/material";
 import NavBar from "../../components/NavBar/NavBar";
 import CircleProgressBar from "../../dashboard_components/CircleProgressBar";
 import Innovatives from "../../dashboard_components/Innovatives";
-import Task from "../../dashboard_components/Tasks";
+import Task from "../../dashboard_components/TaskBox";
 import NotificationPanel from "../../dashboard_components/NotificationPanel";
 import { Calender } from "../../dashboard_components/Calender";
 import RemainingTask from "../../dashboard_components/RemainingTask";

@@ -17,7 +17,7 @@ export const Setting = () => {
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    axios.get('https://localhost:7224/api/Tasks')
+    axios.get('https://localhost:7224/api/Users')
       .then(res => {
         setData(res.data)
       }).catch(err => {
@@ -95,6 +95,7 @@ export const Setting = () => {
   };
   const fname = data.filter(item => item.UId == 1 ).map((item, index) => (item.UserName
   ))
+  console.log(fname);
   const lname = 'Kavishka'
   const email = 'chandulakavishka0@gmail.com'
   return (
