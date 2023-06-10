@@ -31,7 +31,10 @@ const NotificationPanel = () => {
  
   return (
     <>
-      <Typography variant='h4' align='left' marginLeft='10px'><b>Notifications</b></Typography>
+    <Box >
+      <Typography variant='h4' align='left' marginLeft='10px' sx={{display: {sm:'none',xl:'block',xs:'none'}}}><b>Notifications</b></Typography>
+
+    </Box>
 
       <Box
         sx={{
@@ -39,7 +42,7 @@ const NotificationPanel = () => {
           height: 160,
           backgroundColor: '#163a78',
           borderRadius: '15px',
-          display: {sm:'none',xl:'block'},
+          display: {sm:'none',xl:'block',xs:'none'},
           marginBottom:'20px'
 
         }}

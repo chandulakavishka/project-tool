@@ -1,6 +1,6 @@
 
 import React from "react"
-import { CssBaseline,Box } from "@mui/material";
+import { CssBaseline,Box,Grid } from "@mui/material";
 import NavBar from "../../components/NavBar/NavBar";
 import CircleProgressBar from "../../dashboard_components/CircleProgressBar";
 import Innovatives from "../../dashboard_components/Innovatives";
@@ -38,21 +38,21 @@ export default function Dashboard() {
                 <RemainingTask/>
               </Box>
             </Box>
-            <Box display='grid'>
+            <Grid>
               <Box >
                 <NotificationPanel/>
               </Box>
               <Box marginLeft='10px'>
-                <Box display='flex' marginBottom='10px'>
+                <Box sx={{ display: { xl:'flex',sm: 'block' } }} marginBottom='10px'>
                   <Box ><CircleProgressBar/></Box>
                   <Box ><Task/></Box>
                 </Box>
-                <Box display='flex'>
+                <Box sx={{ display: { xl:'flex',sm: 'block' } }}>
                   <Box ><Innovatives/></Box>
                   <Box><Slideshow/></Box>
                 </Box>
               </Box>
-            </Box>
+            </Grid>
           </Box>
         </Box >
          </Box>

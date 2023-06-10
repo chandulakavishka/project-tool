@@ -3,6 +3,8 @@ import { Typography, Box, Grid, Stack } from '@mui/material'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
+import { blue } from '@mui/material/colors';
+import { Link } from 'react-router-dom';
 
 const RemainingTask = () => {
   const [data, setData] = useState([])
@@ -24,7 +26,12 @@ const RemainingTask = () => {
 
   return (
     <>
+    <Box display={'flex'}>
       <Typography variant='h5' align='left' marginLeft='14px' marginBottom='10px'><b>RemainingTask ({arr1.length})</b></Typography>
+      <Link to='./projects'>
+      <Typography variant='p' marginLeft='94px' marginTop='25px' color={blue} sx={{textDecoration:'none'}}>see all</Typography>
+      </Link>
+    </Box>
       <Box
         sx={{
           boxShadow: 3,

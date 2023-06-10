@@ -7,9 +7,9 @@ import SupervisedUserCircleOutlinedIcon from '@mui/icons-material/SupervisedUser
 import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import HouseIcon from '@mui/icons-material/House';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useStyles } from '../../Styles';
-import SettingsIcon from '@mui/icons-material/Settings';
 
 const drawerWidth = 220;
 
@@ -84,7 +84,7 @@ const SideBar = ({
             path: '/projects'
         },
         {
-            text: "Module",
+            text: "Modules",
             icon: <SupportAgentOutlinedIcon fontSize='medium' className={classes.drawerIcon} />,
             path: '/Modules'
         },

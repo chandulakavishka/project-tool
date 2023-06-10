@@ -98,7 +98,8 @@ export const useStyles = makeStyles()((theme) => {
         },
         drawerIcon: {
             color: '#000',
-            marginRight: '20px'
+            marginRight: '15px',
+            marginLeft:'5px'
         },
         drawerText: {
             color: '#000'

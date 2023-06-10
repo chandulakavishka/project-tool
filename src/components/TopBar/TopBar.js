@@ -6,7 +6,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { Link } from 'react-router-dom';
+import { useNavigate, useLocation,Link } from 'react-router-dom';
+import { useStyles } from '../../Styles';
 
 const drawerWidth = 220;
 
@@ -28,7 +29,20 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-const settings = ['Profile', 'Logout'];
+const settings = [
+    {
+        text: "Profile",
+        path: '/Profile'
+    },
+    {
+        text: "Settings",
+        path: '/Setting'
+    },
+    {
+        text: "Logout",
+        path: '/Reports'
+    },
+];
 
 const TopBar = ({
     open,
@@ -43,6 +57,9 @@ const TopBar = ({
     boxopen,
     header,
 }) => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { classes } = useStyles();
     return (
         <AppBar position="fixed" open={open} elevation={0} color='inherit' >
             <Toolbar >
@@ -104,8 +121,12 @@ const TopBar = ({
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                                <MenuItem 
+                                key={setting.text}
+                                onClick={() => { localStorage.setItem("header", setting.text);navigate(setting.path); }}
+                                
+                                 >
+                                    <Typography textAlign="center">{setting.text}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
