@@ -9,6 +9,9 @@ import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import HouseIcon from '@mui/icons-material/House';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useStyles } from '../../Styles';
+import GroupsIcon from '@mui/icons-material/Groups';
+import GradeIcon from '@mui/icons-material/Grade';
+import GradingIcon from '@mui/icons-material/Grading';
 
 const drawerWidth = 220;
 
@@ -96,6 +99,21 @@ const SideBar = ({
             text: "Reports",
             icon: <ReceiptLongOutlinedIcon fontSize='medium' className={classes.drawerIcon} />,
             path: '/Reports'
+        },
+        {
+            text: "Meetings",
+            icon: <GroupsIcon fontSize='medium' className={classes.drawerIcon} />,
+            path: '/Meetings'
+        },
+        {
+            text: "Ratings",
+            icon: <GradeIcon fontSize='medium' className={classes.drawerIcon} />,
+            path: '/Ratings'
+        },
+        {
+            text: "Share Points",
+            icon: <GradingIcon fontSize='medium' className={classes.drawerIcon} />,
+            path: '/SharePoints'
         },
     ]
 
