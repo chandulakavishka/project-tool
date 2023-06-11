@@ -17,44 +17,46 @@ const Dashboard = () => {
       <Box sx={{ display: 'flex' }} >
           <CssBaseline/>
           <NavBar/>
-          <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', borderRadius: '5px',padding:'70px 0 0 20px' }}>
-          <Box display='flex' border='none' sx={{ display: { xl:'flex',sm: 'block' } }} >
-            <Box style={{ paddingBottom: '0px', paddingRight: '60px'}}>
-              <Box sx={{
-                boxShadow: 2,
-                borderColor: 'gray',
-                width: 355,
-                paddingLeft: 2,
-                paddingBottom: 1,
-                marginBottom: 1,
-                marginLeft: 3,
-                borderRadius: '5px',
-                backgroundColor: '#fff'
-                
-              }}>
-                <Calender/>
-              </Box>
-              <Box>
-                <RemainingTask/>
-              </Box>
-            </Box>
-            <Grid>
-              <Box >
-                <NotificationPanel/>
-              </Box>
-              <Box marginLeft='10px'>
-                <Box sx={{ display: { xl:'flex',sm: 'block' } }} marginBottom='10px'>
-                  <Box ><CircleProgressBar/></Box>
-                  <Box ><Task/></Box>
-                </Box>
-                <Box sx={{ display: { xl:'flex',sm: 'block' } }}>
-                  <Box ><Innovatives/></Box>
-                  <Box><Slideshow/></Box>
-                </Box>
-              </Box>
-            </Grid>
-          </Box>
-        </Box >
+          <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', borderRadius: '5px',padding:'70px 0 0 20px',minHeight: "710px" }}>
+          <Box sx={{ flexGrow: 1, margin: "5px 30px"}}>
+                        <Grid container columnSpacing={6} >
+                            <Grid item xs={4} >
+                             <Box sx={{
+                                  boxShadow: 2,
+                                  borderColor: 'gray',
+                                  width: 350,
+                                  paddingLeft: '5%',
+                                  paddingBottom: 1,
+                                  marginBottom: 1,
+                                  marginLeft: 3,
+                                  borderRadius: '5px',
+                                  backgroundColor: '#fff'
+                                  
+                                }}>
+                                  <Calender/>
+                                </Box>
+                                <Box>
+                                  <RemainingTask/>
+                                </Box>
+                            </Grid>
+                            <Grid item xs={6} > 
+                                  <Box >
+                                    <NotificationPanel/>
+                                  </Box>
+                                  <Box marginLeft='0px'>
+                                    <Box sx={{ display: { xl:'flex',sm: 'block' } }} marginBottom='10px'>
+                                      <Box ><CircleProgressBar/></Box>
+                                      <Box ><Task/></Box>
+                                    </Box>
+                                    <Box sx={{ display: { xl:'flex',sm: 'block' } }}>
+                                      <Box ><Innovatives/></Box>
+                                      <Box><Slideshow/></Box>
+                                    </Box>
+                                  </Box>
+                            </Grid>
+                        </Grid>
+                    </Box>
+          </Box >
          </Box>
       </>
   )

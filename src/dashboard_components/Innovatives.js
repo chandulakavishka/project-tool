@@ -29,7 +29,8 @@ const Innovatives = () => {
           borderColor: 'gray',
           width: 350,
           height:180,
-          marginRight: 10,
+          marginRight:10,
+          marginBottom:3,
           borderRadius: '5px',
           backgroundColor: '#fff'
         }}>

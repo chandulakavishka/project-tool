@@ -52,7 +52,7 @@ const NavBar = () => {
                 handleCloseUserMenu={handleCloseUserMenu}
                 boxopen={boxopen}
                 header={header}
-                sx={{display: {sm:'none',xl:'block'}}}
+                
             />
 
             <SideBar

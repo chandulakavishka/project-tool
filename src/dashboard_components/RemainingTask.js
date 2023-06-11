@@ -37,7 +37,7 @@ const RemainingTask = () => {
           boxShadow: 3,
           marginLeft: 2,
           borderColor: 'gray',
-          width: 370,
+          width: 360,
           height: 275,
           padding: 3,
           borderRadius: '5px',

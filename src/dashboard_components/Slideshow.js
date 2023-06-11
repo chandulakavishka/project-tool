@@ -22,9 +22,9 @@ const Slideshow = () => {
 
   return (
     <Box
-      width={350}
       height={180}
       sx={{
+        width:350,
         boxShadow:3,
         backgroundColor: '#163a78',
         borderRadius:2,

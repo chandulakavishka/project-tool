@@ -36,7 +36,7 @@ const Task = () => {
           boxShadow: 3,
           borderColor: 'gray',
           width: 350,
-          height: 175,
+          height: 170,
           marginBottom: 3,
           padding: 1,
           borderRadius: '5px',
@@ -48,7 +48,7 @@ const Task = () => {
           <Typography variant='h6' textAlign='center' paddingLeft='20px'><b>Total |  Closed</b></Typography>
           
           <Typography variant='h6' textAlign='center'>{(error !== true) ?arr3.length : '0'} |  {(error !== true) ?arr4.length : '0'}</Typography>
-          <Typography variant='h6' paddingLeft='51px'><b>Incomplete |  Overdue</b></Typography>
+          <Typography variant='h6' textAlign='center'><b>Incomplete |  Overdue</b></Typography>
         </Stack>
       </Box>
     </>
