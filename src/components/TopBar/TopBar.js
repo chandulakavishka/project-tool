@@ -31,6 +31,10 @@ const AppBar = styled(MuiAppBar, {
 
 const settings = [
     {
+        text: "Dashboard",
+        path: '/'
+    },
+    {
         text: "Profile",
         path: '/Profile'
     },
