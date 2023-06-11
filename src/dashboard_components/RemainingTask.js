@@ -28,7 +28,7 @@ const RemainingTask = () => {
     <>
     <Box display={'flex'}>
       <Typography variant='h5' align='left' marginLeft='14px' marginBottom='10px'><b>RemainingTask ({arr1.length})</b></Typography>
-      <Link to='./projects'>
+      <Link to='./projects'  onClick={() => { localStorage.setItem("header", "Projects");}}>
       <Typography variant='p' marginLeft='94px' marginTop='25px' color={blue} sx={{textDecoration:'none'}}>see all</Typography>
       </Link>
     </Box>

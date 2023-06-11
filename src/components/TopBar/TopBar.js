@@ -31,6 +31,10 @@ const AppBar = styled(MuiAppBar, {
 
 const settings = [
     {
+        text: "Dashboard",
+        path: '/'
+    },
+    {
         text: "Profile",
         path: '/Profile'
     },
@@ -90,8 +94,7 @@ const TopBar = ({
                     <IconButton>
                         <NotificationsActiveIcon onClick={boxopen} />
                     </IconButton>
-                    <Link to='/Setting'>
-
+                    <Link to='/Setting' onClick={() => { localStorage.setItem("header", "Settings");}}>
                     <IconButton>
                         <SettingsIcon />
                     </IconButton>

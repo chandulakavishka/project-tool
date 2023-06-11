@@ -59,7 +59,7 @@ const NotificationPanel = () => {
                   <Typography variant='h6' color='white' align='left' marginLeft='40px' marginTop='8px'>You Were Assign New Task</Typography>
                   <Typography variant='p' color='white' align='left' marginLeft='50px'>{new Date().getDate()} {months[month]} {new Date().getFullYear()} - {hours}:{new Date().getMinutes()} {(gethours>12) ? 'pm':'am'}</Typography>
                   <Box align='left' marginLeft='45px' marginTop={2}>
-                    <Link to='./projects'><Button sx={{
+                    <Link to='./projects' onClick={() => { localStorage.setItem("header", "Projects");}}><Button sx={{
                       width: 130,
                       height: 40,
                       backgroundColor: '#b89842',
