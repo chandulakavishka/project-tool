@@ -11,7 +11,7 @@ import RemainingTask from "../../dashboard_components/RemainingTask";
 import Slideshow from "../../dashboard_components/Slideshow";
 
 
-export default function Dashboard() {  
+const Dashboard = () => {  
   return (
       <>
       <Box sx={{ display: 'flex' }} >
@@ -59,3 +59,5 @@ export default function Dashboard() {
       </>
   )
 }
+
+export default Dashboard;

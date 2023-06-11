@@ -95,7 +95,6 @@ export const Setting = () => {
   };
   const fname = data.filter(item => item.UId == 1 ).map((item, index) => (item.UserName
   ))
-  console.log(fname);
   const lname = 'Kavishka'
   const email = 'chandulakavishka0@gmail.com'
   return (
