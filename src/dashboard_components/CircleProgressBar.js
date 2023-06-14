@@ -68,7 +68,11 @@ export default function CircleProgressBar() {
                     paddingLeft:12,
                     marginRight:10,
                     borderRadius: '5px',
-                    backgroundColor: '#fff'
+                    backgroundColor: '#fff',
+                    '&:hover': {
+                      height: 180,
+                      opacity: [0.9, 0.8, 0.7],
+                    }
                     
                   }}>
                     <CircularProgressWithLabel size="9rem" value={(error !== true) ? percentage : 75} />

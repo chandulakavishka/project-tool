@@ -40,7 +40,11 @@ const Task = () => {
           marginBottom: 3,
           padding: 1,
           borderRadius: '5px',
-          backgroundColor: '#fff'
+          backgroundColor: '#fff',
+          '&:hover': {
+            width: 355,
+            opacity: [0.9, 0.8, 0.7],
+          }
         }}>
         <Stack gap={1} >
 

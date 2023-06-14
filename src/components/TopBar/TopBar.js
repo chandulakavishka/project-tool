@@ -8,6 +8,7 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useNavigate, useLocation,Link } from 'react-router-dom';
 import { useStyles } from '../../Styles';
+import Seachbox from '../../dashboard_components/Seachbox';
 
 const drawerWidth = 220;
 
@@ -85,9 +86,9 @@ const TopBar = ({
                         {header}
                     </Typography>
                 </Stack>
-
+                {/* test field this need to implement */}
                 <Stack direction='row' spacing={2} sx={{ flexGrow: 1.5 }}>
-                    <TextField size='small' defaultValue="Search" variant="outlined" sx={{ width: '320px' }}></TextField>
+                    <Seachbox/>
                 </Stack>
 
                 <Stack direction='row' spacing={2} >
@@ -95,7 +96,6 @@ const TopBar = ({
                         <NotificationsActiveIcon onClick={boxopen} />
                     </IconButton>
                     <Link to='/Setting'>
-
                     <IconButton>
                         <SettingsIcon />
                     </IconButton>

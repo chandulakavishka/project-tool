@@ -43,9 +43,13 @@ const NotificationPanel = () => {
           backgroundColor: '#163a78',
           borderRadius: '15px',
           display: {sm:'none',xl:'block',xs:'none'},
-          marginBottom:'20px'
-
+          marginBottom:'20px',
+          '&:hover': {
+            backgroundColor: 'success.secondary',
+            opacity: [0.9, 0.8, 0.9],
+          }
         }}
+        
       >
 
         <Box>

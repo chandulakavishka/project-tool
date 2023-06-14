@@ -19,7 +19,6 @@ const Innovatives = () => {
   const arr1 = data.map((item, index) => (
     <Typography variant='p' marginLeft='10px'>{item.Innovatives}</Typography>
   ))
-  console.log(arr1);
 
   return (
     <>
@@ -32,7 +31,11 @@ const Innovatives = () => {
           marginRight:10,
           marginBottom:3,
           borderRadius: '5px',
-          backgroundColor: '#fff'
+          backgroundColor: '#fff',
+          '&:hover': {
+            height: 183,
+            opacity: [0.9, 0.8, 0.7],
+          }
         }}>
           <Typography variant='h5' marginLeft='110px'>Innovatives</Typography>
         <Stack gap={0.4} paddingTop='10px' display='grid'>

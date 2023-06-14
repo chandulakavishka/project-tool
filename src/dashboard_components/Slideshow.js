@@ -47,6 +47,11 @@ const Slideshow = () => {
             height: '100%',
             backgroundImage: `url(${image})`,
             backgroundSize: 'cover',
+            '&:hover': {
+              width: 355,
+              height: 185,
+              opacity: [0.9, 0.8, 0.7],
+            }
           }}
         />
       ))}

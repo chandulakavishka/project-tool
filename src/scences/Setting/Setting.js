@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
-import { Box, CssBaseline } from '@mui/material';
+import { Box, CssBaseline, Typography } from '@mui/material';
 import NavBar from '../../components/NavBar/NavBar';
 
 
@@ -9,8 +9,8 @@ export const Setting = () => {
     firstName: '',
     lastName: '',
     email: '',
-    city: '',
-    description:'',
+    city: 'None',
+    description:'None',
     profilePicture: null,
   });
   const [data, setData] = useState([])
@@ -93,10 +93,11 @@ export const Setting = () => {
       marginBottom: '20px',
     },
   };
-  const fname = data.filter(item => item.UId == 1 ).map((item, index) => (item.UserName
-  ))
-  const lname = 'Kavishka'
-  const email = 'chandulakavishka0@gmail.com'
+  const fname = data.filter(item => item.uId === 1 ).map((item, index) => (item.userName))
+  console.log(fname)
+  // data.filter(item => item.UId == 1 ).map((item, index) => (item.UserName))
+  const lname = data.filter(item => item.uId === 2 ).map((item, index) => (item.userName))
+  const email = data.filter(item => item.uId === 3 ).map((item, index) => (item.email))
   return (
     <>
     <Box sx={{ display: 'flex' }} >
