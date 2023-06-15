@@ -13,11 +13,15 @@ import {
   Link,
   Box,
   Stack,
+  Alert,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import image from "../image/loginimg.jpg";
+import LinearProgress from '@mui/material/LinearProgress';
+
+
 
 function Loginform() {
   const paperStyle = {
@@ -40,10 +44,14 @@ function Loginform() {
   const [emailRegError, setEmailRegError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [passwordRegError, setPasswordRegError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loadingError, setLoadingError] = useState(false);
 
   const checkData = (e) => {
     e.preventDefault();
 
+    setLoadingError(false);
+    setLoading(false);
     setEmailError(false);
     setEmailRegError(false);
     setPasswordError(false);
@@ -67,20 +75,26 @@ function Loginform() {
         email: email,
         password: password,
       };
-  
-      const url = "https://localhost:44366/api/User/login";
+
+      const url = "https://localhost:44387/api/User/Login/login";
       axios
         .post(url, data)
         .then((result) => {
-          //const dt = result.data;
-          alert("Login Successful..!");
-          //if (dt.statusMessage)
+          if(result.data.token){
+            localStorage.setItem('AUTH_TOKEN', JSON.stringify(result.data.token));
+          }
+          console.log("Login Successful..!" ,result.data.token);
+          //alert("Login Successful....");
+          setLoading(true);
+          //if (dt.statusMessage){}
+          window.location.replace("/page");
             clear();
         })
         .catch((error) => {
-          alert("Email or password invalid....! Try again.");
-          console.log(error);
+         // alert("Email or password invalid....! Try again.");
+          setLoadingError(true);
         });
+
     }
     
   };
@@ -93,7 +107,22 @@ function Loginform() {
     //setPasswordRegError(false);
   };
 
+
   return (
+    <div>
+      <div className="loading">
+      {loading && (<Alert severity="success">
+      Login Successful — <strong>Waiting...</strong>
+  <LinearProgress color="success" />
+</Alert>
+)}
+      </div>
+      <div className="loadingError">
+      {loadingError && (<Alert severity="error">
+        Email or password invalid....! Try again. — <strong>check it out!</strong>
+      </Alert>
+)}
+      </div>
     <Paper elevation={10} style={paperStyle}>
       <Grid container spacing={2}>
         <Paper elevation={10} style={paperStyle1}>
@@ -182,6 +211,7 @@ function Loginform() {
         </Grid>
       </Grid>
     </Paper>
+    </div>
   );
 }
 

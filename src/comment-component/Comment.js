@@ -41,7 +41,7 @@ const Comment = ({
       <div className="comment-right-part">
         <div className="comment-content">
           <div className="comment-author">{name}</div>
-          <div>{createdAt}</div> {/*can delete time*/}
+          <div>{createdAt.substring(0,19)}</div> {/*can delete time*/}
         </div>
         {!isEdit && <div className="comment-text">{body}</div>}
         {isEdit && (

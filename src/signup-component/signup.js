@@ -9,9 +9,11 @@ import {
   Button,
   Box,
   Stack,
+  Alert
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import image from "../image/loginimg.jpg";
+import LinearProgress from '@mui/material/LinearProgress';
 
 function Signup() {
   const paperStyle = {
@@ -49,10 +51,14 @@ function Signup() {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [phoneNoError, setPhoneNoError] = useState(false);
   const [phoneNoRegError, setPhoneNoRegError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loadingError, setLoadingError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    setLoadingError(false);
+    setLoading(false);
     setNameError(false);
     setEmailError(false);
     setEmailRegError(false);
@@ -94,18 +100,17 @@ function Signup() {
         phoneNo: phoneNo,
       };
 
-      const url = "https://localhost:44366/api/User/register";
+      const url = "https://localhost:44366/api/User/Register";
       axios
         .post(url, data)
         .then((result) => {
           clear();
           const dt = result.data;
           alert(dt.statusMessage);
-          
+          setLoading(true);
         })
         .catch((error) => {
-          alert("Not successful...!.");
-          console.log(error);
+          setLoadingError(true);
         });
     }
   };
@@ -122,10 +127,25 @@ function Signup() {
     setPasswordRegError(false);
     setConfirmPasswordError(false);
     setPhoneNoError(false);
+    setLoadingError(false);
     //setPhoneNoRegError(false);
   };
 
   return (
+    <div>
+      <div className="loading">
+      {loading && (<Alert severity="success">
+      Login Successful — <strong>Waiting...</strong>
+  <LinearProgress color="success" />
+</Alert>
+)}
+      </div>
+      <div className="loadingError">
+      {loadingError && (<Alert severity="error">
+        User details invalid....! Check and try again. — <strong>check it out!</strong>
+      </Alert>
+)}
+      </div>
     <Paper elevation={10} style={paperStyle}>
       <Grid container spacing={2}>
         <Paper elevation={10} style={paperStyle1}>
@@ -255,6 +275,7 @@ function Signup() {
         </Grid>
       </Grid>
     </Paper>
+    </div>
   );
 }
 

@@ -1,36 +1,37 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
+import ResetPassword from "./resetPassword"
 
-function FormDialogToForgotPassword() {
-  const [forgotPassword, setForgotPassword] = useState("");
+function ForgotPasswordDialog() {
   const [open, setOpen] = useState(true);
-  
-  // const handleClickOpen = () => {
-  //   setOpen(false);
-  // }
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const [emailRegError, setEmailRegError] = useState(false);
+
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleOK = (e) => {
+  const handleOK = () => {
     const data = {
-      email:forgotPassword
+      email: email,
     };
 
-    const url = "https://localhost:44366/api/User/forgot-password";
+    const url = `https://localhost:44366/api/User/forgot-password?email=${email}`;
     axios
       .post(url, data)
       .then((result) => {
-        const dt = result.data;
         setOpen(false);
-        alert(dt.statusMessage);
+        alert("Successful...");
       })
       .catch((error) => {
         setOpen(true);
@@ -38,23 +39,26 @@ function FormDialogToForgotPassword() {
         clear();
         console.log(error);
       });
-      setOpen(false);
+    setOpen(false);
+    clear();
+  };
 
-      const clear =() =>{
-        setForgotPassword("");
-      }
-
-  }
+  const clear = () => {
+    setEmail("");
+    setEmailError(false);
+    setEmailRegError(false);
+  };
 
   return (
-    <div>
+    <div className="dialog-forgotPassword">
+      <ResetPassword/>
       <Dialog open={open}>
         <DialogTitle>Forgot Your Password?</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Please enter your valid email and We 'll send a link your email.
+            Please enter your valid email and We'll send a link to your email.
           </DialogContentText>
-          <br></br>
+          <br />
           <TextField
             label="Email Address"
             placeholder="Enter email address"
@@ -64,8 +68,16 @@ function FormDialogToForgotPassword() {
             size="small"
             fullWidth
             required
-           value={forgotPassword}
-           onChange={(e) => setForgotPassword(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            error={emailError || emailRegError}
+            helperText={
+              emailError
+                ? "Email is required."
+                : emailRegError
+                ? "Email type is invalid."
+                : ""
+            }
           />
         </DialogContent>
         <DialogActions>
@@ -73,10 +85,8 @@ function FormDialogToForgotPassword() {
           <Button onClick={handleOK}>Ok</Button>
         </DialogActions>
       </Dialog>
-      <div>
-        <button className="forgotPassword-page-button"><a href="https://mail.google.com/">Please check your email for your validation...!</a></button>
-      </div>
     </div>
   );
 }
-export default FormDialogToForgotPassword;
+
+export default ForgotPasswordDialog;

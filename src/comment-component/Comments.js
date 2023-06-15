@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import CloseIcon from "@mui/icons-material/Close";
 
-const Comments = ({ currentUserId, taskId }) => {
+const Comments = ({ currentUserId, taskId, userName }) => {
   const [open, setOpen] = useState(true);
   const [backendComments, setBackendComments] = useState([]);
   const [activeComment, setActiveComment] = useState(null);
@@ -14,6 +14,7 @@ const Comments = ({ currentUserId, taskId }) => {
     setOpen(false);
     window.location.reload();
   };
+  console.log("He", currentUserId);
   const rootComments = Object.values(backendComments).filter(
     (backendComment) => backendComment.parentId === 0 && backendComment.taskId === taskId
   );
@@ -38,16 +39,15 @@ const Comments = ({ currentUserId, taskId }) => {
     console.log("addNewComment", text, parentId);
     const data = {
       taskId:taskId,
-      name: "Kavishka",
+      name: userName,
       body: text,
       userID: currentUserId,
       parentId: parentId,
     };
-    const url = "https://localhost:44366/api/Comment/comment";
+    const url = "https://localhost:44387/api/Comment/comment";
     axios
       .post(url, data)
       .then((result) => {
-        console.log("Hello", result);
         let data = result.data;
         if (!Array.isArray(data)) data = [data];
         setBackendComments(data);
@@ -63,11 +63,10 @@ const Comments = ({ currentUserId, taskId }) => {
       const data = {
         id: commentId,
       };
-      const url = `https://localhost:44366/api/Comment/${commentId}`;
+      const url = `https://localhost:44387/api/Comment/${commentId}`;
       axios
         .delete(url, data)
         .then((result) => {
-          console.log("Hello", result);
           let data = result.data;
           if (!Array.isArray(data)) data = [data];
           setBackendComments(data);
@@ -84,11 +83,10 @@ const Comments = ({ currentUserId, taskId }) => {
       id: commentId,
       body: text,
     };
-    const url = "https://localhost:44366/api/Comment/edit";
+    const url = "https://localhost:44387/api/Comment/edit";
     axios
       .post(url, data)
       .then((result) => {
-        console.log("Hello", result);
         let data = result.data;
         if (!Array.isArray(data)) data = [data];
         setBackendComments(data);
@@ -96,23 +94,20 @@ const Comments = ({ currentUserId, taskId }) => {
       })
       .catch((error) => {
         alert("Try again..!");
-        console.log(error);
       });
   };
 
   useEffect(() => {
-    const url = `https://localhost:44366/api/Comment`;
+    const url = `https://localhost:44387/api/Comment`;
     axios
       .get(url)
       .then((result) => {
         let data = result.data;
         if (!Array.isArray(data)) data = [data];
         setBackendComments(data);
-        console.log("Hello", result.data);
       })
       .catch((error) => {
         alert("Try again..!");
-        console.log(error);
       });
   }, []);
 
@@ -130,7 +125,7 @@ const Comments = ({ currentUserId, taskId }) => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            width: 500,
+            width: 520,
             bgcolor: "background.paper",
             border: "2px solid #000",
             boxShadow: 24,
