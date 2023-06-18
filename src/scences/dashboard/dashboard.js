@@ -17,7 +17,7 @@ const Dashboard = () => {
       <Box sx={{ display: 'flex' }} >
           <CssBaseline/>
           <NavBar/>
-          <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', borderRadius: '5px',padding:'70px 0 0 20px',minHeight: "710px" }}>
+          <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', borderRadius: '5px',padding:'40px 0 0 20px',minHeight: "710px" }}>
           <Box sx={{ flexGrow: 1, margin: "5px 30px"}}>
                         <Grid container columnSpacing={6} >
                             <Grid item xs={4} >
