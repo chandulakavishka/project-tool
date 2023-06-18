@@ -10,9 +10,9 @@ const NavBar = () => {
 
     const header = localStorage.getItem("header");
 
-    // useEffect(() => {
-    //     setHeader(localStorage.getItem("header"))
-    // }, []);
+    //  useEffect(() => {
+    //      setHeader(localStorage.getItem("header"))
+    //  }, []);
 
     const handleDrawerOpen = () => {
         setOpen(true);

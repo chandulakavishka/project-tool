@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import axios from 'axios';
 
 
-function CircularProgressWithLabel(props) {
+const CircularProgressWithLabel = (props) => {
     return (
         <Box sx={{ position: 'relative', display: 'inline-flex' }}>  
                 <CircularProgress variant="determinate" {...props} />
@@ -17,7 +17,6 @@ function CircularProgressWithLabel(props) {
                     bottom: 0,
                     right: 0,
                     position: 'absolute',
-    
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',

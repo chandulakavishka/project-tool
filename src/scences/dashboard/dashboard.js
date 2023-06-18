@@ -25,7 +25,7 @@ const Dashboard = () => {
                                   boxShadow: 2,
                                   borderColor: 'gray',
                                   width: 350,
-                                  paddingLeft: '5%',
+                                  paddingLeft: '3%',
                                   paddingBottom: 1,
                                   marginBottom: 1,
                                   marginLeft: 3,

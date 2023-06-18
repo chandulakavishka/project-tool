@@ -1,15 +1,17 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
-import { Box, CssBaseline, Typography } from '@mui/material';
+import { Box, CssBaseline } from '@mui/material';
 import NavBar from '../../components/NavBar/NavBar';
 
 
 export const Setting = () => {
+
   const [userData, setUserData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     city: 'None',
+    phoneNum: '',
     description:'None',
     profilePicture: null,
   });
@@ -50,6 +52,7 @@ export const Setting = () => {
     formData.append('lastName', userData.lastName);
     formData.append('email', userData.email);
     formData.append('city', userData.city);
+    formData.append('phoneNo', userData.city);
     formData.append('description', userData.description);
     formData.append('profilePicture', userData.profilePicture);
 
@@ -75,7 +78,7 @@ export const Setting = () => {
     },
     input: {
       display: 'block',
-      width: '100%',
+      width: '90%',
       padding: '10px',
       border: '1px solid #ccc',
       borderRadius: '5px',
@@ -93,11 +96,9 @@ export const Setting = () => {
       marginBottom: '20px',
     },
   };
-  const fname = data.filter(item => item.uId === 1 ).map((item, index) => (item.userName))
-  console.log(fname)
-  // data.filter(item => item.UId == 1 ).map((item, index) => (item.UserName))
-  const lname = data.filter(item => item.uId === 2 ).map((item, index) => (item.userName))
-  const email = data.filter(item => item.uId === 3 ).map((item, index) => (item.email))
+  const fname = data.filter(item => item.uId === 2 ).map((item, index) => (item.lastName))
+  const lname = data.filter(item => item.uId === 1 ).map((item, index) => (item.lastName))
+  const email = data.filter(item => item.uId === 2  ).map((item, index) => (item.email))
   return (
     <>
     <Box sx={{ display: 'flex' }} >
@@ -120,6 +121,9 @@ export const Setting = () => {
 
       <label style={styles.label} htmlFor="city">City/Town:</label>
       <input style={styles.input} type="text" name="city" value={userData.city} onChange={handleInputChange} />
+
+      <label style={styles.label} htmlFor="phoneNo">phone Number:</label>
+      <input style={styles.input} type="text" name="phoneNo" value={userData.phoneNo} onChange={handleInputChange} />
 
       <label style={styles.label} htmlFor="description">Description:</label>
       <textarea style={styles.input} type="textarea" name="description" value={userData.description} onChange={handleInputChange} />
