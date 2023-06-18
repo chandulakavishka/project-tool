@@ -3,6 +3,8 @@ import { Box, CssBaseline, Typography, Grid, Button, MenuItem, FormControl, Inpu
 import NavBar from '../../../components/NavBar/NavBar';
 // import { Editor } from "react-draft-wysiwyg";
 // import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "../../../styles/MainStyles.css";
+import "../../../styles/Meetings.css";
 
 const JoinMeetings = () => {
 
@@ -19,43 +21,43 @@ const JoinMeetings = () => {
 
                 <NavBar />
 
-                <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', padding: '70px 20px 10px 20px', minHeight: "730px" }}>
-                    <Box sx={{ flexGrow: 1, margin: "20px 30px" }}>
-                        <Typography style={{ margin: "20px 0px", fontSize: "30px" }}>
+                <Box component="main" className='box-container'>
+                    <Box className='box-sub-container'>
+                        <Typography style={{ marginTop: "20px" }} className='page-topic'>
                             Join Meetings
                         </Typography>
 
                         <Grid container>
                             <Grid item xs={2}>
-                                <Typography style={{ marginTop: "20px", fontSize: "17px" }}>
+                                <Typography className='meeting-details'>
                                     Innovative
                                 </Typography>
-                                <Typography style={{ marginTop: "20px", fontSize: "17px" }}>
+                                <Typography className='meeting-details'>
                                     Title
                                 </Typography>
-                                <Typography style={{ marginTop: "20px", fontSize: "17px" }}>
+                                <Typography className='meeting-details'>
                                     Link
                                 </Typography>
                             </Grid>
                             <Grid item xs={1}>
-                                <Typography style={{ marginTop: "20px", fontSize: "17px" }}>
+                                <Typography className='meeting-details'>
                                     :
                                 </Typography>
-                                <Typography style={{ marginTop: "20px", fontSize: "17px" }}>
+                                <Typography className='meeting-details'>
                                     :
                                 </Typography>
-                                <Typography style={{ marginTop: "20px", fontSize: "17px" }}>
+                                <Typography className='meeting-details'>
                                     :
                                 </Typography>
                             </Grid>
                             <Grid item xs={9}>
-                                <Typography style={{ marginTop: "20px", fontSize: "17px" }}>
+                                <Typography className='meeting-details'>
                                     Innovative Title
                                 </Typography>
-                                <Typography style={{ marginTop: "20px", fontSize: "17px" }}>
+                                <Typography className='meeting-details'>
                                     Meeting Title
                                 </Typography>
-                                <Typography style={{ marginTop: "20px", fontSize: "17px" }}>
+                                <Typography className='meeting-details'>
                                     hbsdbkhqerfqe5rfwe\f5rwefwef5\wqefefefef7q7ef67e6f7efqef7q68ef7q6e7f6e7f6e7f67ef6fjg
                                 </Typography>
                             </Grid>

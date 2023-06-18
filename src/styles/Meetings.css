@@ -1,0 +1,60 @@
+.new-meeting-button {
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    text-transform: none !important;
+    font-size: 20px !important;
+    margin-bottom: 50px !important;
+}
+
+.field-label {
+    margin-bottom: 5px !important;
+    font-size: 18px !important;
+    margin-top: 20px !important;
+}
+
+.field {
+    width: 100%;
+    /* margin-bottom: 20px !important; */
+}
+
+.button-container {
+    float: right;
+    display: flex;
+    gap: 20PX;
+}
+
+.form-button {
+    width: 160px;
+    height: 50px;
+    border-radius: 5px;
+    text-transform: none !important;
+    font-size: 16px !important;
+    margin-top: 20px !important;
+    float: right;
+}
+
+.meeting-container {
+    box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);
+    border-color: gray !important;
+    background-color: #FFFFFF;
+    padding: 10px 30px 20px 30px;
+    width: 85%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.meeting-link {
+    margin-top: 10px;
+    font-size: 15px;
+    text-decoration: none;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    color: #000000;
+}
+
+.meeting-details {
+    margin-top: 20px !important;
+    font-size: 17px !important;
+}

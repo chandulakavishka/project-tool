@@ -5,6 +5,8 @@ import NavBar from '../../../components/NavBar/NavBar';
 // import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { createMeeting } from '../../../api/index';
 import Swal from 'sweetalert2';
+import "../../../styles/MainStyles.css";
+import "../../../styles/Meetings.css";
 
 const NewMeetings = () => {
 
@@ -14,6 +16,7 @@ const NewMeetings = () => {
     const [date, setDate] = React.useState();
     const [time, setTime] = React.useState();
     const [innovativeId, setInnovativeId] = React.useState('');
+    const [errors, seterrors] = useState({});
 
     var postData = {
         title: title,
@@ -24,7 +27,6 @@ const NewMeetings = () => {
         innovativeId: innovativeId,
     };
 
-
     const setValues = () => {
         setTitle('');
         setLink('');
@@ -32,33 +34,70 @@ const NewMeetings = () => {
         setDate('');
         setTime('');
         setInnovativeId('');
+        seterrors('');
+    };
+
+    const validate = () => {
+        let errors = {};
+
+        // title
+        if (!title) {
+            errors.title = 'Title required';
+        }
+
+        // link
+        if (!link) {
+            errors.link = 'Link required';
+        }
+
+        // description
+        if (!description) {
+            errors.description = 'Description required';
+        }
+
+        // date
+        if (!date) {
+            errors.date = 'Date required';
+        }
+
+        // time
+        if (!time) {
+            errors.time = 'Time required';
+        }
+
+        // innovativeId
+        if (!innovativeId) {
+            errors.innovativeId = 'Innovative Id required';
+        }
+
+        return errors;
     };
 
     const createNewMeeting = (e) => {
-        // e.preventDefault();
-        // const isValid = validate();
+        e.preventDefault();
+        const isValid = validate();
 
-        // if (isValid.name || isValid.email || isValid.mobile || isValid.incharge_of) {
-        //     seterrors(isValid);
-        // } else {
-        createMeeting(postData)
-            .then((res) => {
-                if (!res.data.error) {
-                    Swal.fire({
-                        icon: 'success',
-                        text: 'Successfully created new meeting!',
-                        timer: 3000,
-                        confirmButtonColor: '#024b77',
-                    });
-                    setValues();
-                } else {
-                    console.log(res.data.message);
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        // }
+        if (isValid.title || isValid.link || isValid.description || isValid.date || isValid.time || isValid.innovativeId) {
+            seterrors(isValid);
+        } else {
+            createMeeting(postData)
+                .then((res) => {
+                    if (!res.data.error) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Successfully created new meeting!',
+                            timer: 3000,
+                            confirmButtonColor: '#024b77',
+                        });
+                        setValues();
+                    } else {
+                        console.log(res.data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
     };
 
     return (
@@ -68,32 +107,37 @@ const NewMeetings = () => {
 
                 <NavBar />
 
-                <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', padding: '70px 20px 10px 20px', minHeight: "730px" }}>
-                    <Box sx={{ flexGrow: 1, margin: "20px 30px" }}>
-                        <Typography style={{ marginTop: "20px", fontSize: "30px" }}>
+                <Box component="main" className='box-container'>
+                    <Box className='box-sub-container'>
+                        <Typography style={{ marginTop: "20px" }} className='page-topic'>
                             New Meetings
                         </Typography>
 
-
                         <Box>
-                            <Grid container columnSpacing={10} style={{ marginTop: "10px" }}>
+                            <Grid container columnSpacing={10}>
                                 <Grid item xs={6}>
-                                    <Typography style={{ marginTop: "20px", marginBottom: "5px", fontSize: "18px" }}>
+                                    <Typography className='field-label'>
                                         Innovative
                                     </Typography>
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         value={innovativeId}
-                                        onChange={(e) => setInnovativeId(e.target.value)}
-                                        style={{ width: "100%" }}
+                                        onChange={(e) => {
+                                            setInnovativeId(e.target.value);
+                                            seterrors({ ...errors, innovativeId: '' });
+                                        }}
+                                        className='field'
                                     >
                                         <MenuItem value={1}>Innovative 1</MenuItem>
                                         <MenuItem value={2}>Innovative 2</MenuItem>
                                         <MenuItem value={3}>Innovative 3</MenuItem>
                                     </Select>
+                                    {errors.innovativeId && (
+                                        <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.innovativeId}</p>
+                                    )}
 
-                                    <Typography style={{ marginTop: "20px", marginBottom: "5px", fontSize: "18px" }}>
+                                    <Typography className='field-label'>
                                         Date
                                     </Typography>
                                     <TextField
@@ -101,13 +145,19 @@ const NewMeetings = () => {
                                         variant="outlined"
                                         type="date"
                                         value={date}
-                                        style={{ width: "100%" }}
-                                        onChange={(e) => setDate(e.target.value)}
+                                        className='field'
+                                        onChange={(e) => {
+                                            setDate(e.target.value);
+                                            seterrors({ ...errors, date: '' });
+                                        }}
                                     />
+                                    {errors.date && (
+                                        <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.date}</p>
+                                    )}
                                 </Grid>
 
                                 <Grid item xs={6}>
-                                    <Typography style={{ marginTop: "20px", marginBottom: "5px", fontSize: "18px" }}>
+                                    <Typography className='field-label'>
                                         Title
                                     </Typography>
                                     <TextField
@@ -115,11 +165,18 @@ const NewMeetings = () => {
                                         variant="outlined"
                                         type="text"
                                         value={title}
-                                        style={{ width: "100%" }}
-                                        onChange={(e) => setTitle(e.target.value)}
-                                    />
+                                        className='field'
+                                        onChange={(e) => {
+                                            setTitle(e.target.value);
 
-                                    <Typography style={{ marginTop: "20px", marginBottom: "5px", fontSize: "18px" }}>
+                                            seterrors({ ...errors, title: '' });
+                                        }}
+                                    />
+                                    {errors.title && (
+                                        <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.title}</p>
+                                    )}
+
+                                    <Typography className='field-label'>
                                         Time
                                     </Typography>
                                     <TextField
@@ -127,14 +184,20 @@ const NewMeetings = () => {
                                         variant="outlined"
                                         type="time"
                                         value={time}
-                                        style={{ width: "100%" }}
-                                        onChange={(e) => setTime(e.target.value)}
+                                        className='field'
+                                        onChange={(e) => {
+                                            setTime(e.target.value);
+                                            seterrors({ ...errors, time: '' });
+                                        }}
                                     />
+
+                                    {errors.time && (
+                                        <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.time}</p>
+                                    )}
                                 </Grid>
                             </Grid>
 
-
-                            <Typography style={{ marginTop: "20px", marginBottom: "5px", fontSize: "18px" }}>
+                            <Typography className='field-label'>
                                 Link
                             </Typography>
                             <TextField
@@ -142,39 +205,42 @@ const NewMeetings = () => {
                                 variant="outlined"
                                 type="text"
                                 value={link}
-                                style={{ width: "100%" }}
-                                onChange={(e) => setLink(e.target.value)}
+                                className='field'
+                                onChange={(e) => {
+                                    setLink(e.target.value);
+                                    seterrors({ ...errors, link: '' });
+                                }}
                             />
+                            {errors.link && (
+                                <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.link}</p>
+                            )}
 
-
-                            <Typography style={{ marginTop: "20px", marginBottom: "5px", fontSize: "18px" }}>
+                            <Typography className='field-label'>
                                 Description
                             </Typography>
                             <TextField
                                 id="outlined-basic"
                                 variant="outlined"
                                 type="text"
-                                sx={{ width: "100%" }}
+                                className='field'
                                 multiline
                                 value={description}
                                 rows={3}
-                                onChange={(e) => setDescription(e.target.value)}
+                                onChange={(e) => {
+                                    setDescription(e.target.value);
+                                    seterrors({ ...errors, description: '' });
+                                }}
                             />
+                            {errors.description && (
+                                <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.description}</p>
+                            )}
                         </Box>
 
-                        <Box style={{ float: "right", marginTop: "25px" }}>
-                            <Button
-                                variant="outlined"
-                                style={{ width: "160px", height: "50px", borderRadius: "5px", textTransform: 'none', marginRight: "20px", fontSize: "16px" }}
-                                onClick={setValues}
-                            >
+                        <Box className='button-container'>
+                            <Button variant="outlined" onClick={setValues} className='form-button'>
                                 Cancel
                             </Button>
-                            <Button
-                                variant="contained"
-                                style={{ width: "160px", height: "50px", borderRadius: "5px", textTransform: 'none', fontSize: "16px" }}
-                                onClick={createNewMeeting}
-                            >
+                            <Button variant="outlined" onClick={createNewMeeting} className='form-button'>
                                 Create
                             </Button>
                         </Box>

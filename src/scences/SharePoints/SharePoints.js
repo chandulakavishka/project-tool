@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import CircleIcon from '@mui/icons-material/Circle';
 import { sharePoint } from '../../api';
 import Swal from 'sweetalert2';
+import "../../styles/MainStyles.css";
 
 const SharePoints = () => {
 
@@ -51,9 +52,9 @@ const SharePoints = () => {
 
                 <NavBar />
 
-                <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', padding: '70px 20px 10px 20px', minHeight: "730px" }}>
-                    <Box sx={{ flexGrow: 1, margin: "20px 30px" }}>
-                        <Typography style={{ fontSize: "30px" }}>
+                <Box component="main" className='box-container'>
+                    <Box className='box-sub-container'>
+                        <Typography style={{ marginTop: "20px" }} className='page-topic'>
                             New Year Celebration
                         </Typography>
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Box, CssBaseline, Typography, Grid, Button, MenuItem, FormControl, InputLabel, Stack, Chip, Select } from '@mui/material';
 import NavBar from '../../components/NavBar/NavBar';
 import Divider from '@mui/material/Divider';
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -14,9 +13,10 @@ import Rating from '@mui/material/Rating';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-
 import { rating } from '../../api';
 import Swal from 'sweetalert2';
+import "../../styles/MainStyles.css";
+import "../../styles/Ratings.css";
 
 const Ratings = () => {
 
@@ -65,46 +65,33 @@ const Ratings = () => {
 
                 <NavBar />
 
-                <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', padding: '70px 20px 10px 20px', minHeight: "730px" }}>
-                    <Box sx={{ flexGrow: 1, margin: "20px 30px" }}>
-                        <Typography style={{ marginTop: "20px", fontSize: "30px" }}>
+                <Box component="main" className='box-container'>
+                    <Box className='box-sub-container'>
+                        <Typography style={{ marginTop: "20px" }} className='page-topic'>
                             Project Ratings
                         </Typography>
 
-                        <Grid container style={{ marginTop: "40px", float: "right", justifyContent: "end" }}>
+                        <Grid container className='button-container'>
                             <Grid item xs={2}>
-                                <Button
-                                    variant="contained"
-                                    style={{ width: "170px", height: "40px", borderRadius: "5px", textTransform: 'none', float: "right" }}
-                                >
+                                <Button variant="contained" className='project-buttons'>
                                     Project 01
                                 </Button>
                             </Grid>
                             <Grid item xs={2}>
-                                <Button
-                                    variant="outlined"
-                                    style={{ width: "170px", height: "40px", borderRadius: "5px", textTransform: 'none', float: "right" }}
-                                >
+                                <Button variant="outlined" className='project-buttons'>
                                     Project 02
                                 </Button>
                             </Grid>
                             <Grid item xs={2}>
-                                <Button
-                                    variant="outlined"
-                                    style={{ width: "170px", height: "40px", borderRadius: "5px", textTransform: 'none', float: "right" }}
-                                >
+                                <Button variant="outlined" className='project-buttons'>
                                     Project 03
                                 </Button>
                             </Grid>
                         </Grid>
 
-                        <Divider
-                            orientation="horizontal"
-                            sx={{ backgroundColor: "#000000" }}
-                            style={{ width: "100%", height: "2px", marginTop: "100px" }}
-                        />
+                        <Divider orientation="horizontal" className='divider' />
 
-                        <Typography style={{ marginTop: "30px", fontSize: "20px" }}>
+                        <Typography className='sub-topic'>
                             Top Contributors
                         </Typography>
 
@@ -135,13 +122,14 @@ const Ratings = () => {
                                     <TableCell align="center">
                                         <input
                                             type="text"
-                                            style={{ width: "200px", height: "30px" }}
+                                            className='comment-field'
                                             value={comment}
                                             onChange={(e) => setComment(e.target.value)}
+                                            multiline
                                         />
                                     </TableCell>
                                     <TableCell>
-                                        <div style={{ display: "flex", gap: "15px", justifyContent: "end" }}>
+                                        <div className='icon-container'>
                                             <div onClick={submitRating}><CheckBoxIcon /></div>
                                             <EditIcon />
                                             <DeleteIcon />
@@ -166,12 +154,14 @@ const Ratings = () => {
                                     <TableCell align="center">
                                         <input
                                             type="text"
-                                            style={{ width: "200px", height: "30px" }}
-
+                                            className='comment-field'
+                                            value={comment}
+                                            onChange={(e) => setComment(e.target.value)}
+                                            multiline
                                         />
                                     </TableCell>
                                     <TableCell>
-                                        <div style={{ display: "flex", gap: "15px", justifyContent: "end" }}>
+                                        <div className='icon-container'>
                                             <div onClick={submitRating}><CheckBoxIcon /></div>
                                             <EditIcon />
                                             <DeleteIcon />
@@ -182,7 +172,6 @@ const Ratings = () => {
                             </TableBody>
                         </Table>
                     </Box>
-
                 </Box>
             </Box >
         </>
