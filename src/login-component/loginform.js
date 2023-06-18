@@ -19,7 +19,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import LinearProgress from "@mui/material/LinearProgress";
 import image from "../image/loginimg.jpg";
 
-function Loginform() {
+function Loginform({userEmail}) {
   const paperStyle = {
     height: "70vh",
     width: 900,
@@ -43,7 +43,7 @@ function Loginform() {
   const [loading, setLoading] = useState(false);
   const [loadingError, setLoadingError] = useState(false);
 
-  const checkData = (e) => {
+  const checkData = (e,userEmail) => {
     e.preventDefault();
 
     setLoadingError(false);
@@ -72,7 +72,7 @@ function Loginform() {
         password: password,
       };
 
-      const url = "https://localhost:44387/api/User/Login/login";
+      const url = "https://localhost:44366/api/User/Login/login";
       axios
         .post(url, data)
         .then((result) => {
@@ -83,7 +83,11 @@ function Loginform() {
             );
           }
           setLoading(true);
-          window.location.replace("/task");
+          if(userEmail=== 'pmtoolofficial@gmail.com'){
+            window.location.replace("/adminDashboard");
+          }else{
+            window.location.replace("/task");
+          }
           clear();
         })
         .catch((error) => {
@@ -192,7 +196,7 @@ function Loginform() {
               variant="contained"
               style={btstyle}
               fullWidth
-              onClick={(e) => checkData(e)}
+              onClick={(e) => checkData(e,userEmail)}
             >
               Sign in
             </Button>

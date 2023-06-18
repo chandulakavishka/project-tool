@@ -26,7 +26,7 @@ import Test from "./test";
 
 import "./task.css";
 import CommentSection from "../comment-component/Comments";
-import Prograss from "../prograss";
+import Prograss from "./prograss";
 
 const Task = ({ currentUserId, userName, userEmail }) => {
   const [commentOpen, setCommentOpen] = useState(true);
@@ -65,7 +65,7 @@ const Task = ({ currentUserId, userName, userEmail }) => {
       id: 19,
       dueDate: dueDate,
     };
-    const url = "https://localhost:44387/api/Task/edit";
+    const url = "https://localhost:44366/api/Task/edit";
     axios
       .post(url, data)
       .then((result) => {
@@ -83,7 +83,7 @@ const Task = ({ currentUserId, userName, userEmail }) => {
       id: TaskId,
       prograss: progress,
     };
-    const url = "https://localhost:44387/api/Task/editPrograss";
+    const url = "https://localhost:44366/api/Task/editPrograss";
     axios
       .post(url, data)
       .then((result) => {
@@ -121,7 +121,7 @@ const Task = ({ currentUserId, userName, userEmail }) => {
       taskName: taskName,
       dueDate: dueDate,
     };
-    const url = "https://localhost:44387/api/Task/task";
+    const url = "https://localhost:44366/api/Task/task";
     axios
       .post(url, data)
       .then((result) => {
@@ -140,7 +140,7 @@ const Task = ({ currentUserId, userName, userEmail }) => {
       const data = {
         id: TaskId,
       };
-      const url = `https://localhost:44387/api/Task/${TaskId}`;
+      const url = `https://localhost:44366/api/Task/${TaskId}`;
       axios
         .delete(url, data)
         .then((result) => {
@@ -155,7 +155,7 @@ const Task = ({ currentUserId, userName, userEmail }) => {
   };
 
   useEffect(() => {
-    const url = `https://localhost:44387/api/Task`;
+    const url = `https://localhost:44366/api/Task`;
     axios
       .get(url)
       .then((result) => {

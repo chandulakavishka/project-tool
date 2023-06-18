@@ -26,7 +26,7 @@ function ForgotPasswordDialog() {
       email: email,
     };
 
-    const url = `https://localhost:44387/api/User/ForgotPassword/forgot-password?email=${email}`;
+    const url = `https://localhost:44366/api/User/ForgotPassword/forgot-password?email=${email}`;
     axios
       .post(url, data)
       .then((result) => {

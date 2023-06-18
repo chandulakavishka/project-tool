@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Loginform from "./login-component/loginform";
@@ -8,13 +8,15 @@ import Test from "./page-component/test";
 import ForgotPassword from "./login-component/forgotPassword"
 import ResetPassword from "./login-component/resetPassword"
 import CommentSection from "./comment-component/CommentForm"
-import Prograss from './prograss'
+import UserDashboard from "./page-component/userDashboard";
+import AdminDashboard from "./page-component/adminDashboard";
+import Prograss from './page-component/prograss'
 import Topbar from "./global/topbar";
 import jwt_decode from "jwt-decode";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState();
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [user, setUser] = useState();
 
   // const logoutUser = () => {
   //   setUser(null);
@@ -51,11 +53,13 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Loginform setUser={setUser} setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/" element={<Loginform userEmail={userEmail}/>} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/Task" element={<Task currentUserId={userId} userName={userName} userEmail={userEmail}/>} />
           <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
+          <Route path="/adminDashboard" element={<AdminDashboard userName={userName} userEmail={userEmail}/>} />
+          <Route path="/userDashboard" element={<UserDashboard userName={userName} userEmail={userEmail}/>} />
           <Route path="/comment" element={<CommentSection />} />
           <Route path="/test" element={<Test />} />
           <Route path="/topbar" element={<Topbar />} />

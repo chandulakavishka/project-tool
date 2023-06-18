@@ -3,7 +3,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Dialog, Button } from "@mui/material";
 import axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
-import './page-component/task.css';
+import './task.css';
 
 const AddUserTask = ({ TaskId }) => {
   const CloseIconStyle = {
@@ -38,7 +38,7 @@ const AddUserTask = ({ TaskId }) => {
       userName: userName,
       userID: id
     };
-    const url = `https://localhost:44387/api/Task?taskId=${TaskId}`;
+    const url = `https://localhost:44366/api/Task?taskId=${TaskId}`;
     axios
       .post(url, data)
       .then((response) => {
@@ -53,7 +53,7 @@ const AddUserTask = ({ TaskId }) => {
   };
 
   useEffect(() => {
-    const url = `https://localhost:44387/api/Task/${TaskId}`;
+    const url = `https://localhost:44366/api/Task/${TaskId}`;
     axios
       .get(url)
       .then((response) => {
@@ -68,7 +68,7 @@ const AddUserTask = ({ TaskId }) => {
   }, [TaskId]);
 
   useEffect(() => {
-    const url = `https://localhost:44387/api/User/GetAllUserNamesAndIds`;
+    const url = `https://localhost:44366/api/User/GetAllUserNamesAndIds`;
     axios
       .get(url)
       .then((response) => {

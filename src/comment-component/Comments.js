@@ -44,7 +44,7 @@ const Comments = ({ currentUserId, taskId, userName }) => {
       userID: currentUserId,
       parentId: parentId,
     };
-    const url = "https://localhost:44387/api/Comment/comment";
+    const url = "https://localhost:44366/api/Comment/comment";
     axios
       .post(url, data)
       .then((result) => {
@@ -62,7 +62,7 @@ const Comments = ({ currentUserId, taskId, userName }) => {
       const data = {
         id: commentId,
       };
-      const url = `https://localhost:44387/api/Comment/${commentId}`;
+      const url = `https://localhost:44366/api/Comment/${commentId}`;
       axios
         .delete(url, data)
         .then((result) => {
@@ -81,7 +81,7 @@ const Comments = ({ currentUserId, taskId, userName }) => {
       id: commentId,
       body: text,
     };
-    const url = "https://localhost:44387/api/Comment/edit";
+    const url = "https://localhost:44366/api/Comment/edit";
     axios
       .post(url, data)
       .then((result) => {
@@ -96,7 +96,7 @@ const Comments = ({ currentUserId, taskId, userName }) => {
   };
 
   useEffect(() => {
-    const url = `https://localhost:44387/api/Comment`;
+    const url = `https://localhost:44366/api/Comment`;
 //     const token = localStorage.getItem('AUTH_TOKEN'); // Retrieve the token from local storage
 
 // const config = {

@@ -100,7 +100,7 @@ function Signup() {
         phoneNumber: phoneNo,
       };
 
-      const url = "https://localhost:44387/api/User/Register";
+      const url = "https://localhost:44366/api/User/Register";
       axios
         .post(url, data)
         .then((result) => {
