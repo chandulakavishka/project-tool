@@ -1,6 +1,13 @@
 import React, { useState,useEffect } from "react";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import './App.css';
+import Projects from './scences/Projects/projects';
+import Modules from './scences/Modules/Modules';
+import Member from './scences/Member/Member';
+import Reports from './scences/Reports/Reports';
+import { Setting } from "./scences/Setting/Setting";
+import Profile from "./scences/Profile/Profile";
+import Dashboard from "./scences/dashboard/dashboard";
 import Loginform from "./login-component/loginform";
 import Signup from "./signup-component/signup";
 import Task from "./page-component/task";
@@ -48,9 +55,18 @@ function App() {
    let userId = decodedToken.Id;
 
   return (
-    <div className="App">
-      <Router>
-        <Routes>
+   
+    <>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Dashboard/>}/>
+        <Route path='/projects' element={<Projects/>}/>
+        <Route path='/Modules' element={<Modules/>}/>
+        <Route path='/Members' element={<Member/>}/>
+        <Route path='/Reports' element={<Reports/>}/>
+        <Route path='/Setting' element={<Setting/>}/>
+        <Route path='/Profile' element={<Profile/>}/>
+    
           <Route path="/" element={<Loginform setUser={setUser} setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/Task" element={<Task currentUserId={userId} userName={userName} userEmail={userEmail}/>} />
@@ -62,7 +78,8 @@ function App() {
           <Route path="/prograss" element={<Prograss />} />
         </Routes>
       </Router>
-    </div>
+    </>
+
 
   );
 }
