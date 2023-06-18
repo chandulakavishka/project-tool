@@ -9,7 +9,7 @@ import {
   DialogTitle,
   TextField,
 } from "@mui/material";
-import ResetPassword from "./resetPassword"
+import ResetPassword from "./resetPassword";
 
 function ForgotPasswordDialog() {
   const [open, setOpen] = useState(true);
@@ -26,18 +26,17 @@ function ForgotPasswordDialog() {
       email: email,
     };
 
-    const url = `https://localhost:44366/api/User/forgot-password?email=${email}`;
+    const url = `https://localhost:44387/api/User/ForgotPassword/forgot-password?email=${email}`;
     axios
       .post(url, data)
       .then((result) => {
         setOpen(false);
-        alert("Successful...");
+        alert("Please check your email and reset your Password...");
       })
       .catch((error) => {
         setOpen(true);
         alert("Email is not found...!");
         clear();
-        console.log(error);
       });
     setOpen(false);
     clear();
@@ -51,7 +50,7 @@ function ForgotPasswordDialog() {
 
   return (
     <div className="dialog-forgotPassword">
-      <ResetPassword/>
+      <ResetPassword />
       <Dialog open={open}>
         <DialogTitle>Forgot Your Password?</DialogTitle>
         <DialogContent>

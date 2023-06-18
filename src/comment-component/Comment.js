@@ -1,6 +1,4 @@
-//import { deleteComment } from "../api";
 import CommentForms from "./CommentForm";
-
 const Comment = ({
   comment,
   replies,
@@ -16,7 +14,7 @@ const Comment = ({
   body,
   userID,
   createdAt,
-  key
+  key,
 }) => {
   const fiveMinutes = 300000;
   const timeOk = new Date() - new Date(createdAt) > fiveMinutes;
@@ -32,7 +30,7 @@ const Comment = ({
     activeComment &&
     activeComment.type === "editing" &&
     activeComment.id === id;
-  const replyId = parentId ? parentId :id;
+  const replyId = parentId ? parentId : id;
   return (
     <div key={id} className="comment">
       <div className="comment-image-container">
@@ -41,7 +39,7 @@ const Comment = ({
       <div className="comment-right-part">
         <div className="comment-content">
           <div className="comment-author">{name}</div>
-          <div>{createdAt.substring(0,19)}</div> {/*can delete time*/}
+          <div>{createdAt.substring(0, 19)}</div> {/*can delete time*/}
         </div>
         {!isEdit && <div className="comment-text">{body}</div>}
         {isEdit && (
@@ -57,9 +55,7 @@ const Comment = ({
           {doReply && (
             <div
               className="comment-action"
-              onClick={() =>
-                setActiveComment({ id: id, type: "replying" })
-              }
+              onClick={() => setActiveComment({ id: id, type: "replying" })}
             >
               Reply
             </div>
@@ -67,18 +63,13 @@ const Comment = ({
           {doEdit && (
             <div
               className="comment-action"
-              onClick={() =>
-                setActiveComment({ id: id, type: "editing" })
-              }
+              onClick={() => setActiveComment({ id: id, type: "editing" })}
             >
               Edit
             </div>
           )}
           {doDelete && (
-            <div
-              className="comment-action"
-              onClick={() => deleteComment(id)}
-            >
+            <div className="comment-action" onClick={() => deleteComment(id)}>
               Delete
             </div>
           )}
@@ -105,9 +96,9 @@ const Comment = ({
                 id={reply.id}
                 parentId={reply.parentId}
                 name={reply.name}
-                  body={reply.body}
-                  userID={reply.userID}
-                  createdAt={reply.createdAt}
+                body={reply.body}
+                userID={reply.userID}
+                createdAt={reply.createdAt}
               />
             ))}
           </div>

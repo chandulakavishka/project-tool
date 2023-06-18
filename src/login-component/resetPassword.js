@@ -53,7 +53,6 @@
 //   const [emailRegError, setEmailRegError] = useState(false);
 //   const [tokenError,setTokenError] = useState(false)
 
-
 //   const handleSubmit = (e) => {
 //     e.preventDefault();
 
@@ -83,11 +82,11 @@
 //         setTokenError(true);
 //       }else{
 //         const data = {
-//             token:resetToken,  
+//             token:resetToken,
 //             password:resetPassword,
 //             confirmPassword:resetConfirmPassword
 //           };
-      
+
 //           const url = "https://localhost:44366/api/User/reset-password";
 //           axios
 //             .post(url, data)
@@ -102,7 +101,7 @@
 //       }
 //   }
 //   const clear = () => {
-    
+
 //     setEmail("");
 //     setResetPassword("");
 //     setResetConfirmPassword("");
@@ -292,7 +291,7 @@
 //       </Grid>
 //     </Paper>
 //       </div>
-     
+
 //     </div>
 //   );
 // }
@@ -357,7 +356,7 @@ function ResetPasswordForm() {
     setTokenError(false);
 
     const emailReg =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const passwordReg =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/;
 
@@ -375,21 +374,22 @@ function ResetPasswordForm() {
       setTokenError(true);
     } else {
       const data = {
+        email:email,
         token: resetToken,
         password: resetPassword,
         confirmPassword: resetConfirmPassword,
       };
 
-      const url = "https://localhost:44366/api/User/reset-password";
+      const url = `https://localhost:44387/api/User/ResetPassword/reset-password?token=${resetToken}&email=${email}`;
       axios
         .post(url, data)
         .then((result) => {
-          const dt = result.data;
-          alert(dt.statusMessage);
+          alert("Password reset is successful");
+          clear();
+          window.location.replace("/");
         })
         .catch((error) => {
           alert("Token is invalid...!");
-          console.log(error);
         });
     }
   };
@@ -481,7 +481,9 @@ function ResetPasswordForm() {
                 fullWidth
                 required
                 error={confirmPasswordError}
-                helperText={confirmPasswordError ? "Password does not match." : ""}
+                helperText={
+                  confirmPasswordError ? "Password does not match." : ""
+                }
                 value={resetConfirmPassword}
                 onChange={(e) => setResetConfirmPassword(e.target.value)}
               />
@@ -493,11 +495,7 @@ function ResetPasswordForm() {
                 fullWidth
                 required
                 error={tokenError}
-                helperText={
-                  tokenError
-                    ? "Token is required."
-                    : ""
-                }
+                helperText={tokenError ? "Token is required." : ""}
                 value={resetToken}
                 onChange={(e) => setResetToken(e.target.value)}
               />

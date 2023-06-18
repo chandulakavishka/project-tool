@@ -3,11 +3,12 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Loginform from "./login-component/loginform";
 import Signup from "./signup-component/signup";
-import Page from "./page-component/page";
+import Task from "./page-component/task";
 import Test from "./page-component/test";
 import ForgotPassword from "./login-component/forgotPassword"
 import ResetPassword from "./login-component/resetPassword"
 import CommentSection from "./comment-component/CommentForm"
+import Prograss from './prograss'
 import Topbar from "./global/topbar";
 import jwt_decode from "jwt-decode";
 
@@ -52,12 +53,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Loginform setUser={setUser} setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/page" element={<Page currentUserId={userId} userName={userName} userEmail={userEmail}/>} />
+          <Route path="/Task" element={<Task currentUserId={userId} userName={userName} userEmail={userEmail}/>} />
           <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/comment" element={<CommentSection />} />
           <Route path="/test" element={<Test />} />
           <Route path="/topbar" element={<Topbar />} />
+          <Route path="/prograss" element={<Prograss />} />
         </Routes>
       </Router>
     </div>

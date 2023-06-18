@@ -14,9 +14,10 @@ const Comments = ({ currentUserId, taskId, userName }) => {
     setOpen(false);
     window.location.reload();
   };
-  console.log("He", currentUserId);
+  
   const rootComments = Object.values(backendComments).filter(
-    (backendComment) => backendComment.parentId === 0 && backendComment.taskId === taskId
+    (backendComment) =>
+      backendComment.parentId === 0 && backendComment.taskId === taskId
   );
 
   const CloseIconStyle = {
@@ -36,9 +37,8 @@ const Comments = ({ currentUserId, taskId, userName }) => {
       );
   };
   const addComment = (text, parentId) => {
-    console.log("addNewComment", text, parentId);
     const data = {
-      taskId:taskId,
+      taskId: taskId,
       name: userName,
       body: text,
       userID: currentUserId,
@@ -52,10 +52,9 @@ const Comments = ({ currentUserId, taskId, userName }) => {
         if (!Array.isArray(data)) data = [data];
         setBackendComments(data);
         setActiveComment(null);
-      })
+      })  
       .catch((error) => {
         alert("Try again..!");
-        console.log(error);
       });
   };
   const deleteComment = (commentId) => {
@@ -73,7 +72,6 @@ const Comments = ({ currentUserId, taskId, userName }) => {
         })
         .catch((error) => {
           alert("Try again..!");
-          console.log(error);
         });
     }
   };
@@ -99,6 +97,13 @@ const Comments = ({ currentUserId, taskId, userName }) => {
 
   useEffect(() => {
     const url = `https://localhost:44387/api/Comment`;
+//     const token = localStorage.getItem('AUTH_TOKEN'); // Retrieve the token from local storage
+
+// const config = {
+//   headers: {
+//     Authorization: `Bearer ${token}`
+//   }
+// };
     axios
       .get(url)
       .then((result) => {
@@ -144,8 +149,6 @@ const Comments = ({ currentUserId, taskId, userName }) => {
             <div className="comment-container">
               {rootComments.map((rootComment) => (
                 <Comment
-                  //key={backendComments.id}
-                  //comment={rootComment}
                   replies={getReplies(rootComment.id)}
                   activeComment={activeComment}
                   setActiveComment={setActiveComment}

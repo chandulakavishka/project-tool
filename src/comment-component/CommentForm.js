@@ -31,7 +31,7 @@ const CommentForms = ({
           onClick={handleCancel}
         >
           Cancel
-          </button>
+        </button>
       )}
     </form>
   );

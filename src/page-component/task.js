@@ -1,44 +1,44 @@
-import React from "react";
-import CommentSection from "../comment-component/Comments";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Autocomplete,
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  InputAdornment,
+  LinearProgress,
   Stack,
   TextField,
-  Button,
-  Box,
 } from "@mui/material";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import Autocomplete from "@mui/material/Autocomplete";
-import LinearProgress from "@mui/material/LinearProgress";
-import InputAdornment from "@mui/material/InputAdornment";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
-import "./page.css";
+import PendingActionsIcon from "@mui/icons-material/PendingActions";
 import Topbar from "../global/topbar";
 import Test from "./test";
 
-const Page = ({currentUserId,userName,userEmail}) => {
+import "./task.css";
+import CommentSection from "../comment-component/Comments";
+import Prograss from "../prograss";
+
+const Task = ({ currentUserId, userName, userEmail }) => {
   const [commentOpen, setCommentOpen] = useState(true);
   const [taskId, setTaskId] = useState();
   const [taskName, setTaskName] = useState("");
   const [dueDate, setDueDate] = useState();
+  const [progress, setProgress] = useState();
   const [backendComments, setBackendComments] = useState([]);
   const [open, setOpen] = useState(false);
   const [isViewComment, setIsViewComment] = useState(false);
+  const [openEditDate, setOpenEditDate] = useState(false);
+  const [openAddUser, setOpenAddUser] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -51,13 +51,71 @@ const Page = ({currentUserId,userName,userEmail}) => {
     setCommentOpen(true);
     setTaskId(TaskId);
   };
+  const viewAddUser = (TaskId) => {
+    setOpenAddUser(true);
+    setTaskId(TaskId);
+  };
+  const viewDateEdit = (TaskId) => {
+    setOpenEditDate(true);
+    setTaskId(TaskId);
+  };
+
+  const editDueDate = (TaskId) => {
+    const data = {
+      id: 19,
+      dueDate: dueDate,
+    };
+    const url = "https://localhost:44387/api/Task/edit";
+    axios
+      .post(url, data)
+      .then((result) => {
+        let data = result.data;
+        if (!Array.isArray(data)) data = [data];
+        setBackendComments(data);
+        setOpenEditDate(false);
+      })
+      .catch((error) => {
+        alert("Try again..!");
+      });
+  };
+  const editProgress = (TaskId) => {
+    const data = {
+      id: TaskId,
+      prograss: progress,
+    };
+    const url = "https://localhost:44387/api/Task/editPrograss";
+    axios
+      .post(url, data)
+      .then((result) => {
+        let data = result.data;
+        if (!Array.isArray(data)) data = [data];
+        setBackendComments(data);
+      })
+      .catch((error) => {
+        alert("Try again..!");
+      });
+  };
   const members = [
-    {id: 1,imgUrl:"https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg",},
-    {id: 2,imgUrl:"https://img.freepik.com/premium-photo/young-handsome-man-with-beard-isolated-keeping-arms-crossed-frontal-position_1368-132662.jpg",},
-    {id: 3,imgUrl:"https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWFufGVufDB8fDB8fA%3D%3D&w=1000&q=80",},];
+    {
+      id: 1,
+      imgUrl:
+        "https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg",
+    },
+    {
+      id: 2,
+      imgUrl:
+        "https://img.freepik.com/premium-photo/young-handsome-man-with-beard-isolated-keeping-arms-crossed-frontal-position_1368-132662.jpg",
+    },
+    {
+      id: 3,
+      imgUrl:
+        "https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bWFufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+    },
+  ];
 
   const addTask = (e) => {
     e.preventDefault();
+    console.log("hello", dueDate);
     const data = {
       innovativeId: 1,
       taskName: taskName,
@@ -119,12 +177,10 @@ const Page = ({currentUserId,userName,userEmail}) => {
     { label: "Perera" },
   ];
 
-  
-
   return (
     <div className="full-task-page">
       <Test />
-      <Topbar userName={userName} userEmail={userEmail}/>
+      <Topbar userName={userName} userEmail={userEmail} />
       <Box className="box-style" sx={{ boxShadow: 2, backgroundColor: "#fff" }}>
         <div>
           <Button onClick={handleCreateTask}>
@@ -174,24 +230,54 @@ const Page = ({currentUserId,userName,userEmail}) => {
                         </div>
                       );
                     })}
-                    <AddCircleRoundedIcon />
+                    <AddCircleRoundedIcon
+                      onClick={() => viewAddUser(backendComment.id)}
+                      sx={{cursor: "pointer" }}
+                    />
+                    <div>
+                      {openAddUser && (
+                        <Prograss
+                          //innovativeId={1}
+                          Open={openAddUser}
+                          TaskId={taskId}
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="task-detail-3">{backendComment.dueDate.substring(0,19)}</div>
+              <div className="task-detail-3">
+                {backendComment.dueDate.substring(0, 10)}
+                <PendingActionsIcon
+                  sx={{ margin: "0 0 0 10px", cursor: "pointer" }}
+                  onClick={() => viewDateEdit(backendComment.id)}
+                ></PendingActionsIcon>
+              </div>
               <div className="task-detail-4">
                 <Accordion sx={{ height: "0px", width: "250px" }}>
                   <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                     <Box sx={{ width: "100%" }}>
-                      <LinearProgress variant="determinate" value={20} />
+                      <LinearProgress
+                        variant="determinate"
+                        value={backendComment.prograss}
+                        sx={{
+                          width: "100%",
+                          borderRadius: "5px",
+                          height: "8px",
+                          backgroundColor: "#EBEEF1",
+                        }}
+                      />
                     </Box>
                   </AccordionSummary>
                   <AccordionDetails>
                     <TextField
                       label="Progress"
                       id="outlined-start-adornment"
+                      value={progress}
+                      onChange={(e) => setProgress(e.target.value)}
+                      onBlur={() => editProgress(backendComment.id)}
                       sx={{
-                        m: 1,
+                        margin: "0 0 0 220px",
                         width: "15ch",
                         height: "5ch",
                         backgroundColor: "white",
@@ -215,23 +301,17 @@ const Page = ({currentUserId,userName,userEmail}) => {
                   onClick={() => deleteTask(backendComment.id)}
                 ></DeleteForeverIcon>
               </div>
-              <div>
-                <Button
-                  variant="contained"
-                  sx={{
-                    color: "black",
-                    padding: "0 0 0 0",
-                    backgroundColor: "#054da7",
-                    cursor: "pointer",
-                  }}
-                  onClick={handleCreateTask}
-                >
-                  Edit
-                </Button>
-              </div>
             </div>
           ))}
           ;
+          <Dialog open={openEditDate}>
+            <TextField
+              type="date"
+              value={dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
+              onBlur={() => editDueDate()}
+            ></TextField>
+          </Dialog>
         </div>
 
         <div>
@@ -254,15 +334,11 @@ const Page = ({currentUserId,userName,userEmail}) => {
                   onChange={(e) => setTaskName(e.target.value)}
                 />
                 Due Date
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <DemoContainer components={["DateTimePicker"]}>
-                    <DateTimePicker
-                      label="Controlled field"
-                      value={dueDate}
-                      onChange={(newValue) => setDueDate(newValue)}
-                    />
-                  </DemoContainer>
-                </LocalizationProvider>
+                <TextField
+                  type="date"
+                  value={dueDate}
+                  onChange={(e) => setDueDate(e.target.value)}
+                ></TextField>
                 Add Member
                 <div className="addTo-memberToTask">
                   <Autocomplete
@@ -288,4 +364,4 @@ const Page = ({currentUserId,userName,userEmail}) => {
   );
 };
 
-export default Page;
+export default Task;

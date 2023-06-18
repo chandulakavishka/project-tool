@@ -5,7 +5,7 @@
   display: flex;
   padding: 10px;
   margin: 10px;
-  box-shadow: 0px 5px 15px 5px rgb(222, 231, 239) inset;
+  
 }
 .task-title-container{
     display: flex;
@@ -19,25 +19,26 @@
   width: 300px;
 }
 .task-detail-2 {
-  width: 200px;
+  width: 300px;
 }
 .task-detail-3 {
   width: 200px;
 }
 .task-detail-4 {
-  width: 350px;
+  width: 300px;
+  margin-top: 0px;
 }
 .task-detail-1-title {
     width: 300px;
   }
   .task-detail-2-title {
-    width: 200px;
+    width: 320px;
   }
   .task-detail-3-title {
-    width: 200px;
+    width: 240px;
   }
   .task-detail-4-title {
-    width: 350px;
+    width: 300px;
   }
 .task-comment-icon{
     margin-right: 40px;
@@ -57,4 +58,7 @@
     min-width: 1000px;
     min-height: 600px;
     border-Radius: 20px;  
+}
+.user-list{
+  
 }
