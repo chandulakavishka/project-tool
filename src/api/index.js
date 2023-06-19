@@ -4,12 +4,12 @@ const axios = require('axios');
 
 //Meetings
 export const createMeeting = async (body) => {
+    console.log("body",body)
     return await axios.post(BASE_URL + '/Meeting', body);
 };
 
-
 export const getMeetings = async (id) => {
-    return await axios.get(BASE_URL + `/Meeting/id?id=${id}`);
+    return await axios.get(BASE_URL + `/ViewProjectMeeting/Id?userid=1`);
 };
 
 export const updateMeeting = async (body) => {
@@ -40,6 +40,10 @@ export const updateRating = async (body) => {
     return await axios.put(BASE_URL + "/Rating", body);
 };
 
+export const getRatingByProjectId = async (id) => {
+    return await axios.get(BASE_URL + `/ViewAvgRatingProject/Id?project_id=${id}`);
+};
+
 
 //SharePoint
 export const sharePoint = async (body) => {
@@ -53,5 +57,11 @@ export const updateSharePoint = async (body) => {
 
 //Projects
 export const getProjects = async () => {
-    return await axios.get(BASE_URL + '/Projects');
+    return await axios.get(BASE_URL + `/ProjectUser/userId?userId=1`);
 };
+
+//Innovatives
+export const getInnovativesByProjectId = async (id) => {
+    return await axios.get(BASE_URL + `/Innovative/id?id=${id}`);
+};
+

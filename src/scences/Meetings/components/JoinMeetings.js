@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, CssBaseline, Typography, Grid, Button, MenuItem, FormControl, InputLabel, Stack, Chip, Select } from '@mui/material';
+import { Box, CssBaseline, Typography, Grid, Button, TextField, Select } from '@mui/material';
 import NavBar from '../../../components/NavBar/NavBar';
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
@@ -7,31 +7,27 @@ import "../../../styles/MainStyles.css";
 import "../../../styles/Meetings.css";
 import Swal from 'sweetalert2';
 import { useLocation } from 'react-router-dom';
+import { createMeetingNote } from '../../../api';
 
-const JoinMeetings = (props) => {
+const JoinMeetings = () => {
     const { state } = useLocation();
+    const meetingDetails = state.meeting;
 
-    // console.log("FFFFFFFFFFFFF", state.meetingId)
-
-    const [age, setAge] = React.useState('');
     const [note, setNote] = React.useState('');
-    const [errors, seterrors] = useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
-
+    const [noteError, setNoteError] = useState('');
 
     var postData = {
-        // title: title,
-        // innovativeId: innovativeId,
+        title: meetingDetails.title,
+        date: new Date(),
+        innovativeId: meetingDetails.innovativeId,
         note: note,
-        meetingId: state.meetingId,
+        meetingId: meetingDetails.id,
+        projectId: meetingDetails.projectId,
     };
 
-    const createMeetingNote = () => {
-        if (note !== '') {
-            seterrors("Note required");
+    const submitMeetingNote = () => {
+        if (note === '') {
+            setNoteError("Note required");
         } else {
             createMeetingNote(postData)
                 .then((res) => {
@@ -42,7 +38,6 @@ const JoinMeetings = (props) => {
                             timer: 3000,
                             confirmButtonColor: '#024b77',
                         });
-                        // setValues();
                     } else {
                         Swal.fire({
                             icon: 'failed',
@@ -82,8 +77,14 @@ const JoinMeetings = (props) => {
                                 <Typography className='meeting-details'>
                                     Link
                                 </Typography>
+                                <Typography className='meeting-details'>
+                                    Note
+                                </Typography>
                             </Grid>
                             <Grid item xs={1}>
+                                <Typography className='meeting-details'>
+                                    :
+                                </Typography>
                                 <Typography className='meeting-details'>
                                     :
                                 </Typography>
@@ -96,34 +97,64 @@ const JoinMeetings = (props) => {
                             </Grid>
                             <Grid item xs={9}>
                                 <Typography className='meeting-details'>
-                                    Innovative Title
+                                    {meetingDetails.innovativeName}
                                 </Typography>
                                 <Typography className='meeting-details'>
-                                    Meeting Title
+                                    {meetingDetails.title}
                                 </Typography>
                                 <Typography className='meeting-details'>
-                                    hbsdbkhqerfqe5rfwe\f5rwefwef5\wqefefefef7q7ef67e6f7efqef7q68ef7q6e7f6e7f6e7f67ef6fjg
+                                    {meetingDetails.link}
                                 </Typography>
+                                {
+                                    meetingDetails.note === '' ?
+                                    <>
+                                        <TextField
+                                            id="outlined-basic"
+                                            variant="outlined"
+                                            type="text"
+                                            className='field'
+                                            style={{marginTop: "20px"}}
+                                            multiline
+                                            value={note}
+                                            rows={3}
+                                            onChange={(e) => {
+                                                setNote(e.target.value);
+                                                setNoteError('');
+                                            }}
+                                        />
+                                        {noteError && (
+                                            <p style={{ color: 'rgb(208, 0, 0)' }}>{noteError}</p>
+                                        )}
+                                    </>
+                                    :
+                                    <Typography className='meeting-details'>
+                                        {meetingDetails.note}
+                                    </Typography>
+                                }
                             </Grid>
                         </Grid>
 
-                        <Editor
+                        {/* <Editor
                             editorState={note}
                             toolbarClassName="toolbarClassName"
                             wrapperClassName="wrapperClassName"
                             editorClassName="editorClassName"
                             onEditorStateChange={(e) => setNote(e.target.value)}
                             editorStyle={{ height: "200px", backgroundColor: "#FFFFFF", border: "1px", borderColor: "#000000" }}
-                        />
+                        /> */}
 
-                        <Box className='button-container'>
-                            <Button variant="outlined" className='form-button'>
-                                Cancel
-                            </Button>
-                            <Button variant="outlined" onClick={createMeetingNote} className='form-button'>
-                                Create
-                            </Button>
-                        </Box>
+                            {
+                                meetingDetails.note === "" ?
+                                    <Box className='button-container'>
+                                        <Button variant="outlined" className='form-button' onClick={() => {setNote(''); setNoteError('');}}>
+                                            Cancel
+                                        </Button>
+                                        <Button variant="contained" onClick={submitMeetingNote} className='form-button'>
+                                            Add Meeting Note
+                                        </Button>
+                                    </Box>
+                                    : null
+                            }
                     </Box>
                 </Box>
             </Box >

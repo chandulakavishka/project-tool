@@ -13,17 +13,18 @@ import Rating from '@mui/material/Rating';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { rating, getProjects } from '../../api';
+import { rating, getProjects, getRatingByProjectId } from '../../api';
 import Swal from 'sweetalert2';
 import "../../styles/MainStyles.css";
 import "../../styles/Ratings.css";
 
 const Ratings = () => {
 
-    const [rating, setRating] = useState(0);
+    const [rate, setRate] = useState(0);
     const [comment, setComment] = useState("");
-    const [projectId, setProjectId] = useState("");
-    const [projects, setProjects] = useState({});
+    const [projectId, setProjectId] = useState(1);
+    const [projects, setProjects] = useState([]);
+    const [ratingList, setRatingList] = useState([]);
     const [errors, seterrors] = useState([]);
 
     useEffect(() => {
@@ -39,6 +40,20 @@ const Ratings = () => {
                 console.log(e);
             });
     }, []);
+
+    useEffect(() => {
+        getRatingByProjectId(projectId)
+            .then((res) => {
+                if (res.status === 200) {
+                    setRatingList(res.data);
+                } else {
+                    console.log(res.data);
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }, [projectId]);
 
     const validate = () => {
         let errors = {};
@@ -56,20 +71,15 @@ const Ratings = () => {
         return errors;
     };
 
-    const submitRating = (e) => {
-        e.preventDefault();
-        const isValid = validate();
-
-        if (isValid.rating || isValid.comment) {
-            seterrors(isValid);
-        } else {
+    const submitRating = (rating) => {
             rating(
                 {
-                    recieverId: 0,
-                    senderId: 0,
-                    innovativeID: 2,
-                    rate: rating,
+                    recieverId: rating.recieverId,
+                    senderId: 1,
+                    rate: rate,
                     comment: comment,
+                    projectId: rating.projectId,
+                    date: new Date(),
                 }
             )
                 .then((res) => {
@@ -92,7 +102,6 @@ const Ratings = () => {
                 .catch((error) => {
                     console.error('Error:', error);
                 });
-        }
     };
 
     return (
@@ -108,32 +117,20 @@ const Ratings = () => {
                             Project Ratings
                         </Typography>
 
-                        {/* {console.log(projects.length)} */}
                         <Grid container className='button-container'>
-                            {/* {
-                                projects.length !== 0 ? projects.map((project) => (
-                                    <Grid item xs={2} key={project.id}>
-                                        <Button variant="contained" className='project-buttons'>
-                                            {project.name}
+                            {
+                                projects && projects.map((project) => (
+                                    <Grid item xs={2} key={project.projectId}>
+                                        <Button
+                                            variant={projectId === project.projectId ? "contained" : "outlined"}
+                                            className='project-buttons'
+                                            onClick={() => {setProjectId(project.projectId);}}
+                                        >
+                                            {project.projectName}
                                         </Button>
                                     </Grid>
-                                )) : null
-                            } */}
-                            <Grid item xs={2}>
-                                <Button variant="contained" className='project-buttons'>
-                                    Project 01
-                                </Button>
-                            </Grid>
-                            <Grid item xs={2}>
-                                <Button variant="outlined" className='project-buttons'>
-                                    Project 02
-                                </Button>
-                            </Grid>
-                            <Grid item xs={2}>
-                                <Button variant="outlined" className='project-buttons'>
-                                    Project 03
-                                </Button>
-                            </Grid>
+                                ))
+                            }
                         </Grid>
 
                         <Divider orientation="horizontal" className='divider' />
@@ -149,41 +146,44 @@ const Ratings = () => {
                                     <TableCell></TableCell>
                                     <TableCell></TableCell>
                                     <TableCell></TableCell>
+                                    <TableCell></TableCell>
                                 </TableRow>
-                                {/* {rows.map((row) => ( */}
-                                <TableRow
-                                // key={row.name}
-                                >
-                                    <TableCell component="th" scope="row">
-                                        Thilini
-                                    </TableCell>
-                                    <TableCell align="center">
-                                        <Rating
-                                            name="simple-controlled"
-                                            value={rating}
-                                            onChange={(event, newValue) => {
-                                                setRating(newValue);
-                                            }}
-                                        />
-                                    </TableCell>
-                                    <TableCell align="center">
-                                        <input
-                                            type="text"
-                                            className='comment-field'
-                                            value={comment}
-                                            onChange={(e) => setComment(e.target.value)}
-                                            multiline="true"
-                                        />
-                                    </TableCell>
-                                    <TableCell>
-                                        <div className='icon-container'>
-                                            <div onClick={submitRating}><CheckBoxIcon /></div>
-                                            <EditIcon />
-                                            <DeleteIcon />
-                                        </div>
-                                    </TableCell>
-                                </TableRow>
-                                {/* ))} */}
+                                {
+                                    ratingList && ratingList.map((rating) => (
+                                        <TableRow key={rating.recieverId}>
+                                            <TableCell component="th" scope="row">
+                                                {rating.name}
+                                            </TableCell>
+                                            <TableCell component="th" scope="row">
+                                                {rating.avgRate}/5
+                                            </TableCell>
+                                            <TableCell align="center">
+                                                <Rating
+                                                    name="simple-controlled"
+                                                    value={rate}
+                                                    onChange={(event, newValue) => {
+                                                        setRate(newValue);
+                                                    }}
+                                                />
+                                            </TableCell>
+                                            <TableCell align="center">
+                                                <input
+                                                    type="text"
+                                                    className='comment-field'
+                                                    value={comment}
+                                                    onChange={(e) => setComment(e.target.value)}
+                                                    multiline="true"
+                                                />
+                                            </TableCell>
+                                            <TableCell>
+                                                <div className='icon-container'>
+                                                    <div onClick={() => submitRating(rating)}><CheckBoxIcon /></div>
+                                                    <DeleteIcon />
+                                                </div>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                }
                             </TableBody>
                         </Table>
                     </Box>

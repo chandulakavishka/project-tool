@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, CssBaseline, Typography, Grid, Button, MenuItem, FormControl, InputLabel, Stack, Chip, Select, TextField } from '@mui/material';
 import NavBar from '../../../components/NavBar/NavBar';
-import { createMeeting } from '../../../api/index';
+import { createMeeting, getProjects, getInnovativesByProjectId } from '../../../api/index';
 import Swal from 'sweetalert2';
 import "../../../styles/MainStyles.css";
 import "../../../styles/Meetings.css";
@@ -15,6 +15,38 @@ const NewMeetings = () => {
     const [innovativeId, setInnovativeId] = React.useState('');
     const [projectId, setProjectId] = React.useState('');
     const [errors, seterrors] = useState({});
+    const [projects, setProjects] = useState([]);
+    const [innovatives, setInnovatives] = useState([]);
+
+    useEffect(() => {
+        getProjects()
+            .then((res) => {
+                if (res.status === 200) {
+                    setProjects(res.data);
+                } else {
+                    console.log(res.data);
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }, []);
+
+    useEffect(() => {
+        if (projectId !== null) {
+        getInnovativesByProjectId(projectId)
+            .then((res) => {
+                if (res.status === 200) {
+                    setInnovatives(res.data);
+                } else {
+                    console.log(res.data);
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+        }
+    }, [projectId]);
 
     var postData = {
         title: title,
@@ -22,6 +54,7 @@ const NewMeetings = () => {
         description: description,
         date: dateTime,
         innovativeId: innovativeId,
+        projectId: projectId,
     };
 
     const setValues = () => {
@@ -30,6 +63,7 @@ const NewMeetings = () => {
         setDescription('');
         setDateTime('');
         setInnovativeId('');
+        setProjectId('');
         seterrors('');
     };
 
@@ -126,13 +160,16 @@ const NewMeetings = () => {
                                         value={projectId}
                                         onChange={(e) => {
                                             setProjectId(e.target.value);
+                                            setInnovativeId('');
                                             seterrors({ ...errors, projectId: '' });
                                         }}
                                         className='field'
                                     >
-                                        <MenuItem value={1}>Innovative 1</MenuItem>
-                                        <MenuItem value={2}>Innovative 2</MenuItem>
-                                        <MenuItem value={3}>Innovative 3</MenuItem>
+                                        {
+                                            projects && projects.map((project) => (
+                                                <MenuItem key={project.projectId} value={project.projectId}>{project.projectName}</MenuItem>
+                                            ))
+                                        }
                                     </Select>
                                     {errors.projectId && (
                                         <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.projectId}</p>
@@ -149,7 +186,6 @@ const NewMeetings = () => {
                                         className='field'
                                         onChange={(e) => {
                                             setTitle(e.target.value);
-
                                             seterrors({ ...errors, title: '' });
                                         }}
                                     />
@@ -172,9 +208,11 @@ const NewMeetings = () => {
                                         }}
                                         className='field'
                                     >
-                                        <MenuItem value={1}>Innovative 1</MenuItem>
-                                        <MenuItem value={2}>Innovative 2</MenuItem>
-                                        <MenuItem value={3}>Innovative 3</MenuItem>
+                                        {
+                                        innovatives && innovatives.map((innovative) => (
+                                                <MenuItem key={innovative.id} value={innovative.id}>{innovative.innovativeName}</MenuItem>
+                                            ))
+                                        }
                                     </Select>
                                     {errors.innovativeId && (
                                         <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.innovativeId}</p>
@@ -243,7 +281,7 @@ const NewMeetings = () => {
                             <Button variant="outlined" onClick={setValues} className='form-button'>
                                 Cancel
                             </Button>
-                            <Button variant="outlined" onClick={createNewMeeting} className='form-button'>
+                            <Button variant="contained" onClick={createNewMeeting} className='form-button'>
                                 Create
                             </Button>
                         </Box>
