@@ -9,11 +9,7 @@ export const createMeeting = async (body) => {
 
 
 export const getMeetings = async (id) => {
-    return await axios.get(BASE_URL + '/Meeting/' + id, {
-        // params: {
-        //     id: id,
-        // },
-    });
+    return await axios.get(BASE_URL + `/Meeting/id?id=${id}`);
 };
 
 export const updateMeeting = async (body) => {
@@ -25,7 +21,6 @@ export const updateMeeting = async (body) => {
 export const createMeetingNote = async (body) => {
     return await axios.post(BASE_URL + '/MeetingNote', body);
 };
-
 
 export const getMeetingNote = async (id) => {
     return await axios.get(BASE_URL + '/MeetingNote', {
@@ -47,11 +42,16 @@ export const updateRating = async (body) => {
 
 
 //SharePoint
-
 export const sharePoint = async (body) => {
     return await axios.post(BASE_URL + '/SharePoint', body);
 };
 
 export const updateSharePoint = async (body) => {
     return await axios.put(BASE_URL + "/SharePoint", body);
+};
+
+
+//Projects
+export const getProjects = async () => {
+    return await axios.get(BASE_URL + '/Projects');
 };

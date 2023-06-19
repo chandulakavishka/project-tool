@@ -104,7 +104,7 @@ const Meetings = () => {
                                 </Typography>
 
                                 <Box className='meeting-container'>
-                                    <Link className='meeting-link' to="/JoinMeetings">
+                                    <Link className='meeting-link' to="/JoinMeetings" state={{ meetingId: 1 }}>
                                         <CircleIcon style={{ fontSize: "13px" }} />
                                         Upcoming Meetings- 000000001
                                     </Link>

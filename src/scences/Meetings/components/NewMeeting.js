@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, CssBaseline, Typography, Grid, Button, MenuItem, FormControl, InputLabel, Stack, Chip, Select, TextField } from '@mui/material';
 import NavBar from '../../../components/NavBar/NavBar';
-// import { Editor } from "react-draft-wysiwyg";
-// import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { createMeeting } from '../../../api/index';
 import Swal from 'sweetalert2';
 import "../../../styles/MainStyles.css";
@@ -13,17 +11,16 @@ const NewMeetings = () => {
     const [title, setTitle] = React.useState('');
     const [link, setLink] = React.useState('');
     const [description, setDescription] = React.useState('');
-    const [date, setDate] = React.useState();
-    const [time, setTime] = React.useState();
+    const [dateTime, setDateTime] = React.useState('');
     const [innovativeId, setInnovativeId] = React.useState('');
+    const [projectId, setProjectId] = React.useState('');
     const [errors, seterrors] = useState({});
 
     var postData = {
         title: title,
         link: link,
         description: description,
-        date: date,
-        time: time,
+        date: dateTime,
         innovativeId: innovativeId,
     };
 
@@ -31,8 +28,7 @@ const NewMeetings = () => {
         setTitle('');
         setLink('');
         setDescription('');
-        setDate('');
-        setTime('');
+        setDateTime('');
         setInnovativeId('');
         seterrors('');
     };
@@ -55,19 +51,19 @@ const NewMeetings = () => {
             errors.description = 'Description required';
         }
 
-        // date
-        if (!date) {
-            errors.date = 'Date required';
-        }
-
-        // time
-        if (!time) {
-            errors.time = 'Time required';
+        // date & time
+        if (!dateTime) {
+            errors.dateTime = 'Date & Time required';
         }
 
         // innovativeId
         if (!innovativeId) {
             errors.innovativeId = 'Innovative Id required';
+        }
+
+        // projectId
+        if (!projectId) {
+            errors.projectId = 'Project required';
         }
 
         return errors;
@@ -77,12 +73,12 @@ const NewMeetings = () => {
         e.preventDefault();
         const isValid = validate();
 
-        if (isValid.title || isValid.link || isValid.description || isValid.date || isValid.time || isValid.innovativeId) {
+        if (isValid.title || isValid.link || isValid.description || isValid.dateTime || isValid.innovativeId || isValid.projectId) {
             seterrors(isValid);
         } else {
             createMeeting(postData)
                 .then((res) => {
-                    if (!res.data.error) {
+                    if (res.status === 200) {
                         Swal.fire({
                             icon: 'success',
                             text: 'Successfully created new meeting!',
@@ -91,7 +87,12 @@ const NewMeetings = () => {
                         });
                         setValues();
                     } else {
-                        console.log(res.data.message);
+                        Swal.fire({
+                            icon: 'failed',
+                            text: 'Failed to create new meeting!',
+                            timer: 3000,
+                            confirmButtonColor: '#024b77',
+                        });
                     }
                 })
                 .catch((error) => {
@@ -117,6 +118,48 @@ const NewMeetings = () => {
                             <Grid container columnSpacing={10}>
                                 <Grid item xs={6}>
                                     <Typography className='field-label'>
+                                        Project
+                                    </Typography>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={projectId}
+                                        onChange={(e) => {
+                                            setProjectId(e.target.value);
+                                            seterrors({ ...errors, projectId: '' });
+                                        }}
+                                        className='field'
+                                    >
+                                        <MenuItem value={1}>Innovative 1</MenuItem>
+                                        <MenuItem value={2}>Innovative 2</MenuItem>
+                                        <MenuItem value={3}>Innovative 3</MenuItem>
+                                    </Select>
+                                    {errors.projectId && (
+                                        <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.projectId}</p>
+                                    )}
+
+                                    <Typography className='field-label'>
+                                        Title
+                                    </Typography>
+                                    <TextField
+                                        id="outlined-basic"
+                                        variant="outlined"
+                                        type="text"
+                                        value={title}
+                                        className='field'
+                                        onChange={(e) => {
+                                            setTitle(e.target.value);
+
+                                            seterrors({ ...errors, title: '' });
+                                        }}
+                                    />
+                                    {errors.title && (
+                                        <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.title}</p>
+                                    )}
+                                </Grid>
+
+                                <Grid item xs={6}>
+                                    <Typography className='field-label'>
                                         Innovative
                                     </Typography>
                                     <Select
@@ -138,61 +181,21 @@ const NewMeetings = () => {
                                     )}
 
                                     <Typography className='field-label'>
-                                        Date
+                                        Date & Time
                                     </Typography>
                                     <TextField
                                         id="outlined-basic"
                                         variant="outlined"
-                                        type="date"
-                                        value={date}
+                                        type="datetime-local"
+                                        value={dateTime}
                                         className='field'
                                         onChange={(e) => {
-                                            setDate(e.target.value);
-                                            seterrors({ ...errors, date: '' });
+                                            setDateTime(e.target.value);
+                                            seterrors({ ...errors, dateTime: '' });
                                         }}
                                     />
-                                    {errors.date && (
-                                        <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.date}</p>
-                                    )}
-                                </Grid>
-
-                                <Grid item xs={6}>
-                                    <Typography className='field-label'>
-                                        Title
-                                    </Typography>
-                                    <TextField
-                                        id="outlined-basic"
-                                        variant="outlined"
-                                        type="text"
-                                        value={title}
-                                        className='field'
-                                        onChange={(e) => {
-                                            setTitle(e.target.value);
-
-                                            seterrors({ ...errors, title: '' });
-                                        }}
-                                    />
-                                    {errors.title && (
-                                        <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.title}</p>
-                                    )}
-
-                                    <Typography className='field-label'>
-                                        Time
-                                    </Typography>
-                                    <TextField
-                                        id="outlined-basic"
-                                        variant="outlined"
-                                        type="time"
-                                        value={time}
-                                        className='field'
-                                        onChange={(e) => {
-                                            setTime(e.target.value);
-                                            seterrors({ ...errors, time: '' });
-                                        }}
-                                    />
-
-                                    {errors.time && (
-                                        <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.time}</p>
+                                    {errors.dateTime && (
+                                        <p style={{ color: 'rgb(208, 0, 0)' }}>{errors.dateTime}</p>
                                     )}
                                 </Grid>
                             </Grid>
