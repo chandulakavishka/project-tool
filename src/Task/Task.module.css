@@ -1,0 +1,88 @@
+.boxStyle {
+  margin-left: 250px;
+  margin-top: 100px;
+  margin-right: 30px;
+  min-width: 1000px;
+  min-height: 570px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headName h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.progressBox {
+  padding-top: 15px;
+  padding-right: 50px;
+}
+
+.progressBox p {
+  font-weight: 600;
+}
+
+.addTask {
+  display: flex;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.addTask p {
+  font-size: 0.8rem;
+}
+
+.tableDiv {
+  margin-top: 30px;
+}
+
+th {
+  font-weight: normal;
+  font-size: 0.9rem;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.taskName {
+  padding-bottom: 20px;
+}
+
+.imgDiv {
+  display: flex;
+  justify-content: end;
+  padding-bottom: 20px;
+}
+
+.selectTD {
+  width: 20%;
+  padding-bottom: 20px;
+}
+
+.SelectButton {
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+.progreesTD {
+  padding-bottom: 20px;
+}
+
+.progreesValueTD {
+  padding-bottom: 20px;
+}
+
+.iconTD {
+  padding-bottom: 20px;
+  display: flex;
+}
+
+.iconTD div {
+  font-size: 0.8rem;
+  margin-right: 15px;
+}
