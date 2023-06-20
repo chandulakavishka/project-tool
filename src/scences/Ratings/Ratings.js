@@ -72,36 +72,36 @@ const Ratings = () => {
     };
 
     const submitRating = (rating) => {
-            rating(
-                {
-                    recieverId: rating.recieverId,
-                    senderId: 1,
-                    rate: rate,
-                    comment: comment,
-                    projectId: rating.projectId,
-                    date: new Date(),
+        rating(
+            {
+                recieverId: rating.recieverId,
+                senderId: 1,
+                rate: rate,
+                comment: comment,
+                projectId: rating.projectId,
+                date: new Date(),
+            }
+        )
+            .then((res) => {
+                if (res.status === 200) {
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Successfully added rate!',
+                        timer: 3000,
+                        confirmButtonColor: '#024b77',
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        text: 'Failed to add rate!',
+                        timer: 3000,
+                        confirmButtonColor: '#024b77',
+                    });
                 }
-            )
-                .then((res) => {
-                    if (res.status === 200) {
-                        Swal.fire({
-                            icon: 'success',
-                            text: 'Successfully added rate!',
-                            timer: 3000,
-                            confirmButtonColor: '#024b77',
-                        });
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            text: 'Failed to add rate!',
-                            timer: 3000,
-                            confirmButtonColor: '#024b77',
-                        });
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     };
 
     return (
@@ -124,7 +124,7 @@ const Ratings = () => {
                                         <Button
                                             variant={projectId === project.projectId ? "contained" : "outlined"}
                                             className='project-buttons'
-                                            onClick={() => {setProjectId(project.projectId);}}
+                                            onClick={() => { setProjectId(project.projectId); }}
                                         >
                                             {project.projectName}
                                         </Button>
@@ -149,7 +149,12 @@ const Ratings = () => {
                                     <TableCell></TableCell>
                                 </TableRow>
                                 {
-                                    ratingList && ratingList.map((rating) => (
+                                    ratingList && ratingList.map((rating) => {
+                                        let point = 0;
+                                        let rate = [];
+
+                                        rate.push(rating);
+
                                         <TableRow key={rating.recieverId}>
                                             <TableCell component="th" scope="row">
                                                 {rating.name}
@@ -160,9 +165,11 @@ const Ratings = () => {
                                             <TableCell align="center">
                                                 <Rating
                                                     name="simple-controlled"
-                                                    value={rate}
+                                                    value={point}
                                                     onChange={(event, newValue) => {
-                                                        setRate(newValue);
+                                                        // setRate(newValue);
+                                                        point = newValue;
+                                                        rate.push({ ...rate, "point": point });
                                                     }}
                                                 />
                                             </TableCell>
@@ -177,12 +184,12 @@ const Ratings = () => {
                                             </TableCell>
                                             <TableCell>
                                                 <div className='icon-container'>
-                                                    <div onClick={() => submitRating(rating)}><CheckBoxIcon /></div>
+                                                    <div onClick={() => submitRating(rate)}><CheckBoxIcon /></div>
                                                     <DeleteIcon />
                                                 </div>
                                             </TableCell>
                                         </TableRow>
-                                    ))
+                                    })
                                 }
                             </TableBody>
                         </Table>

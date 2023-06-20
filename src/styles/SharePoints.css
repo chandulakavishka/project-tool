@@ -1,0 +1,28 @@
+.share-points-text {
+    margin-top: 120px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: end;
+    font-size: 18px !important;
+}
+
+.share-points-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.share-points-input {
+    width: 60px;
+    height: 30px;
+}
+
+.rate-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px !important;
+    margin: 0px 20px 15px 20px;
+}

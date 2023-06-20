@@ -3,14 +3,72 @@ import { Box, CssBaseline, Typography, Grid, Button, MenuItem, FormControl, Inpu
 import NavBar from '../../components/NavBar/NavBar';
 import { Link, useNavigate } from 'react-router-dom';
 import CircleIcon from '@mui/icons-material/Circle';
-import { sharePoint } from '../../api';
+import { sharePoint, getInnovativesByProjectId, getProjects } from '../../api';
 import Swal from 'sweetalert2';
 import "../../styles/MainStyles.css";
+import "../../styles/Meetings.css";
+import "../../styles/SharePoints.css";
 
 const SharePoints = () => {
 
 
     const [points, setPoints] = useState();
+
+
+
+    const [innovativeId, setInnovativeId] = React.useState('');
+    const [projectId, setProjectId] = React.useState('');
+
+    const [projects, setProjects] = useState([]);
+    const [innovatives, setInnovatives] = useState([]);
+    const [errors, seterrors] = useState({});
+
+
+    const validate = () => {
+        let errors = {};
+
+        // innovativeId
+        if (!innovativeId) {
+            errors.innovativeId = 'Innovative Id required';
+        }
+
+        // projectId
+        if (!projectId) {
+            errors.projectId = 'Project required';
+        }
+
+        return errors;
+    };
+
+    useEffect(() => {
+        getProjects()
+            .then((res) => {
+                if (res.status === 200) {
+                    setProjects(res.data);
+                } else {
+                    console.log(res.data);
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    }, []);
+
+    useEffect(() => {
+        if (projectId !== null) {
+            getInnovativesByProjectId(projectId)
+                .then((res) => {
+                    if (res.status === 200) {
+                        setInnovatives(res.data);
+                    } else {
+                        console.log(res.data);
+                    }
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        }
+    }, [projectId]);
 
     const submitPoints = (e) => {
         // e.preventDefault();
@@ -58,61 +116,88 @@ const SharePoints = () => {
                             New Year Celebration
                         </Typography>
 
-                        <Grid container columnSpacing={20} style={{ marginTop: "30px" }}>
+                        <Grid container columnSpacing={10}>
                             <Grid item xs={6}>
-                                <Box style={{ marginBottom: "20px", display: "flex", justifyContent: "end" }}>
-                                    <Typography style={{ fontSize: "16px" }}>
-                                        Share Points
-                                    </Typography>
+                                <Grid container columnSpacing={5}>
+                                    <Grid item xs={6}>
+                                        <Typography className='field-label'>
+                                            Project
+                                        </Typography>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={projectId}
+                                            onChange={(e) => {
+                                                setProjectId(e.target.value);
+                                                setInnovativeId('');
+                                                seterrors({ ...errors, projectId: '' });
+                                            }}
+                                            className='field'
+                                        >
+                                            {
+                                                projects && projects.map((project) => (
+                                                    <MenuItem key={project.projectId} value={project.projectId}>{project.projectName}</MenuItem>
+                                                ))
+                                            }
+                                        </Select>
+                                    </Grid>
+
+                                    <Grid item xs={6}>
+                                        <Typography className='field-label'>
+                                            Innovative
+                                        </Typography>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={innovativeId}
+                                            onChange={(e) => {
+                                                setInnovativeId(e.target.value);
+                                                seterrors({ ...errors, innovativeId: '' });
+                                            }}
+                                            className="field"
+                                        >
+                                            {
+                                                innovatives && innovatives.map((innovative) => (
+                                                    <MenuItem key={innovative.id} value={innovative.id}>{innovative.innovativeName}</MenuItem>
+                                                ))
+                                            }
+                                        </Select>
+                                    </Grid>
+                                </Grid>
+
+                                <Button
+                                    variant="contained"
+                                    className='form-button'
+                                // onClick={searchMeetingNotes}
+                                >
+                                    Search
+                                </Button>
+
+                                <Box className='share-points-text'>
+                                    Share Points
                                 </Box>
 
                                 <Box>
-                                    <Box style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}>
-                                        <Typography style={{ fontSize: "16px" }}>
-                                            Thilini Wijekoon
-                                        </Typography>
+                                    <Box className='share-points-box'>
+                                        Thilini Wijekoon
                                         <input
-                                            type="text"
-                                            style={{ width: "60px", height: "30px" }}
+                                            type="number"
+                                            className='share-points-input'
                                             value={points}
                                             onChange={(e) => setPoints(e.target.value)}
                                         />
                                     </Box>
-
-                                    <Box style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}>
-                                        <Typography style={{ fontSize: "16px" }}>
-                                            Thilini Wijekoon
-                                        </Typography>
-                                        <input
-                                            type="text"
-                                            style={{ width: "60px", height: "30px" }}
-
-                                        />
-                                    </Box>
-
-                                    <Box style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}>
-                                        <Typography style={{ fontSize: "16px" }}>
-                                            Thilini Wijekoon
-                                        </Typography>
-                                        <input
-                                            type="text"
-                                            style={{ width: "60px", height: "30px" }}
-
-                                        />
-                                    </Box>
                                 </Box>
 
-                                <Box style={{ float: "right", marginTop: "25px" }}>
+                                <Box className='button-container'>
                                     <Button
-                                        variant="outlined"
-                                        style={{ width: "160px", height: "50px", borderRadius: "5px", textTransform: 'none', marginRight: "20px", fontSize: "16px" }}
+                                        variant="outlined" className='form-button'
                                         onClick={() => setPoints(0)}
                                     >
                                         Cancel
                                     </Button>
                                     <Button
-                                        variant="contained"
-                                        style={{ width: "160px", height: "50px", borderRadius: "5px", textTransform: 'none', fontSize: "16px" }}
+                                        variant="contained" className='form-button'
                                         onClick={submitPoints}
                                     >
                                         Create
@@ -121,25 +206,12 @@ const SharePoints = () => {
                             </Grid>
 
                             <Grid item xs={6}>
-                                <Box style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}>
-                                    <Typography style={{ fontSize: "16px" }}>
-                                        Top Contributors
-                                    </Typography>
-                                    <Typography style={{ fontSize: "16px" }}>
-                                        Rate
-                                    </Typography>
+                                <Box className='rate-text'>
+                                    <div>Top Contributors</div>
+                                    <div>Rate</div>
                                 </Box>
 
-                                <Box style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}>
-                                    <Typography style={{ fontSize: "16px" }}>
-                                        Thilini Wijekoon
-                                    </Typography>
-                                    <Typography style={{ fontSize: "16px" }}>
-                                        4.5 / 5
-                                    </Typography>
-                                </Box>
-
-                                <Box style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "15px" }}>
+                                <Box className='rate-text'>
                                     <Typography style={{ fontSize: "16px" }}>
                                         Thilini Wijekoon
                                     </Typography>
