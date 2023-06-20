@@ -134,7 +134,7 @@ const Innovative = () => {
               Status
               <TextField
                 label="Add"
-                placeholder="Enter Task Name"
+                placeholder="Enter Current Status"
                 autoFocus
                 margin="dense"
                 variant="outlined"
@@ -147,7 +147,7 @@ const Innovative = () => {
               Prograss
               <TextField
                 label="Add"
-                placeholder="Enter Task Name"
+                placeholder="Enter Current Prograss"
                 autoFocus
                 margin="dense"
                 variant="outlined"
