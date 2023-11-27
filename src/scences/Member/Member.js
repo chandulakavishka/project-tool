@@ -24,14 +24,17 @@ const Member = () => {
       verticalAlign: 'middle',
       backgroundColor: '#f0f0f0',
       border: '1px solid #ccc',
-      height: '50px'
+      height: '50px',
+      borderRadius: '5px',
+      color: '#f00'
     },
     td : {
       textAlign: 'center',
       verticalAlign: 'middle',
       backgroundColor: '#f0f0f0',
       border: '1px solid #ccc',
-      height: '100px'
+      height: '100px',
+      borderRadius: '5px'
     },
     };
 

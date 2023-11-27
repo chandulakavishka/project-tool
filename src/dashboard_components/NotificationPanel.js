@@ -38,7 +38,7 @@ const NotificationPanel = () => {
 
       <Box
         sx={{
-          width: '135%',
+          width: '100%',
           height: 160,
           backgroundColor: '#163a78',
           borderRadius: '15px',

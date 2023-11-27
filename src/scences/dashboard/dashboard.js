@@ -14,14 +14,51 @@ import Slideshow from "../../dashboard_components/Slideshow";
 const Dashboard = () => {  
   return (
       <>
-      <Box sx={{ display: 'flex' }} >
+      <Box sx={{ display: 'flex', flex:1 }} >
           <CssBaseline/>
           <NavBar/>
-          <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', borderRadius: '5px',padding:'40px 0 0 20px',minHeight: "710px" }}>
+          <Box component="main" sx={{ flexGrow: 1, p: 0, backgroundColor: '#f9f9f9', borderRadius: '5px',padding:'60px 0 0 20px',minHeight: "710px" }}>
           <Box sx={{ flexGrow: 1, margin: "5px 30px"}}>
-                        <Grid container columnSpacing={6} >
-                            <Grid item xs={4} >
-                             <Box sx={{
+              <Grid container columnSpacing={6} >
+                <Box sx={{ display: { xl:'flex',sm: 'block' } }} marginBottom='10px'>
+                <Box sx={{margin:`0 7% 0 2%` }}>
+                  <Box sx={{
+                        boxShadow: 2,
+                        borderColor: 'gray',
+                        width: 350,
+                        paddingLeft: '3%',
+                        paddingBottom: 1,
+                        marginBottom: 1,
+                        marginLeft: 3,
+                        borderRadius: '5px',
+                        backgroundColor: '#fff'
+                        
+                      }}>
+                        <Calender/>
+                      </Box>
+                      <Box>
+                        <RemainingTask/>
+                      </Box>
+                </Box>
+
+                <Box >
+                    <Box >
+                      <NotificationPanel/>
+                    </Box>
+                    <Box marginLeft='0px'>
+                      <Box sx={{ display: { xl:'flex',sm: 'block' } }} marginBottom='10px'>
+                        <Box ><CircleProgressBar/></Box>
+                        <Box ><Task/></Box>
+                      </Box>
+                      <Box sx={{ display: { xl:'flex',sm: 'block' } }}>
+                        <Box ><Innovatives/></Box>
+                        <Box><Slideshow/></Box>
+                      </Box>
+                    </Box>
+                    </Box>
+              </Box>
+                            {/* <Grid item xs={4} >
+                            <Box sx={{
                                   boxShadow: 2,
                                   borderColor: 'gray',
                                   width: 350,
@@ -53,7 +90,7 @@ const Dashboard = () => {
                                       <Box><Slideshow/></Box>
                                     </Box>
                                   </Box>
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                     </Box>
           </Box >

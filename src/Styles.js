@@ -23,7 +23,8 @@ export const useStyles = makeStyles()((theme) => {
             padding: theme.spacing(3)
         },
         active: {
-            backgroundColor: '#3b3b74'
+            backgroundColor: '#3b3b74',
+            borderRadius: '10px',
         },
         noteCard: {
             backgroundColor: 'lightgray'
@@ -97,12 +98,12 @@ export const useStyles = makeStyles()((theme) => {
             
         },
         drawerIcon: {
-            color: '#000',
+            color: '#fff',
             marginRight: '15px',
             marginLeft:'5px'
         },
         drawerText: {
-            color: '#000'
+            color: '##fff'
         },
         drawerHead: {
             backgroundColor: 'transparent'

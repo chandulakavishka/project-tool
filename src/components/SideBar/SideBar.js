@@ -10,11 +10,14 @@ import HouseIcon from '@mui/icons-material/House';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useStyles } from '../../Styles';
+import { red } from '@mui/material/colors';
 
-const drawerWidth = 220;
+const drawerWidth = 230;
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
+    backgroundColor: 'black',
+    color: 'white',
     transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
@@ -23,6 +26,8 @@ const openedMixin = (theme) => ({
 });
 
 const closedMixin = (theme) => ({
+    backgroundColor: 'black',
+    color: 'white',
     transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -75,7 +80,7 @@ const SideBar = ({
     const menuItems = [
         {
             text: "Dashboard",
-            icon: <HouseIcon fontSize='medium' className={classes.drawerIcon} />,
+            icon: <HouseIcon fontSize='medium' className={classes.drawerIcon}  />,
             path: '/'
         },
         {
@@ -106,18 +111,17 @@ const SideBar = ({
     ]
 
     return (
-        <Drawer variant="permanent" open={open}>
-            <DrawerHeader>
+        <Drawer variant="permanent" open={open} sx={{ backgroundColor: 'black', color: 'white' }}>
+            <DrawerHeader >
                 <IconButton color="inherit"
                     aria-label="close drawer"
                     onClick={handleDrawerClose}
                     edge="start"
                     sx={{
                         ml: 1,
-                        marginRight: 0,
+                        marginRight: 2,
                         ...(!open && { display: 'none' }),
                     }}>
-
                     <MenuIcon />
                 </IconButton>
 
@@ -131,7 +135,7 @@ const SideBar = ({
                 }}>
                 </Stack>
             </DrawerHeader>
-
+            {/* <Box sx={{ display: 'flex',flexDirection:'column', justifyContent: 'space-between', alignItems: 'center', marginBottom: '100px' }}> */}
             <List>
                 {menuItems.map(item => (
                     <ListItem
@@ -162,6 +166,11 @@ const SideBar = ({
                     </ListItem>
                 ))}
             </List>
+
+
+            {/* </Box> */}
+
+            
         </Drawer>
     )
 }

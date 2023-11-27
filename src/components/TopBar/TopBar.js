@@ -10,7 +10,7 @@ import { useNavigate, useLocation,Link } from 'react-router-dom';
 import { useStyles } from '../../Styles';
 import Seachbox from '../../dashboard_components/Seachbox';
 
-const drawerWidth = 220;
+const drawerWidth = 230;
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
@@ -80,14 +80,14 @@ const TopBar = ({
                 >
                     <MenuIcon />
                 </IconButton>
-
-                <Stack sx={{ flexGrow: 1 }}>
-                    <Typography variant="h5" component="div">
+                <Box sx={{ display:'flex',width:'100%',alignItems:'center',justifyContent:'space-between' }} >
+                <Stack>
+                    <Typography variant="h5" component="div" sx={{textTransform:'uppercase',fontWeight:'bold'}}>
                         {header}
                     </Typography>
                 </Stack>
                 {/* test field this need to implement */}
-                <Stack direction='row' spacing={2} sx={{ flexGrow: 1.5 }}>
+                <Stack direction='row' spacing={2} >
                     <Seachbox/>
                 </Stack>
 
@@ -136,6 +136,7 @@ const TopBar = ({
                         </Menu>
                     </Box>
                 </Stack>
+                </Box>
             </Toolbar>
         </AppBar>
     )

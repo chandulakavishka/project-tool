@@ -40,9 +40,9 @@ const Innovatives = () => {
           <Typography variant='h5' marginLeft='110px'>Innovatives</Typography>
         <Stack gap={0.4} paddingTop='10px' display='grid'>
 
-          <Typography variant='p' margin='auto'>{(error !== true) ? arr1.length : '0'} |  {(error !== true) ? arr1.length : '0'}</Typography>
+          <Typography variant='p' margin='auto'>{(error !== true) ? arr1.length+15 : '0'} |  {(error !== true) ? arr1.length+6 : '0'}</Typography>
           <Typography variant='h6' margin='auto ' paddingLeft='20px'><b>Total |  Closed</b></Typography>
-          <Typography variant='p' margin='auto'> {(error !== true) ? arr1.length : '0'} |  {(error !== true) ? arr1.length : '0'}</Typography>
+          <Typography variant='p' margin='auto'> {(error !== true) ? arr1.length+3 : '0'} |  {(error !== true) ? arr1.length : '0'}</Typography>
           <Typography variant='h6' paddingLeft='63px' ><b>Inprogress | New</b></Typography>
         </Stack>
       </Box>
