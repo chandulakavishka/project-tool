@@ -23,6 +23,7 @@ export const useStyles = makeStyles()((theme) => {
             padding: theme.spacing(3)
         },
         active: {
+            padding:'10px',
             backgroundColor: '#3b3b74',
             borderRadius: '10px',
         },
