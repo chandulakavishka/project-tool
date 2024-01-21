@@ -23,9 +23,13 @@ export const useStyles = makeStyles()((theme) => {
             padding: theme.spacing(3)
         },
         active: {
-            padding:'10px',
-            backgroundColor: '#3b3b74',
+            width: '90%',
+            marginLeft: '10px',
+            padding:'2px ',
+            backgroundColor: '#3b74',
             borderRadius: '10px',
+    
+            
         },
         noteCard: {
             backgroundColor: 'lightgray'

@@ -55,27 +55,24 @@ export default function CircleProgressBar() {
     console.log(percentage)
 
 
-    return <>
-                <Typography variant='h5' paddingLeft='30px'>Project Completion Rate</Typography>
-                <Box  
-                  sx={{
-                    boxShadow: 2,
-                    borderColor: 'gray',
-                    width: 350,
-                    height: 175,
-                    padding: 2,
-                    paddingLeft:12,
-                    marginRight:10,
-                    borderRadius: '5px',
-                    backgroundColor: '#fff',
-                    '&:hover': {
-                      height: 180,
-                      opacity: [0.9, 0.8, 0.7],
-                    }
-                    
-                  }}>
-                    <CircularProgressWithLabel size="9rem" value={(error !== true) ? percentage : 75} />
-                    
-                </Box>
+    return (
+    <>
+        <Typography variant='h5'>Project Completion Rate</Typography>
+        <Box  
+          sx={{
+            boxShadow: 2,
+            borderColor: 'gray',
+            width: '90%',
+            height: 150,
+            padding: 2,
+            paddingLeft:12,
+            borderRadius: '5px',
+            backgroundColor: '#fff',
+           
+          }}>
+            <CircularProgressWithLabel size="7rem" value={(error !== true) ? percentage : 75} />
+            
+        </Box>
     </>
+    )
 }

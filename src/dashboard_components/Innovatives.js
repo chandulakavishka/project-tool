@@ -26,16 +26,11 @@ const Innovatives = () => {
         sx={{
           boxShadow: 3,
           borderColor: 'gray',
-          width: 350,
+          width: '90%',
           height:180,
-          marginRight:10,
-          marginBottom:3,
           borderRadius: '5px',
           backgroundColor: '#fff',
-          '&:hover': {
-            height: 183,
-            opacity: [0.9, 0.8, 0.7],
-          }
+          
         }}>
           <Typography variant='h5' marginLeft='110px'>Innovatives</Typography>
         <Stack gap={0.4} paddingTop='10px' display='grid'>

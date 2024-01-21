@@ -10,7 +10,7 @@ import { useNavigate, useLocation,Link } from 'react-router-dom';
 import { useStyles } from '../../Styles';
 import Seachbox from '../../dashboard_components/Seachbox';
 
-const drawerWidth = 230;
+const drawerWidth = 260;
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
