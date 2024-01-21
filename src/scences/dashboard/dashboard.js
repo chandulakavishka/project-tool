@@ -37,7 +37,22 @@ const Dashboard = () => {
                   background:'white',
                 }}
               >
-                <Calender/>
+                <Box
+                  sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      boxShadow: 3,
+                      borderColor: 'gray',
+                      width: '80%',
+                      height: '300px',
+                      borderRadius: '5px',
+                      backgroundColor: '#fff',
+                      overflow: 'hidden'
+                  }}
+                >
+                  <Calender/>
+                </Box>
               </Box>
               <Box
                 sx={{

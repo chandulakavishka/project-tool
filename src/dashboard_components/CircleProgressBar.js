@@ -60,12 +60,13 @@ export default function CircleProgressBar() {
         <Typography variant='h5'>Project Completion Rate</Typography>
         <Box  
           sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             boxShadow: 2,
             borderColor: 'gray',
             width: '90%',
             height: 150,
-            padding: 2,
-            paddingLeft:12,
             borderRadius: '5px',
             backgroundColor: '#fff',
            

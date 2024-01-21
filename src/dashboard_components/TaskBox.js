@@ -37,8 +37,9 @@ const Task = () => {
           borderColor: 'gray',
           width: '96%',
           height: 150,
-          // marginBottom: 3,
-          padding: '0 10px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
           borderRadius: '5px',
           backgroundColor: '#fff',
           

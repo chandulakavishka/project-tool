@@ -48,7 +48,7 @@ const NotificationPanel = () => {
         }}
       >
         <Box>
-          <Box padding="10px 30px">
+          <Box padding="20px 30px">
             <Box>
               <Box display="flex">
                 <Box>
@@ -65,9 +65,9 @@ const NotificationPanel = () => {
                     color="white"
                     marginLeft="40px"
                     marginTop="8px"
-                    width="250px"
+                    width="350px"
                   >
-                    You Were Assign New Task
+                    You Have New Notifications
                   </Typography>
                   <Typography
                     variant="p"

@@ -35,10 +35,9 @@ const RemainingTask = () => {
       <Box
         sx={{
           boxShadow: 3,
-          marginLeft: 2,
           borderColor: 'gray',
-          width: 360,
-          height: 275,
+          width: '85%',
+          height: '300px',
           padding: 3,
           borderRadius: '5px',
           backgroundColor: '#fff',
