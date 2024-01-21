@@ -24,6 +24,9 @@ const Innovatives = () => {
     <>
       <Box
         sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
           boxShadow: 3,
           borderColor: 'gray',
           width: '90%',

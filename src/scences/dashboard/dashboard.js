@@ -27,25 +27,24 @@ const Dashboard = () => {
             }}>
               <Box
                 sx={{
-                  gridRow:'1/6',
+                  gridRow:'1/7',
                   gridColumn:'1/9',
                   display:'flex',
                   flexDirection:'column',
                   justifyContent:'space-between',
                   alignItems:'center',
                   backgroundColor:'white',
-                  background:'white',
                 }}
               >
                 <Box
                   sx={{
+                      mt: 1,
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
                       boxShadow: 3,
                       borderColor: 'gray',
                       width: '80%',
-                      height: '300px',
                       borderRadius: '5px',
                       backgroundColor: '#fff',
                       overflow: 'hidden'
@@ -63,8 +62,6 @@ const Dashboard = () => {
                   justifyContent:'space-between',
                   alignItems:'center',
                   padding:2,
-                  backgroundColor:'white',
-                  // background:'yellow',
                 }}
               >
                 <NotificationPanel/>
@@ -78,8 +75,6 @@ const Dashboard = () => {
                   justifyContent:'space-between',
                   alignItems:'center',
                   padding:2,
-                  backgroundColor:'white',
-                  // background:'blue',
                 }}
               >
                 <RemainingTask/>
@@ -94,7 +89,6 @@ const Dashboard = () => {
                   alignItems:'center',
                   backgroundColor:'white',
                   padding:1,
-                  // background:'red',
                 }}>
                   <CircleProgressBar/>
               </Box>
