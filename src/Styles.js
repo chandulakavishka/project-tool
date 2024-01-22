@@ -28,8 +28,6 @@ export const useStyles = makeStyles()((theme) => {
             padding:'2px ',
             backgroundColor: '#3b74',
             borderRadius: '10px',
-    
-            
         },
         noteCard: {
             backgroundColor: 'lightgray'
