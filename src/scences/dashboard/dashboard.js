@@ -22,8 +22,8 @@ const Dashboard = () => {
               height:'100vh',
               display:'grid',
               padding:'65px 20px 10px 0px',
-              gridTemplateColumns:'5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%',
-              gridTemplateRows:'10% 10% 10% 10% 10% 10% 10% 10% 10% 10%',
+              gridTemplateColumns:'repeat(20,1fr)',
+              gridTemplateRows:'repeat(10,10%)',
             }}>
               <Box
                 sx={{
