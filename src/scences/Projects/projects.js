@@ -51,7 +51,7 @@ const Projects = () => {
                     </AvatarGroup>
                     <Typography variant="body2" color="text.primary" style={{margin:'10px 15px'}}>Progress</Typography>
                     <Stack spacing={2} sx={{ flex: 0.5,margin:'10px 0',padding:'5px 10px' }}>
-                      <LinearProgress determinate value={25} />
+                      <LinearProgress determinate value={content.value} />
                     </Stack>
                   </Card>
                 )
