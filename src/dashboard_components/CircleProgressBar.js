@@ -21,10 +21,15 @@ const CircularProgressWithLabel = (props) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                 }}
-            >
-                <Typography variant="caption" component="div" color="text.secondary" sx={{fontSize:'30px'}}>
+            >   
+              <Box style={{position:'relative'}}>
+                <Typography variant="caption" component="div" color="#2A1992" sx={{fontSize:'25px',fontWeight:600}}>
                     {`${Math.round(props.value)}%`}
                 </Typography>
+                <Typography variant="caption" component="div" color="#2A1992" sx={{fontSize:'10px',fontWeight:600,position:'absolute',top:30,flexWrap:'nowrap',left:'-1 px',width:'100%'}}>
+                    Completed
+                </Typography>
+                </Box>
             </Box>
         </Box>
     );
@@ -69,7 +74,6 @@ export default function CircleProgressBar() {
             height: 150,
             borderRadius: '5px',
             backgroundColor: '#fff',
-           
           }}>
             <CircularProgressWithLabel size="7rem" value={(error !== true) ? percentage : 75} />
             
