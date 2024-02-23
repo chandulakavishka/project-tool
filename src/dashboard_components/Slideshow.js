@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/splide/dist/css/splide.min.css";
 
 const images = [
   'https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg?w=2000',
@@ -26,7 +27,7 @@ const Slideshow = () => {
       sx={{
         width: '96%',
         boxShadow:3,
-        backgroundColor: '#163a78',
+        backgroundColor: '#000',
         borderRadius:2,
         display: 'flex',
         alignItems: 'center',
@@ -35,22 +36,23 @@ const Slideshow = () => {
         position: 'relative',
       }}
     >
-      {images.map((image, i) => (
-        <Box
-          key={image}
-          sx={{
-            position: 'absolute',
-            top: 0,
-            left: index === i ? 0 : '100%',
-            transition: 'right 0.5s ease-out-in',
-            width: '100%',
-            height: '100%',
-            backgroundImage: `url(${image})`,
-            backgroundSize: 'cover',
-            
-          }}
-        />
-      ))}
+      <Splide options={{
+            perPage:1,
+            arrows:true,
+            focus:"center",
+            pagination:true,
+            gap:"4rem",
+          }}>
+            {images.map((images,index) => {
+              return (
+                <SplideSlide key={index}>
+                  <Box>
+                    <img src={images} style={{objectFit:'cover',width:'100%'}} alt=''/>
+                  </Box>
+                </SplideSlide>
+              )
+            })};
+          </Splide>
     </Box>
   );
 };
