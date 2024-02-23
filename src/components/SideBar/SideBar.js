@@ -8,6 +8,7 @@ import SupportAgentOutlinedIcon from '@mui/icons-material/SupportAgentOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import HouseIcon from '@mui/icons-material/House';
 import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useStyles } from '../../Styles';
 
@@ -135,8 +136,8 @@ const SideBar = ({
                 }}>
                 </Stack>
             </DrawerHeader>
-            {/* <Box sx={{ display: 'flex',flexDirection:'column', justifyContent: 'space-between', alignItems: 'center', marginBottom: '100px' }}> */}
-            <List>
+            <List sx={{display:'flex',flexDirection:'column',alignItems:'space-between'}}>
+                <div style={{marginBottom:'10rem'}}>
                 {menuItems.map(item => (
                     <ListItem
                         key={item.text}
@@ -165,6 +166,33 @@ const SideBar = ({
                         </ListItemButton>
                     </ListItem>
                 ))}
+                </div>
+                <ListItem
+                        onClick={() => {navigate('/LogIn'); }}
+                        className={(location.pathname === '/LogIn') ? classes.active : null}
+                        disablePadding
+                        sx={{ display: 'block', marginBottom: '0px',ml:'10px' }}
+                    >
+                      <ListItemButton
+                            sx={{
+                                minHeight: 48,
+                                justifyContent: open ? 'initial' : 'center',
+                                px: 2.5,
+                            }}
+                        >
+                            <ListItemIcon
+                                sx={{
+                                    minWidth: 0,
+                                    mr: open ? 3 : 'auto',
+                                    justifyContent: 'center',
+                                }}
+                            >
+                                <LogoutIcon fontSize='medium' className={classes.drawerIcon} />
+                            </ListItemIcon>
+                            <ListItemText primary="Logout" sx={{ opacity: open ? 1 : 0 }} className={classes.drawerText} />
+
+                        </ListItemButton>
+                    </ListItem>
             </List>
 
 
