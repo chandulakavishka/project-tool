@@ -24,7 +24,7 @@ const Slideshow = () => {
     <Box
       height={180}
       sx={{
-        width:350,
+        width: '96%',
         boxShadow:3,
         backgroundColor: '#163a78',
         borderRadius:2,
@@ -47,11 +47,7 @@ const Slideshow = () => {
             height: '100%',
             backgroundImage: `url(${image})`,
             backgroundSize: 'cover',
-            '&:hover': {
-              width: 355,
-              height: 185,
-              opacity: [0.9, 0.8, 0.7],
-            }
+            
           }}
         />
       ))}

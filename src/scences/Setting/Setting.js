@@ -4,29 +4,32 @@ import { Box, CssBaseline } from "@mui/material";
 import NavBar from "../../components/NavBar/NavBar";
 
 export const Setting = () => {
-  const [userData, setUserData] = useState({
+  const initalState = {
     firstName: "",
     lastName: "",
     email: "",
     city: "",
     phoneNum: "",
     description: "",
-    profilePicture: null,
-  });
-  const [data, setData] = useState([]);
+  }
+
+  const [userData, setUserData] = useState(initalState);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     axios
-      .get("https://localhost:7224/api/Users")
+      .get('https://localhost:7224/api/Users/2')
       .then((res) => {
-        setData(res.data);
+        const data = res.data;
+        console.log('hello',data);
+        setUserData(data[0]);
       })
       .catch((err) => {
-        console.log(err);
+        console.log('err',err);
         setError(true);
       });
   }, []);
+  
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -34,38 +37,19 @@ export const Setting = () => {
       ...userData,
       [name]: value,
     });
-    userData.city = event.target.value;
-    userData.phoneNo = event.target.value;
-    userData.description = event.target.value;
   };
 
-  const fname = data
-    .filter((item) => item.uId === 2)
-    .map((item) => item.lastName);
-  const lname = data
-    .filter((item) => item.uId === 1)
-    .map((item) => item.lastName);
-  const email = data.filter((item) => item.uId === 2).map((item) => item.email);
-  const backendcity = data.filter((item) => item.uId === 2).map((item) => item.city);
-  const backendphoneNo = data
-    .filter((item) => item.uId === 2)
-    .map((item) => item.phoneNo);
-  const backendDescription = data
-    .filter((item) => item.uId === 2)
-    .map((item) => item.description);
+    {console.log('userData',userData);}
+
 
   
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = {
-      uId: 1,
-      firstName: "string",
-      lastName: "string",
-      email: "string",
+      ...userData,
       city : userData.city,
       phoneNo : userData.phoneNo,
       description : userData.description,
-      role: 0
     }
 
     // Make a Update request to the backend API to update the user data
@@ -134,7 +118,7 @@ export const Setting = () => {
                 name="firstName"
                 value={userData.firstName}
                 onChange={handleInputChange}
-                placeholder={fname}
+                placeholder={userData.firstName}
                 disabled
               />
 
@@ -147,7 +131,7 @@ export const Setting = () => {
                 name="lastName"
                 value={userData.lastName}
                 onChange={handleInputChange}
-                placeholder={lname}
+                placeholder={userData.lastName}
                 disabled
               />
 
@@ -160,7 +144,7 @@ export const Setting = () => {
                 name="email"
                 value={userData.email}
                 onChange={handleInputChange}
-                placeholder={email}
+                placeholder={userData.email}
                 disabled
               />
 
@@ -171,7 +155,7 @@ export const Setting = () => {
                 style={styles.input}
                 type="text"
                 name="city"
-                placeholder={backendcity}
+                placeholder={userData.city}
                 value={userData.city}
                 onChange={handleInputChange}
               />
@@ -183,7 +167,7 @@ export const Setting = () => {
                 style={styles.input}
                 type="text"
                 name="phoneNo"
-                placeholder={backendphoneNo}
+                placeholder={userData.phoneNo}
                 value={userData.phoneNo}
                 onChange={handleInputChange}
               />
@@ -195,14 +179,14 @@ export const Setting = () => {
                 style={styles.input}
                 type="textarea"
                 name="description"
-                placeholder={backendDescription}
+                placeholder={userData.description}
                 value={userData.description}
                 onChange={handleInputChange}
               />
 
               <button
                 style={styles.button}
-                type="button"
+                type="submit"
                 onClick={handleSubmit}
               >
                 Save Changes

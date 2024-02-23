@@ -10,9 +10,8 @@ import HouseIcon from '@mui/icons-material/House';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useStyles } from '../../Styles';
-import { red } from '@mui/material/colors';
 
-const drawerWidth = 230;
+const drawerWidth = 260;
 
 const openedMixin = (theme) => ({
     width: drawerWidth,
@@ -35,7 +34,7 @@ const closedMixin = (theme) => ({
     overflowX: 'hidden',
     width: `calc(${theme.spacing(7)} + 1px)`,
     [theme.breakpoints.up('sm')]: {
-        width: `calc(${theme.spacing(8)} + 1px)`,
+        width: `calc(${theme.spacing(8)} + 10px)`,
     },
 });
 
@@ -111,22 +110,23 @@ const SideBar = ({
     ]
 
     return (
-        <Drawer variant="permanent" open={open} sx={{ backgroundColor: 'black', color: 'white' }}>
+        <Drawer variant="permanent" open={open} sx={{ backgroundColor: 'black', color: 'white',height:'100vh' }}>
             <DrawerHeader >
                 <IconButton color="inherit"
                     aria-label="close drawer"
                     onClick={handleDrawerClose}
                     edge="start"
                     sx={{
-                        ml: 1,
-                        marginRight: 2,
+                        marginLeft: 1,
+                        marginRight: 1,
+                        mt: '-10px',
                         ...(!open && { display: 'none' }),
                     }}>
                     <MenuIcon />
                 </IconButton>
 
                 <Box>
-                    <img src='../../images/Logo.png' alt='icon' width={150} />
+                    <img src='../../images/Logo.png' alt='icon' width={130} style={{margin:'0px 50px 5px 0'}} />
                 </Box>
 
                 <Stack sx={{
@@ -143,7 +143,7 @@ const SideBar = ({
                         onClick={() => { localStorage.setItem("header", item.text); navigate(item.path); }}
                         className={(location.pathname === item.path) ? classes.active : null}
                         disablePadding
-                        sx={{ display: 'block', marginBottom: '10px' }}
+                        sx={{ display: 'block', marginBottom: '10px',ml:'10px' }}
                     >
                         <ListItemButton
                             sx={{

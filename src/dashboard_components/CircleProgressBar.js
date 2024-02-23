@@ -21,10 +21,15 @@ const CircularProgressWithLabel = (props) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                 }}
-            >
-                <Typography variant="caption" component="div" color="text.secondary" sx={{fontSize:'30px'}}>
+            >   
+              <Box style={{position:'relative'}}>
+                <Typography variant="caption" component="div" color="#2A1992" sx={{fontSize:'25px',fontWeight:600}}>
                     {`${Math.round(props.value)}%`}
                 </Typography>
+                <Typography variant="caption" component="div" color="#2A1992" sx={{fontSize:'10px',fontWeight:600,position:'absolute',top:30,flexWrap:'nowrap',left:'-1 px',width:'100%'}}>
+                    Completed
+                </Typography>
+                </Box>
             </Box>
         </Box>
     );
@@ -55,27 +60,24 @@ export default function CircleProgressBar() {
     console.log(percentage)
 
 
-    return <>
-                <Typography variant='h5' paddingLeft='30px'>Project Completion Rate</Typography>
-                <Box  
-                  sx={{
-                    boxShadow: 2,
-                    borderColor: 'gray',
-                    width: 350,
-                    height: 175,
-                    padding: 2,
-                    paddingLeft:12,
-                    marginRight:10,
-                    borderRadius: '5px',
-                    backgroundColor: '#fff',
-                    '&:hover': {
-                      height: 180,
-                      opacity: [0.9, 0.8, 0.7],
-                    }
-                    
-                  }}>
-                    <CircularProgressWithLabel size="9rem" value={(error !== true) ? percentage : 75} />
-                    
-                </Box>
+    return (
+    <>
+        <Typography variant='h5'>Project Completion Rate</Typography>
+        <Box  
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            boxShadow: 2,
+            borderColor: 'gray',
+            width: '90%',
+            height: 150,
+            borderRadius: '5px',
+            backgroundColor: '#fff',
+          }}>
+            <CircularProgressWithLabel size="7rem" value={(error !== true) ? percentage : 75} />
+            
+        </Box>
     </>
+    )
 }
